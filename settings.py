@@ -13,10 +13,10 @@ SERVICE_NAME = 'openapi'
 DATABASES = {
     'default': {
         'ENGINE': 'mysql+retry',
-        'NAME': '',
-        'USER': '',                      
-        'PASSWORD': '',                  
-        'HOST': 'db.openapi_service.com',
+        'NAME': 'poseidon',
+        'USER': 'poseidon',                      
+        'PASSWORD': 'weizoom',                  
+        'HOST': 'db.weapp.com',
         'PORT': '',
         'CONN_MAX_AGE': 100
     },
@@ -35,7 +35,7 @@ DATABASES = {
 MIDDLEWARES = [    
     'eaglet.middlewares.debug_middleware.QueryMonitorMiddleware',
     'eaglet.middlewares.debug_middleware.RedisMiddleware',
-
+    'eaglet.middlewares.zipkin_middleware.ZipkinMiddleware',
     #账号信息中间件
     #'middleware.webapp_account_middleware.WebAppAccountMiddleware',
 ]
@@ -114,7 +114,7 @@ INSTALLED_TASKS = [
 REDIS_SERVICE_DB = 2
 
 CTYPT_INFO = {
-    'id': 'weizoom_h5',
+    'id': 'openapi',
     'token': '2950d602ffb613f47d7ec17d0a802b',
     'encodingAESKey': 'BPQSp7DFZSs1lz3EBEoIGe6RVCJCFTnGim2mzJw5W4I'
 }
