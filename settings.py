@@ -37,7 +37,7 @@ MIDDLEWARES = [
     'eaglet.middlewares.debug_middleware.RedisMiddleware',
     'eaglet.middlewares.zipkin_middleware.ZipkinMiddleware',
     #账号信息中间件
-    #'middleware.webapp_account_middleware.WebAppAccountMiddleware',
+   # 'middleware.auth.Auth',
 ]
 #sevice celery 相关
 EVENT_DISPATCHER = 'redis'
@@ -81,8 +81,8 @@ else:
 #缓存相关配置
 REDIS_HOST = 'redis.weapp.com'
 REDIS_PORT = 6379
-REDIS_CACHES_DB = 1
-REDIS_CACHE_KEY = ':1:api'
+REDIS_CACHES_DB = 6
+REDIS_CACHE_KEY = '6:'
 
 #BDD相关配置
 WEAPP_DIR = '../weapp'

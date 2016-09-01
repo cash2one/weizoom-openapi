@@ -10,6 +10,7 @@ import math
 from datetime import datetime
 import time
 import urllib
+import hashlib
 
 from eaglet.decorator import param_required
 from eaglet.core.cache import utils as cache_util
@@ -45,6 +46,9 @@ class AccessToken(business_model.Model):
 			access_token=access_token,
 			expires_in='7200 '
 			)
+		print ">>>>>>>>>>!"
+		cache_util.set_cache_wrapper(hashlib.md5(access_token).hexdigest(),json.dumps(app.to_dict()) ,7200)
+		print ">>>>>>>>>>>@"
 		return AccessToken.from_model({
 			"model": db_model
 			})
