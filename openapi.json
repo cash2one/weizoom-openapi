@@ -87,9 +87,6 @@
                 "responses": {
                     "200": {
                         "description": "data response",
-                        "schema": {
-                            "$ref": "#/definitions/AccessToken"
-                        },
                         "examples": {
                             "application/json": {
                                 "code": 200,
