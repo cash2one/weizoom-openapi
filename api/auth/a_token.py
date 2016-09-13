@@ -18,7 +18,7 @@ class AToken(api_resource.ApiResource):
 	access_token
 	"""
 	app = 'auth'
-	resource = 'token'
+	resource = 'access_token'
 
 	@param_required(['appid', 'secret'])
 	def get(args):
