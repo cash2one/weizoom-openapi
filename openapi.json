@@ -1205,7 +1205,6 @@
                             "application/json": {
                                 "code": 200,
                                 "data": {
-                                    "mall_type": 1,
                                     "owner_id": 2307,
                                     "errMsg": "",
                                     "code": 200,
@@ -1259,6 +1258,105 @@
                                         }
                                     ]
 
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "/mall/apply_product_stock/": {
+            "get": {
+                "tags": [
+                    "apply_product_stock"
+                ],
+                "summary": "申请商品库存",
+                "description": "申请商品库存",
+                "consumes": [
+                    "application/x-www-form-urlencoded"
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "parameters": [
+                    {
+                        "in": "query",
+                        "name": "access_token",
+                        "type": "string",
+                        "description": "request_stock",
+                        "required": true,
+
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "申请商品库存的响应信息",
+                        "examples": {
+                            "application/json": {
+                                "code": 200,
+                                "data": {
+                                    "owner_id": 2307,
+                                    "errMsg": "",
+                                    "code": 200,
+                                    "product": [
+                                        {
+                                            "total_stocks": 99,
+                                            "id": 976,
+                                            "request_stock": 4,
+                                            "name": "商品2-2",
+                                            "stock_id": "xxx", #库存标识
+                                            "result":success #申请结果
+                                        }
+                                    ]
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        },
+         "/mall/release_product_stock/": {
+            "get": {
+                "tags": [
+                    "apply_product_stock"
+                ],
+                "summary": "释放商品库存",
+                "description": "释放商品库存",
+                "consumes": [
+                    "application/x-www-form-urlencoded"
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "parameters": [
+                    {
+                        "in": "query",
+                        "name": "access_token",
+                        "type": "string",
+                        "description": "id+stock_id", #商品id +库存标识id
+                        "required": true,
+
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "释放商品库存的响应信息",
+                        "examples": {
+                            "application/json": {
+                                "code": 200,
+                                "data": {
+                                    "owner_id": 2307,
+                                    "errMsg": "",
+                                    "code": 200,
+                                    "product": [
+                                        {
+                                            "id": 976,
+                                            "release_stock": 4, #释放库存数
+                                            "name": "商品2-2",
+                                            "stock_id": "xxx", #库存标识
+                                            "result":success #释放结果
+                                        }
+                                    ]
                                 }
                             }
                         }
