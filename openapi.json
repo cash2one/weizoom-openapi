@@ -1701,48 +1701,42 @@
                     "type": "string",
                 },
                 "products":{
-                    "description": "商品集合",
-                    "type": "json",
-                    "schema":{
-                        "description": "商品集合",
-                        "type":"object",
-                        "properties": {
-                            "type":"array",
-                            "items":{
-                                "properties": {
-                                    "product_id":{
-                                        "description": "商品id",
-                                        "required": true,
-                                        "type": "string"
-                                    },
-                                    "product_model_id":{
-                                        "description": "商品规格id",
-                                        "required": true,
-                                        "type": "string"
-                                    },
-                                    "product_name":{
-                                        "description": "商品名称",
-                                        "required": true,
-                                        "type": "string"
-                                    },
-                                    "product_count":{
-                                        "description": "商品数量",
-                                        "required": true,
-                                        "type": "string"
-                                    },
-                                    "product_price":{
-                                        "description": "单个商品售价",
-                                        "required": true,
-                                        "type": "string"
-                                    },
-
-                                }
-                            }
-                        }
-                    }
+                    "items": {
+                        "$ref": "#/definitions/Product"
+                    },
                 },
             }
         },
+        "Product":{
+            "type": "object",
+            "properties": {
+                "product_id":{
+                    "description": "商品id",
+                    "required": true,
+                    "type": "string"
+                },
+                "product_model_id":{
+                    "description": "商品规格id",
+                    "required": true,
+                    "type": "string"
+                },
+                "product_name":{
+                    "description": "商品名称",
+                    "required": true,
+                    "type": "string"
+                },
+                "product_count":{
+                    "description": "商品数量",
+                    "required": true,
+                    "type": "string"
+                },
+                "product_price":{
+                    "description": "单个商品售价",
+                    "required": true,
+                    "type": "string"
+                },
+            }
+        }
     },
     "externalDocs": {
         "description": "授权API描述文档",
