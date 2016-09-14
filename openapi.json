@@ -1269,7 +1269,7 @@
                         "in": "body",
                         "description": "申请库存资源的id",
                         "required": true,
-                        "type": "string",
+                        "type": "number",
                     },
                     {
                         "name": "ship_name",
@@ -1308,12 +1308,12 @@
                                         "product_id":{
                                             "description": "商品id",
                                             "required": true,
-                                            "type": "string"
+                                            "type": "number"
                                         },
                                         "product_model_id":{
                                             "description": "商品规格id",
                                             "required": true,
-                                            "type": "string"
+                                            "type": "number"
                                         },
                                         "product_name":{
                                             "description": "商品名称",
@@ -1323,7 +1323,7 @@
                                         "product_count":{
                                             "description": "商品数量",
                                             "required": true,
-                                            "type": "string"
+                                            "type": "number"
                                         },
                                         "product_price":{
                                             "description": "单个商品售价",
@@ -1637,7 +1637,7 @@
                     "description": "收获电话"
                 },
                 "product_count": {
-                    "type": "string",
+                    "type": "number",
                     "description": "购买商品数量"
                 },
                 "payment_time": {
@@ -1698,7 +1698,7 @@
                 },
                 "apply_stock_id":{
                     "description": "申请库存资源的id",
-                    "type": "string",
+                    "type": "number",
                 },
                 "products":{
                     "items": {
@@ -1712,27 +1712,22 @@
             "properties": {
                 "product_id":{
                     "description": "商品id",
-                    "required": true,
-                    "type": "string"
+                    "type": "number"
                 },
                 "product_model_id":{
                     "description": "商品规格id",
-                    "required": true,
-                    "type": "string"
+                    "type": "number"
                 },
                 "product_name":{
                     "description": "商品名称",
-                    "required": true,
                     "type": "string"
                 },
                 "product_count":{
                     "description": "商品数量",
-                    "required": true,
-                    "type": "string"
+                    "type": "number"
                 },
                 "product_price":{
                     "description": "单个商品售价",
-                    "required": true,
                     "type": "string"
                 },
             }
