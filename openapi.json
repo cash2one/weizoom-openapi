@@ -99,10 +99,8 @@
                                         "detail": "松鼠桂鱼的详情",
                                         "id": 67,
                                         "is_deleted": false,
-                                        "is_delivery": false,
                                         "is_enable_bill": false,
                                         "is_sellout": false,
-                                        "is_use_cod_pay_interface": true,
                                         "limit_zone": 0,
                                         "limit_zone_type": 0,
                                         "min_limit": 0,
@@ -121,7 +119,6 @@
                                             {
                                                 "id": 111,
                                                 "is_deleted": false,
-                                                "market_price": 0,
                                                 "name": "1:1_2:4_3:7",
                                                 "original_price": 1,
                                                 "price": 1,
@@ -168,13 +165,11 @@
                                                 ],
                                                 "stock_type": 0,
                                                 "stocks": "无限",
-                                                "user_code": "",
                                                 "weight": 1
                                             },
                                             {
                                                 "id": 112,
                                                 "is_deleted": false,
-                                                "market_price": 0,
                                                 "name": "1:2_2:4_3:7",
                                                 "original_price": 2,
                                                 "price": 2,
@@ -221,7 +216,6 @@
                                                 ],
                                                 "stock_type": 0,
                                                 "stocks": "无限",
-                                                "user_code": "",
                                                 "weight": 1
                                             },
                                             {
@@ -273,13 +267,11 @@
                                                 ],
                                                 "stock_type": 0,
                                                 "stocks": "无限",
-                                                "user_code": "",
                                                 "weight": 1
                                             },
                                             {
                                                 "id": 114,
                                                 "is_deleted": false,
-                                                "market_price": 0,
                                                 "name": "1:1_2:5_3:7",
                                                 "original_price": 4,
                                                 "price": 4,
@@ -326,13 +318,11 @@
                                                 ],
                                                 "stock_type": 0,
                                                 "stocks": "无限",
-                                                "user_code": "",
                                                 "weight": 1
                                             },
                                             {
                                                 "id": 115,
                                                 "is_deleted": false,
-                                                "market_price": 0,
                                                 "name": "1:2_2:5_3:7",
                                                 "original_price": 5,
                                                 "price": 5,
@@ -379,13 +369,11 @@
                                                 ],
                                                 "stock_type": 0,
                                                 "stocks": "无限",
-                                                "user_code": "",
                                                 "weight": 1
                                             },
                                             {
                                                 "id": 116,
                                                 "is_deleted": false,
-                                                "market_price": 0,
                                                 "name": "1:3_2:5_3:7",
                                                 "original_price": 6,
                                                 "price": 6,
@@ -432,13 +420,11 @@
                                                 ],
                                                 "stock_type": 0,
                                                 "stocks": "无限",
-                                                "user_code": "",
                                                 "weight": 1
                                             },
                                             {
                                                 "id": 117,
                                                 "is_deleted": false,
-                                                "market_price": 0,
                                                 "name": "1:1_2:6_3:7",
                                                 "original_price": 7,
                                                 "price": 7,
@@ -486,13 +472,11 @@
                                                 "purchase_price": 0,
                                                 "stock_type": 0,
                                                 "stocks": "无限",
-                                                "user_code": "",
                                                 "weight": 1
                                             },
                                             {
                                                 "id": 118,
                                                 "is_deleted": false,
-                                                "market_price": 0,
                                                 "name": "1:2_2:6_3:7",
                                                 "original_price": 8,
                                                 "price": 8,
@@ -539,13 +523,11 @@
                                                 ],
                                                 "stock_type": 0,
                                                 "stocks": "无限",
-                                                "user_code": "",
                                                 "weight": 1
                                             },
                                             {
                                                 "id": 119,
                                                 "is_deleted": false,
-                                                "market_price": 0,
                                                 "name": "1:3_2:6_3:7",
                                                 "original_price": 9,
                                                 "price": 9,
@@ -592,13 +574,11 @@
                                                 ],
                                                 "stock_type": 0,
                                                 "stocks": "无限",
-                                                "user_code": "",
                                                 "weight": 1
                                             },
                                             {
                                                 "id": 120,
                                                 "is_deleted": false,
-                                                "market_price": 0,
                                                 "name": "1:1_2:4_3:8",
                                                 "original_price": 10,
                                                 "price": 10,
@@ -645,13 +625,11 @@
                                                 ],
                                                 "stock_type": 0,
                                                 "stocks": "无限",
-                                                "user_code": "",
                                                 "weight": 1
                                             },
                                             {
                                                 "id": 121,
                                                 "is_deleted": false,
-                                                "market_price": 0,
                                                 "name": "1:2_2:4_3:8",
                                                 "original_price": 11,
                                                 "price": 11,
@@ -698,13 +676,11 @@
                                                 ],
                                                 "stock_type": 0,
                                                 "stocks": "无限",
-                                                "user_code": "",
                                                 "weight": 1
                                             },
                                             {
                                                 "id": 122,
                                                 "is_deleted": false,
-                                                "market_price": 0,
                                                 "name": "1:3_2:4_3:8",
                                                 "original_price": 12,
                                                 "price": 12,
@@ -751,13 +727,11 @@
                                                 ],
                                                 "stock_type": 0,
                                                 "stocks": "无限",
-                                                "user_code": "",
                                                 "weight": 1
                                             },
                                             {
                                                 "id": 123,
                                                 "is_deleted": false,
-                                                "market_price": 0,
                                                 "name": "1:1_2:5_3:8",
                                                 "original_price": 13,
                                                 "price": 13,
@@ -804,13 +778,11 @@
                                                 ],
                                                 "stock_type": 0,
                                                 "stocks": "无限",
-                                                "user_code": "",
                                                 "weight": 1
                                             },
                                             {
                                                 "id": 124,
                                                 "is_deleted": false,
-                                                "market_price": 0,
                                                 "name": "1:2_2:5_3:8",
                                                 "original_price": 14,
                                                 "price": 14,
@@ -857,13 +829,11 @@
                                                 ],
                                                 "stock_type": 0,
                                                 "stocks": "无限",
-                                                "user_code": "",
                                                 "weight": 1
                                             },
                                             {
                                                 "id": 125,
                                                 "is_deleted": false,
-                                                "market_price": 0,
                                                 "name": "1:3_2:5_3:8",
                                                 "original_price": 15,
                                                 "price": 15,
@@ -911,13 +881,11 @@
                                                 "purchase_price": 0,
                                                 "stock_type": 0,
                                                 "stocks": "无限",
-                                                "user_code": "",
                                                 "weight": 1
                                             },
                                             {
                                                 "id": 126,
                                                 "is_deleted": false,
-                                                "market_price": 0,
                                                 "name": "1:1_2:6_3:8",
                                                 "original_price": 16,
                                                 "price": 16,
@@ -964,13 +932,11 @@
                                                 ],
                                                 "stock_type": 0,
                                                 "stocks": "无限",
-                                                "user_code": "",
                                                 "weight": 1
                                             },
                                             {
                                                 "id": 127,
                                                 "is_deleted": false,
-                                                "market_price": 0,
                                                 "name": "1:2_2:6_3:8",
                                                 "original_price": 17,
                                                 "price": 17,
@@ -1018,13 +984,11 @@
                                                 "purchase_price": 0,
                                                 "stock_type": 0,
                                                 "stocks": "无限",
-                                                "user_code": "",
                                                 "weight": 1
                                             },
                                             {
                                                 "id": 128,
                                                 "is_deleted": false,
-                                                "market_price": 0,
                                                 "name": "1:3_2:6_3:8",
                                                 "original_price": 18,
                                                 "price": 18,
@@ -1071,12 +1035,9 @@
                                                 ],
                                                 "stock_type": 0,
                                                 "stocks": "无限",
-                                                "user_code": "",
                                                 "weight": 1
                                             }
                                         ],
-                                        "supplier_postage_config": {
-                                        },
                                         "swipe_images": [
                                             {
                                                 "height": 100,
@@ -1087,9 +1048,7 @@
                                             }
                                         ],
                                         "thumbnails_url": "http://dev.weapp.com/standard_static/test_resource_img/yu3.jpg",
-                                        "type": "object",
-                                        "unified_postage_money": 0,
-                                        "used_system_model_properties": [
+                                        "system_model_properties": [
                                             {
                                                 "id": 1,
                                                 "name": "颜色",
