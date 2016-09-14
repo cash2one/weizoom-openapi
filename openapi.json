@@ -1170,7 +1170,7 @@
                                                   "display_price": 1,
                                                   "max_price": 18,
                                                   "min_price": 1
-                                                },
+                                                }
                                               }
                             }
                         }
@@ -1188,14 +1188,14 @@
                         "in": "query",
                         "description": "access_token,访问令牌",
                         "required": true,
-                        "type": "string",
+                        "type": "string"
                     },
                     {
                         "name": "order_id",
                         "in": "query",
                         "description": "订单编号",
                         "required": true,
-                        "type": "string",
+                        "type": "string"
                     }
                 ],
                 "tags":[
@@ -1248,35 +1248,35 @@
                         "in": "body",
                         "description": "access_token,访问令牌",
                         "required": true,
-                        "type": "string",
+                        "type": "string"
                     },
                     {
                         "name": "deal_id",
                         "in": "body",
                         "description": "交易流水号",
                         "required": true,
-                        "type": "string",
+                        "type": "string"
                     },
                     {
                         "name": "deal_price",
                         "in": "body",
                         "description": "交易总金额",
                         "required": true,
-                        "type": "string",
+                        "type": "string"
                     },
                     {
                         "name": "apply_stock_id",
                         "in": "body",
                         "description": "申请库存资源的id",
                         "required": true,
-                        "type": "number",
+                        "type": "number"
                     },
                     {
                         "name": "ship_name",
                         "in": "body",
                         "description": "收货人姓名",
                         "required": true,
-                        "type": "string",
+                        "type": "string"
                     },
                     {
                         "name": "ship_tel",
@@ -1329,13 +1329,13 @@
                                             "description": "单个商品售价",
                                             "required": true,
                                             "type": "string"
-                                        },
+                                        }
 
                                     }
                                 }
                             }
                         }
-                    },
+                    }
                 ],
                 "tags":[
                     "order"
@@ -1387,14 +1387,14 @@
                         "in": "body",
                         "description": "access_token,访问令牌",
                         "required": true,
-                        "type": "string",
+                        "type": "string"
                     },
                     {
                         "name": "order_id",
                         "in": "body",
                         "description": "订单编号",
                         "required": true,
-                        "type": "string",
+                        "type": "string"
                     },
                     {
                         "name": "cancel",
@@ -1402,7 +1402,7 @@
                         "description": "取消订单",
                         "required": true,
                         "type": "string"
-                    },
+                    }
                 ],
                 "tags":[
                     "order"
@@ -1452,7 +1452,7 @@
                         "in": "query",
                         "description": "access_token,访问令牌",
                         "required": true,
-                        "type": "string",
+                        "type": "string"
                     },
                     {
                         "name": "cur_page",
@@ -1481,7 +1481,7 @@
                         "description": "时间类型：1 下单时间 3 发货时间 6 订单完成时间 7 订单取消时间",
                         "required": false,
                         "type": "string"
-                    },
+                    }
                     
                 ],
                 "tags": [
@@ -1519,7 +1519,7 @@
                     }
                 }
             }
-        },
+        }
     },
 
     "definitions": {
@@ -1610,7 +1610,7 @@
                 "finish_time": {
                     "type": "string",
                     "description": "订单完成时间"
-                },
+                }
             }
         },
         "OrderDetail": {
@@ -1690,21 +1690,21 @@
                 },
                 "deal_id":{
                     "description": "交易流水号",
-                    "type": "string",
+                    "type": "string"
                 },
                 "deal_price":{
                     "description": "交易总金额",
-                    "type": "string",
+                    "type": "string"
                 },
                 "apply_stock_id":{
                     "description": "申请库存资源的id",
-                    "type": "number",
+                    "type": "number"
                 },
                 "products":{
                     "items": {
                         "$ref": "#/definitions/Product"
-                    },
-                },
+                    }
+                }
             }
         },
         "Product":{
@@ -1729,7 +1729,7 @@
                 "product_price":{
                     "description": "单个商品售价",
                     "type": "string"
-                },
+                }
             }
         }
     },
