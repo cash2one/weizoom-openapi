@@ -1384,21 +1384,21 @@
                 "parameters":[
                     {
                         "name": "access_token",
-                        "in": "body",
+                        "in": "query",
                         "description": "access_token,访问令牌",
                         "required": true,
                         "type": "string"
                     },
                     {
                         "name": "order_id",
-                        "in": "body",
+                        "in": "query",
                         "description": "订单编号",
                         "required": true,
                         "type": "string"
                     },
                     {
                         "name": "cancel",
-                        "in": "body",
+                        "in": "query",
                         "description": "取消订单",
                         "required": true,
                         "type": "string"
