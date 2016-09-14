@@ -1182,7 +1182,7 @@
                     "products"
                 ],
                 "summary": "获取商品列表",
-                "description": "获取商品列表",
+                "description": "获取商品列表 /n",
                 "consumes": [
                     "application/x-www-form-urlencoded"
                 ],
@@ -1194,71 +1194,124 @@
                         "in": "query",
                         "name": "access_token",
                         "type": "string",
-                        "description": "access_token",
+                        "description": "密钥",
+                        "required": true
+                    },
+                    {
+                        "in": "query",
+                        "name": "user_id",
+                        "type": "string",
+                        "description": "用户分配的ID",
                         "required": true
                     }
                 ],
                 "responses": {
                     "200": {
-                        "description": "data response",
-                        "examples": {
-                            "application/json": {
-                                "code": 200,
+                        "description": "Successful response",
+                        "schema": {
+                            "type": "object",
+                            "properties": {
+                                "code": {
+                                    "type": "integer",
+                                    "format": "int32"
+                                },
                                 "data": {
-                                    "owner_id": 2307,
-                                    "errMsg": "",
-                                    "code": 200,
-                                    "items": [
-                                        {
-                                            "classification": "",
-                                            "standard_model": {
-                                                "user_code": "",
-                                                "stock_type": 1,
-                                                "name": "standard",
-                                                "weight": 1,
-                                                "price": "20.00",
-                                                "stocks": 99,
-                                                "market_price": "0.00",
-                                                "id": 991,
-                                                "gross_profit": "1.00"
-                                            },
-                                            "sales": 1,
-                                            "thumbnails_url": "http://chaozhi.weizoom.comlove.png",
-                                            "total_stocks": 99,
-                                            "id": 976,
-                                            "is_sellout": false,
-                                            "current_used_model": {
-                                                "user_code": "",
-                                                "stock_type": 1,
-                                                "name": "standard",
-                                                "weight": 1,
-                                                "price": "20.00",
-                                                "stocks": 99,
-                                                "market_price": "0.00",
-                                                "id": 991,
-                                                "gross_profit": "1.00"
-                                            },
-                                            "display_price_range": "20.00",
-                                            "display_index": 0,
-                                            "min_limit": 5,
-                                            "bar_code": "",
-                                            "type": "object",
-                                            "purchase_price": 19,
-                                            "store_name": "供货商2",
-                                            "models": [],
-                                            "display_price": "20.00",
-                                            "user_code": "",
-                                            "is_use_custom_model": false,
-                                            "stocks": 99,
-                                            "properties": [],
-                                            "categories": [],
-                                            "name": "商品2-2",
-                                            "created_at": "2016-09-13 16:14",
-                                            "supplier_type": -1
+                                    "type": "object",
+                                    "properties": {
+                                        "errMsg": {
+                                            "type": "string"
+                                        },
+                                        "innerErrMsg":{
+                                            "type": "string"
+                                        },
+                                        "products":{
+                                            "type": "array",
+                                            "description": "商品列表", 
+                                            "items": {
+                                                "type": "object",
+                                                "properties":{
+                                                    "classification": {
+                                                        "type": "integer",
+                                                        "description": "商品分类ID"
+                                                    },
+                                                    "sales": {
+                                                        "type": "integer",
+                                                        "description": "商品销量"
+                                                    },
+                                                    "thumbnails_url": {
+                                                        "type": "string",
+                                                        "description": "商品缩略图的url地址"
+                                                    },
+                                                    "total_stocks": {
+                                                        "type": "integer",
+                                                        "description": "商品总库存"
+                                                    },
+                                                    "id": {
+                                                        "type": "integer",
+                                                        "description": "商品ID"
+                                                    },
+                                                    "is_sellout": {
+                                                        "type": "string",
+                                                        "description": "商品是否售空"
+                                                    },
+                                                    "display_price_range": {
+                                                        "type": "string",
+                                                        "description": "商品显示的价格排序"
+                                                    },
+                                                    "display_index": {
+                                                        "type": "string",
+                                                        "description": "商品显示的排序"
+                                                    },
+                                                    "min_limit": {
+                                                        "type": "integer",
+                                                        "description": "商品最大数量"
+                                                    },
+                                                    "bar_code": {
+                                                        "type": "string",
+                                                        "description": "商品条形码"
+                                                    },
+                                                    "purchase_price": {
+                                                        "type": "integer",
+                                                        "description": "商品进货价格"
+                                                    },
+                                                    "store_name":{
+                                                        "type": "integer",
+                                                        "description": "商品供应商"
+                                                    },
+                                                    "models": {
+                                                        "type": "integer",
+                                                        "description": "商品规格"
+                                                    },
+                                                    "display_price": {
+                                                        "type": "integer",
+                                                        "description": "商品展示价格"
+                                                    },
+                                                    "user_code": {
+                                                        "type": "integer",
+                                                        "description": "用户编码"
+                                                    },
+                                                    "is_use_custom_model": {
+                                                        "type": "string",
+                                                        "description": "是否为普通规格"
+                                                    },
+                                                    "stocks": {
+                                                        "type": "integer",
+                                                        "description": "商品库存"
+                                                    },
+                                                    "name": {
+                                                        "type": "string",
+                                                        "description": "商品名"
+                                                    },
+                                                    "created_at": {
+                                                        "type": "string",
+                                                        "description": "商品创建时间"
+                                                    }
+                                                }
+                                            }
                                         }
-                                    ]
-
+                                    }
                                 }
+ 
                             }
                         }
                     }
@@ -1281,9 +1334,23 @@
                 "parameters": [
                     {
                         "in": "query",
+                        "name": "product_id",
+                        "type": "string",
+                        "description": "商品ID",
+                        "required": true,
+                    },
+                    {
+                        "in": "query",
+                        "name": "apply_stock",
+                        "type": "string",
+                        "description": "申请的库存数量",
+                        "required": true,
+                    },
+                    {
+                        "in": "query",
                         "name": "access_token",
                         "type": "string",
-                        "description": "request_stock",
+                        "description": "密钥",
                         "required": true,
 
                     }
@@ -1291,23 +1358,47 @@
                 "responses": {
                     "200": {
                         "description": "申请商品库存的响应信息",
-                        "examples": {
-                            "application/json": {
-                                "code": 200,
-                                "data": {
-                                    "owner_id": 2307,
-                                    "errMsg": "",
-                                    "code": 200,
-                                    "product": [
-                                        {
-                                            "total_stocks": 99,
-                                            "id": 976,
-                                            "request_stock": 4,
-                                            "name": "商品2-2",
-                                            "stock_id": "xxx", #库存标识
-                                            "result":success #申请结果
+                        "schema": {
+                            "type": "object",
+                            "properties": {
+                                "code": {
+                                    "type": "integer",
+                                    "format": "int32"
+                                },
+                                "errMsg": {
+                                    "type": "string"
+                                },
+                                "innerErrMsg": {
+                                    "type": "string"
+                                },
+                                "product": {
+                                    "type": "object",
+                                    "properties": {
+                                        "stocks": {
+                                            "type": "string",
+                                            "description": "商品库存"
+                                        },
+                                        "id": {
+                                            "type": "string",
+                                            "description": "商品ID"
+                                        },
+                                        "apply_stock": {
+                                            "type": "string",
+                                            "description": "申请库存数量"
+                                        },
+                                        "name": {
+                                            "type": "string",
+                                            "description": "商品名称"
+                                        },
+                                        "stock_id": {
+                                            "type": "string",
+                                            "description": "库存标识ID"
+                                        },
+                                        "result":{
+                                            "type": "string",
+                                            "description": "申请结果"
                                         }
-                                    ]
+                                    }
                                 }
                             }
                         }
@@ -1331,9 +1422,25 @@
                 "parameters": [
                     {
                         "in": "query",
+                        "name": "product_id",
+                        "type": "string",
+                        "description": "商品ID",
+                        "required": true,
+
+                    },
+                    {
+                        "in": "query",
+                        "name": "stock_id",
+                        "type": "string",
+                        "description": "库存标识ID",
+                        "required": true,
+
+                    },
+                    {
+                        "in": "query",
                         "name": "access_token",
                         "type": "string",
-                        "description": "id+stock_id", #商品id +库存标识id
+                        "description": "密钥", 
                         "required": true,
 
                     }
@@ -1341,22 +1448,47 @@
                 "responses": {
                     "200": {
                         "description": "释放商品库存的响应信息",
-                        "examples": {
-                            "application/json": {
-                                "code": 200,
-                                "data": {
-                                    "owner_id": 2307,
-                                    "errMsg": "",
-                                    "code": 200,
-                                    "product": [
-                                        {
-                                            "id": 976,
-                                            "release_stock": 4, #释放库存数
-                                            "name": "商品2-2",
-                                            "stock_id": "xxx", #库存标识
-                                            "result":success #释放结果
+                        "schema": {
+                            "type": "object",
+                            "properties": {
+                                "code": {
+                                    "type": "integer",
+                                    "format": "int32"
+                                },
+                                "errMsg": {
+                                    "type": "string"
+                                },
+                                "innerErrMsg": {
+                                    "type": "string"
+                                },
+                                "product": {
+                                    "type": "object",
+                                    "properties": {
+                                        "stocks": {
+                                            "type": "string",
+                                            "description": "商品库存"
+                                        },
+                                        "id": {
+                                            "type": "string",
+                                            "description": "商品ID"
+                                        },
+                                        "release_stock": {
+                                            "type": "string",
+                                            "description": "释放库存数"
+                                        },
+                                        "name": {
+                                            "type": "string",
+                                            "description": "商品名称"
+                                        },
+                                        "stock_id": {
+                                            "type": "string",
+                                            "description": "库存标识ID"
+                                        },
+                                        "result":{
+                                            "type": "string",
+                                            "description": "申请结果"
                                         }
-                                    ]
+                                    }
                                 }
                             }
                         }
