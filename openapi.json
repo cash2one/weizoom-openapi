@@ -1141,6 +1141,581 @@
                     }
                 }
             }
+        },
+        "/mall/products/": {
+            "get": {
+                "tags": [
+                    "product"
+                ],
+                "summary": "获取商品列表",
+                "description": "获取商品列表 /n",
+                "consumes": [
+                    "application/x-www-form-urlencoded"
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "parameters": [
+                    {
+                        "in": "query",
+                        "name": "access_token",
+                        "type": "string",
+                        "description": "密钥",
+                        "required": true
+                    },
+                    {
+                        "name": "cur_page",
+                        "in": "query",
+                        "description": "当前请求页",
+                        "required": true,
+                        "type": "integer"
+                    },
+                    {
+                        "name": "count_per_page",
+                        "in": "query",
+                        "description": "每页显示数量",
+                        "required": true,
+                        "type": "integer"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Successful response",
+                        "schema": {
+                            "$ref": "#/definitions/Products"
+                        },
+                        "examples": {
+                            "application/json": {
+                                "code": 200,
+                                "data": {
+                                    "errMsg": "",
+                                    "innerErrMsg": "",
+                                    "items": [
+                                        {
+                                            "classification": "",  
+                                            "thumbnails_url": "http://chaozhi.weizoom.comlove.png",
+                                            "total_stocks": 99,
+                                            "id": 976,
+                                            "is_sellout": false,
+                                            "display_price_range": "20.00",
+                                            "display_index": 0,
+                                            "min_limit": 5, 
+                                            "bar_code": "",
+                                            "store_name": "供货商2",
+                                            "display_price": "20.00",
+                                            "user_code": "", 
+                                            "is_use_custom_model": false, 
+                                            "stocks": 99, 
+                                            "name": "商品2-2", 
+                                            "created_at": "2016-01-02 10:00:00",
+                                            "sku": [
+                                                {
+                                                    "id": 111,
+                                                    "is_deleted": false,
+                                                    "name": "1:1_2:4_3:7",
+                                                    "original_price": 1,
+                                                    "price": 1,
+                                                    "product_id": 67,
+                                                    "property2value": {
+                                                        "尺寸": {
+                                                            "id": 4,
+                                                            "name": "M"
+                                                        },
+                                                        "类型": {
+                                                            "id": 7,
+                                                            "name": "1"
+                                                        },
+                                                        "颜色": {
+                                                            "id": 1,
+                                                            "name": "红色"
+                                                        }
+                                                    },
+                                                    "property_values": [
+                                                        {
+                                                            "id": 1,
+                                                            "image": "http://dev.weapp.com/standard_static/test_resource_img/icon_color/icon_1.png",
+                                                            "name": "红色",
+                                                            "propertyId": 1,
+                                                            "propertyName": "颜色",
+                                                            "type": "product_model_property_value"
+                                                        },
+                                                        {
+                                                            "id": 4,
+                                                            "image": "",
+                                                            "name": "M",
+                                                            "propertyId": 2,
+                                                            "propertyName": "尺寸",
+                                                            "type": "product_model_property_value"
+                                                        },
+                                                        {
+                                                            "id": 7,
+                                                            "image": "",
+                                                            "name": "1",
+                                                            "propertyId": 3,
+                                                            "propertyName": "类型",
+                                                            "type": "product_model_property_value"
+                                                        }
+                                                    ],
+                                                    "stock_type": 0,
+                                                    "stocks": "无限",
+                                                    "weight": 1
+                                                }
+                                            ]
+                                        }
+                                    ]
+                                }
+                            }
+                        }
+
+                    }
+                }
+            }
+        },
+        "/mall/apply_product_stock/": {
+           "post": {
+                "tags": [
+                    "apply_product_stock"
+                ],
+                "summary": "申请商品库存",
+                "description": "申请商品库存",
+                "consumes": [
+                    "application/x-www-form-urlencoded"
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "parameters": [
+                    {
+                        "in": "body",
+                        "name": "stock_info",
+                        "description": "商品申请库存信息",
+                        "required": true,
+                        "schema": {
+                           "$ref": "#/definitions/ApplyProductStock"
+                        }
+                    },
+                    {
+                        "in": "query",
+                        "name": "access_token",
+                        "type": "string",
+                        "description": "密钥",
+                        "required": true
+
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Successful response",
+                        "schema": {
+                            "$ref": "#/definitions/ApplyProductStock"
+                        },
+                         "examples": {
+                            "application/json": {
+                                "code": "200",
+                                "errMsg": "",
+                                "innerErrMsg": "",
+                                "data": {
+                                    "stock_info":[{
+                                        "product_id": "996",
+                                        "product_name": "商品1-2",
+                                        "total_stocks": "87",
+                                        "apply_stock": "20",
+                                        "stock_id": "1",
+                                        "result":"success or fail",
+                                        "errMsg":"申请失败原因"
+                                        },
+                                        {
+                                        "product_id": "997",
+                                        "product_name": "商品2-2",
+                                        "total_stocks": "99",
+                                        "apply_stock": "10",
+                                        "stock_id": "2",
+                                        "result":"success or fail",
+                                        "errMsg":"申请失败原因"
+                                        }
+                                    ]
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+        },
+        "/mall/release_product_stock/": {
+            "post": {
+                "tags": [
+                    "apply_product_stock"
+                ],
+                "summary": "释放商品库存",
+                "description": "释放商品库存",
+                "consumes": [
+                    "application/x-www-form-urlencoded"
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "parameters": [
+                    {
+                        "in": "body",
+                        "name": "stock_info",
+                        "description": "商品申请库存信息",
+                        "required": true,
+                        "schema": {
+                           "$ref": "#/definitions/ApplyProductStock"
+                        }
+                    },
+                    {
+                        "in": "query",
+                        "name": "access_token",
+                        "type": "string",
+                        "description": "密钥", 
+                        "required": true
+
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Successful response",
+                        "schema": {
+                            "$ref": "#/definitions/ReleaseProductStock"
+                        },
+                        "examples": {
+                            "application/json": {
+                                "code": "200",
+                                "errMsg": "",
+                                "innerErrMsg": "",
+                                "data": {
+                                    "stock_info":[{
+                                        "product_id": "996",
+                                        "product_name": "商品1-2",
+                                        "total_stocks": "87",
+                                        "release_stock": "20",
+                                        "stock_id": "1",
+                                        "result":"success or fail",
+                                        "errMsg":"申请失败原因"
+                                        },
+                                        {
+                                        "product_id": "997",
+                                        "product_name": "商品2-2",
+                                        "total_stocks": "99",
+                                        "release_stock": "10",
+                                        "stock_id": "2",
+                                        "result":"success or fail",
+                                        "errMsg":"申请失败原因"
+                                        }
+                                    ]
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "/mall/order/":{
+            "get":{
+                "summary":"获取订单详情接口",
+                "description":"获取订单详情接口",
+                "parameters":[
+                    {
+                        "name": "access_token",
+                        "in": "query",
+                        "description": "access_token,访问令牌",
+                        "required": true,
+                        "type": "string"
+                    },
+                    {
+                        "name": "order_id",
+                        "in": "query",
+                        "description": "订单编号",
+                        "required": true,
+                        "type": "string"
+                    }
+                ],
+                "tags":[
+                    "order"
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Successful response",
+                        "schema": {
+                            "type": "object",
+                            "properties": {
+                                "code": {
+                                    "type": "integer",
+                                    "format": "int32"
+                                },
+                                "data": {
+                                    "type": "object",
+                                    "properties": {
+                                        "msg": {
+                                            "type": "string",
+                                            "description": "信息描述"
+                                        },
+                                        "order": {
+                                            "$ref": "#/definitions/OrderDetail"
+                                        },
+                                        "success": {
+                                            "type": "boolean",
+                                            "description": "true or false"
+                                        }
+                                    }
+                                },
+                                "errMsg": {
+                                    "type": "string"
+                                },
+                                "innerErrMsg": {
+                                    "type": "string"
+                                }
+                            }
+                        }
+                    }
+                }
+            },
+            "put":{
+                "summary":"创建订单接口",
+                "description":"创建订单接口",
+                "parameters":[
+                    {
+                        "name": "access_token",
+                        "in": "query",
+                        "description": "access_token,访问令牌",
+                        "required": true,
+                        "type": "string"
+                    },
+                    {
+                        "name": "deal_id",
+                        "in": "query",
+                        "description": "交易流水号",
+                        "required": true,
+                        "type": "string"
+                    },
+                    {
+                        "name": "deal_price",
+                        "in": "query",
+                        "description": "交易总金额",
+                        "required": true,
+                        "type": "string"
+                    },
+                    {
+                        "name": "apply_stock_id",
+                        "in": "query",
+                        "description": "申请库存资源的id",
+                        "required": true,
+                        "type": "number"
+                    },
+                    {
+                        "name": "ship_name",
+                        "in": "query",
+                        "description": "收货人姓名",
+                        "required": true,
+                        "type": "string"
+                    },
+                    {
+                        "name": "ship_tel",
+                        "in": "query",
+                        "description": "收货人电话",
+                        "required": true,
+                        "type": "string"
+                    },
+                    {
+                        "name": "ship_address",
+                        "in": "query",
+                        "description": "收货人地址",
+                        "required": true,
+                        "type": "string"
+                    },
+                    {
+                        "name": "products",
+                        "in": "body",
+                        "description": "商品集合",
+                        "required": true,
+                        "schema":{
+                           "$ref": "#/definitions/OrderProduct"
+                          }
+                    }
+                ],
+                "tags":[
+                    "order"
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Successful response",
+                        "schema": {
+                            "type": "object",
+                            "properties": {
+                                "code": {
+                                    "type": "integer",
+                                    "format": "int32"
+                                },
+                                "data": {
+                                    "type": "object",
+                                    "properties": {
+                                        "msg": {
+                                            "type": "string",
+                                            "description": "信息描述"
+                                        },
+                                        "order_id": {
+                                            "type": "string",
+                                            "description": "订单编号"
+                                        },
+                                        "success": {
+                                            "type": "boolean",
+                                            "description": "true or false"
+                                        }
+                                    }
+                                },
+                                "errMsg": {
+                                    "type": "string"
+                                },
+                                "innerErrMsg": {
+                                    "type": "string"
+                                }
+                            }
+                        }
+                    }
+                }
+            },
+            "post":{
+                "summary":"取消订单接口",
+                "description": "取消订单接口",
+                "parameters":[
+                    {
+                        "name": "access_token",
+                        "in": "query",
+                        "description": "access_token,访问令牌",
+                        "required": true,
+                        "type": "string"
+                    },
+                    {
+                        "name": "order_id",
+                        "in": "query",
+                        "description": "订单编号",
+                        "required": true,
+                        "type": "string"
+                    },
+                    {
+                        "name": "cancel",
+                        "in": "query",
+                        "description": "取消订单",
+                        "required": true,
+                        "type": "string"
+                    }
+                ],
+                "tags":[
+                    "order"
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Successful response",
+                        "schema": {
+                            "type": "object",
+                            "properties": {
+                                "code": {
+                                    "type": "integer",
+                                    "format": "int32"
+                                },
+                                "data": {
+                                    "type": "object",
+                                    "properties": {
+                                        "msg": {
+                                            "type": "string",
+                                            "description": "信息描述"
+                                        },
+                                        "success": {
+                                            "type": "boolean",
+                                            "description": "true or false"
+                                        }
+                                    }
+                                },
+                                "errMsg": {
+                                    "type": "string"
+                                },
+                                "innerErrMsg": {
+                                    "type": "string"
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "/mall/order_list/": {
+            "get": {
+                "summary": "获取订单列表",
+                "description": "获取订单列表",
+                "parameters": [
+                    {
+                        "name": "access_token",
+                        "in": "query",
+                        "description": "access_token,访问令牌",
+                        "required": true,
+                        "type": "string"
+                    },
+                    {
+                        "name": "cur_page",
+                        "in": "query",
+                        "description": "分页器当前请求页,默认第1页",
+                        "required": false,
+                        "type": "integer"
+                    },
+                    {
+                        "name": "order_status",
+                        "in": "query",
+                        "description": "订单状态：  1  已取消：取消订单(回退销量)  \n3  待发货：已付款，未发货  \n4  已发货：已付款，已发货  \n5  已完成：为已完成状态",
+                        "required": false,
+                        "type": "integer"
+                    },
+                    {
+                        "name": "date_interval",
+                        "in": "query",
+                        "description": "查询时间：2014-10-07|2014-10-08，注：使用‘|’区分，该参数和date_interval_type结合使用",
+                        "required": false,
+                        "type": "string"
+                    },
+                    {
+                        "name": "date_interval_type",
+                        "in": "query",
+                        "description": "时间类型：1 下单时间 3 发货时间 6 订单完成时间 7 订单取消时间",
+                        "required": false,
+                        "type": "string"
+                    }
+                    
+                ],
+                "tags": [
+                    "order"
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Successful response",
+                        "schema": {
+                            "type": "object",
+                            "properties": {
+                                "code": {
+                                    "type": "integer",
+                                    "format": "int32"
+                                },
+                                "data": {
+                                    "type": "object",
+                                    "properties": {
+                                        "orders": {
+                                            "type": "array",
+                                            "items": {
+                                                "$ref": "#/definitions/Order"
+                                            }
+                                        }
+                                    }
+                                },
+                                "errMsg": {
+                                    "type": "string"
+                                },
+                                "innerErrMsg": {
+                                    "type": "string"
+                                }
+                            }
+                        }
+                    }
+                }
+            }
         }
     },
 
@@ -1288,6 +1863,484 @@
                 }
             }
         },
+        "Products":{
+            "type": "object",
+            "properties": {
+                "code": {
+                    "type": "integer",
+                    "format": "int32"
+                },
+                "data": {
+                    "type": "object",
+                    "properties": {
+                        "errMsg": {
+                            "type": "string"
+                        },
+                        "innerErrMsg": {
+                            "type": "string"
+                        },
+                        "items": {
+                            "type": "object",
+                            "description": "商品列表", 
+                            "properties": {
+                                "classification": {
+                                    "type": "integer",
+                                    "description": "商品分类ID"
+                                },
+                                "thumbnails_url": {
+                                    "type": "string",
+                                    "description": "商品缩略图的url地址"
+                                },
+                                "total_stocks": {
+                                    "type": "integer",
+                                    "description": "商品总库存"
+                                },
+                                "id": {
+                                    "type": "integer",
+                                    "description": "商品ID"
+                                },
+                                "is_sellout": {
+                                    "type": "boolean",
+                                    "description": "商品是否售空"
+                                },
+                                "display_price_range": {
+                                    "type": "string",
+                                    "description": "商品显示的价格排序"
+                                },
+                                "display_index": {
+                                    "type": "string",
+                                    "description": "商品显示的排序"
+                                },
+                                "min_limit": {
+                                    "type": "integer",
+                                    "description": "商品最大数量"
+                                },
+                                "bar_code": {
+                                    "type": "string",
+                                    "description": "商品条形码"
+                                },
+                                "store_name":{
+                                    "type": "integer",
+                                    "description": "商品供应商"
+                                },
+                                "display_price": {
+                                    "type": "integer",
+                                    "description": "商品展示价格"
+                                },
+                                "user_code": {
+                                    "type": "integer",
+                                    "description": "用户编码"
+                                },
+                                "is_use_custom_model": {
+                                    "type": "boolean",
+                                    "description": "是否为普通规格"
+                                },
+                                "stocks": {
+                                    "type": "integer",
+                                    "description": "商品库存"
+                                },
+                                "name": {
+                                    "type": "string",
+                                    "description": "商品名"
+                                },
+                                "created_at": {
+                                    "type": "string",
+                                    "description": "商品创建时间"
+                                },
+                                "sku": {
+                                    "type": "object",
+                                    "description": "商品规格列表",
+                                    "properties": {
+                                        "id": {
+                                            "type": "number",
+                                            "description": "商品ID"
+                                        },
+                                        "is_deleted": {
+                                            "type": "boolean",
+                                            "description": "是否删除"
+                                        },
+                                        "name": {
+                                            "type": "string",
+                                            "description": "规格id组装字符串，如果商品无规格该值：starand"
+                                        },
+                                        "price": {
+                                            "type": "string",
+                                            "description": "商品售价"
+                                        },
+                                        "weight": {
+                                            "type": "number",
+                                            "description": "商品重量"
+                                        },
+                                        "stock_type": {
+                                            "type": "number",
+                                            "description": "商品库存类型0:无限 1:有限"
+                                        },
+                                        "stocks": {
+                                            "type": "number",
+                                            "description": "商品库存"
+                                        },
+                                        "property2value": {
+                                            "type": "object",
+                                            "description": "规格属性",
+                                            "properties":{
+                                                "property_name":{
+                                                    "type": "object",
+                                                    "description": "规格名称",
+                                                    "properties":{
+                                                        "id": {
+                                                            "type": "number",
+                                                            "description": "规格id"
+                                                        },
+                                                        "name": {
+                                                            "type": "string",
+                                                            "description": "规格详细名称 如：尺寸下的M，L，S"
+                                                        }
+                                                    }
+                                                }
+                                                
+                                            }
+                                        },
+                                        "property_values": {
+                                            "type": "object",
+                                            "description": "商品规格属性值列表",
+                                            "properties":{
+                                                "id": {
+                                                    "type": "number",
+                                                    "description": "规格id"
+                                                },
+                                                "image": {
+                                                    "type": "string",
+                                                    "description": "图片"
+                                                },
+                                                "name": {
+                                                    "type": "string",
+                                                    "description": "尺寸下的M，L，S"
+                                                },
+                                                "propertyName": {
+                                                    "type": "string",
+                                                    "description": "属性名称 如:尺寸"
+                                                }
+                                            }
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "ApplyProductStock": {
+            "type": "object",
+            "properties": {
+                "stock_info": {
+                    "type": "object",
+                    "properties": { 
+                        "product_id": {
+                            "type": "string",
+                            "description": "商品ID"
+                        },
+                        "apply_stock": {
+                            "type": "string",
+                            "description": "申请库存数量"
+                        }
+                    }
+                },
+                "code": {
+                    "type": "integer",
+                    "format": "int32"
+                },
+                "errMsg": {
+                    "type": "string"
+                },
+                "innerErrMsg": {
+                    "type": "string"
+                },
+                "data": {
+                    "type": "object",
+                    "properties": {
+                        "stock_info":{
+                            "type": "object",
+                            "properties": { 
+                                "product_id": {
+                                    "type": "string",
+                                    "description": "商品ID"
+                                },
+                                "product_name": {
+                                    "type": "string",
+                                    "description": "商品名称"
+                                },
+                                "total_stocks": {
+                                    "type": "string",
+                                    "description": "商品总库存"
+                                },
+                                "apply_stock": {
+                                    "type": "string",
+                                    "description": "申请库存数量"
+                                },
+                                "stock_id": {
+                                    "type": "string",
+                                    "description": "库存标识ID"
+                                },
+                                "result":{
+                                    "type": "string",
+                                    "description": "结果"
+                                },
+                                "errMsg":{
+                                    "type": "string",
+                                    "description": "失败原因"
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "ReleaseProductStock": {
+            "type": "object",
+            "properties": {
+                "code": {
+                    "type": "integer",
+                    "format": "int32"
+                },
+                "errMsg": {
+                    "type": "string"
+                },
+                "innerErrMsg": {
+                    "type": "string"
+                },
+                "data": {
+                    "type": "object",
+                    "properties": {
+                        "stock_info":{
+                            "type": "object",
+                            "properties": { 
+                                "product_id": {
+                                    "type": "string",
+                                    "description": "商品ID"
+                                },
+                                "product_name": {
+                                    "type": "string",
+                                    "description": "商品名称"
+                                },
+                                "total_stocks": {
+                                    "type": "string",
+                                    "description": "商品总库存"
+                                },
+                                "release_stock": {
+                                    "type": "string",
+                                    "description": "释放库存数"
+                                },
+                                "stock_id": {
+                                    "type": "string",
+                                    "description": "库存标识ID"
+                                },
+                                "result":{
+                                    "type": "string",
+                                    "description": "结果"
+                                },
+                                "errMsg":{
+                                    "type": "string",
+                                    "description": "失败原因"
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "Order": {
+            "type": "object",
+            "properties": {
+                "order_id": {
+                    "type": "string",
+                    "description": "订单编号."
+                },
+                "total_price": {
+                    "type": "string",
+                    "description": "订单金额（实付金额RMB）."
+                },
+                "ship_name": {
+                    "type": "string",
+                    "description": "收货人"
+                },
+                "ship_address": {
+                    "type": "string",
+                    "description": "收获地址"
+                },
+                "ship_tel": {
+                    "type": "string",
+                    "description": "收获电话"
+                },
+                "product_count": {
+                    "type": "string",
+                    "description": "购买商品数量"
+                },
+                "payment_time": {
+                    "type": "string",
+                    "description": "支付时间"
+                },
+                "order_status": {
+                    "type": "string",
+                    "description": "订单状态"
+                },
+                "express_company_name": {
+                    "type": "string",
+                    "description": "快递名称"
+                },
+                "express_number": {
+                    "type": "string",
+                    "description": "快递号"
+                },
+                "remark": {
+                    "type": "string",
+                    "description": "订单备注"
+                },
+                "postage": {
+                    "type": "string",
+                    "description": "快递费"
+                },
+                "created_at": {
+                    "type": "string",
+                    "description": "订单创建时间"
+                },
+                "delivery_time": {
+                    "type": "string",
+                    "description": "发货时间"
+                },
+                "pay_time": {
+                    "type": "string",
+                    "description": "付款时间"
+                },
+                "cancel_time": {
+                    "type": "string",
+                    "description": "取消订单时间"
+                },
+                "finish_time": {
+                    "type": "string",
+                    "description": "订单完成时间"
+                }
+            }
+        },
+        "OrderDetail": {
+            "type": "object",
+            "properties": {
+                "order_id": {
+                    "type": "string",
+                    "description": "订单编号."
+                },
+                "total_price": {
+                    "type": "string",
+                    "description": "订单金额（实付金额RMB）."
+                },
+                "ship_name": {
+                    "type": "string",
+                    "description": "收货人"
+                },
+                "ship_address": {
+                    "type": "string",
+                    "description": "收获地址"
+                },
+                "ship_tel": {
+                    "type": "string",
+                    "description": "收获电话"
+                },
+                "product_count": {
+                    "type": "number",
+                    "description": "购买商品数量"
+                },
+                "payment_time": {
+                    "type": "string",
+                    "description": "支付时间"
+                },
+                "order_status": {
+                    "type": "string",
+                    "description": "订单状态"
+                },
+                "express_company_name": {
+                    "type": "string",
+                    "description": "快递名称"
+                },
+                "express_number": {
+                    "type": "string",
+                    "description": "快递号"
+                },
+                "remark": {
+                    "type": "string",
+                    "description": "订单备注"
+                },
+                "postage": {
+                    "type": "string",
+                    "description": "快递费"
+                },
+                "created_at": {
+                    "type": "string",
+                    "description": "订单创建时间"
+                },
+                "delivery_time": {
+                    "type": "string",
+                    "description": "发货时间"
+                },
+                "pay_time": {
+                    "type": "string",
+                    "description": "付款时间"
+                },
+                "cancel_time": {
+                    "type": "string",
+                    "description": "取消订单时间"
+                },
+                "finish_time": {
+                    "type": "string",
+                    "description": "订单完成时间"
+                },
+                "express_details":{
+                    "type": "string",
+                    "description": "物流信息"
+                },
+                "deal_id":{
+                    "description": "交易流水号",
+                    "type": "string"
+                },
+                "deal_price":{
+                    "description": "交易总金额",
+                    "type": "string"
+                },
+                "apply_stock_id":{
+                    "description": "申请库存资源的id",
+                    "type": "number"
+                },
+                "products":{
+                    "items": {
+                        "$ref": "#/definitions/OrderProduct"
+                    }
+                }
+            }
+        },
+        "OrderProduct":{
+            "type": "object",
+            "properties": {
+                "product_id":{
+                    "description": "商品id",
+                    "type": "number"
+                },
+                "product_model_id":{
+                    "description": "商品规格id",
+                    "type": "number"
+                },
+                "product_name":{
+                    "description": "商品名称",
+                    "type": "string"
+                },
+                "product_count":{
+                    "description": "商品数量",
+                    "type": "number"
+                },
+                "product_price":{
+                    "description": "单个商品售价",
+                    "type": "string"
+                }
+            }
+        }
     },
     "externalDocs": {
         "description": "授权API描述文档",
