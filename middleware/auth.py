@@ -25,4 +25,4 @@ class Auth(object):
 				"errmsg": "invalid access_token"
 			})
 
-		req.woid = json.load(app)['woid']
+		req.context['woid'] = json.load(app)['woid']
