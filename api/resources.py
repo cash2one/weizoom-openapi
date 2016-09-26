@@ -2,3 +2,4 @@
 
 import demo
 import auth
+import product
