@@ -116,7 +116,43 @@
                                         "name": "衣服",
                                         "created_at": "2016-09-21 17:31",
                                         "is_use_cod_pay_interface": false,
-                                        "limit_zone_type": 1,
+                                        "limit_zone_type": 0,
+                                        "sales": null,
+                                        "thumbnails_url": "http://chaozhi.weizoom.com/static/upload/20160921/1474450258043_377.jpg",
+                                        "order_thumbnails_url": "http://chaozhi.weizoom.com/static/upload/20160921/1474450258043_377.jpg",
+                                        "swipe_images": [
+                                          {
+                                            "url": "http://chaozhi.weizoom.com/static/upload/20160921/1474450258043_377.jpg",
+                                            "width": 100,
+                                            "linkUrl": "",
+                                            "id": 13,
+                                            "height": 100
+                                          },
+                                          {
+                                            "url": "http://chaozhi.weizoom.com/static/upload/20160921/147445026606_576.jpg",
+                                            "width": 100,
+                                            "linkUrl": "",
+                                            "id": 14,
+                                            "height": 100
+                                          },
+                                          {
+                                            "url": "http://chaozhi.weizoom.com/static/upload/20160921/1474450271012_241.png",
+                                            "width": 100,
+                                            "linkUrl": "",
+                                            "id": 15,
+                                            "height": 100
+                                          }
+                                        ],
+                                        "is_delivery": false,
+                                        "id": 11,
+                                        "is_sellout": false,
+                                        "price_info": {
+                                          "display_original_price": 22,
+                                          "display_price": 22,
+                                          "display_market_price": "0.00",
+                                          "max_price": 44,
+                                          "min_price": 22
+                                        },
                                         "limit_zone_detail": [
                                           {
                                             "cities": [],
@@ -162,42 +198,6 @@
                                             "provinceName": "江苏省"
                                           }
                                         ],
-                                        "sales": null,
-                                        "thumbnails_url": "http://chaozhi.weizoom.com/static/upload/20160921/1474450258043_377.jpg",
-                                        "order_thumbnails_url": "http://chaozhi.weizoom.com/static/upload/20160921/1474450258043_377.jpg",
-                                        "swipe_images": [
-                                          {
-                                            "url": "http://chaozhi.weizoom.com/static/upload/20160921/1474450258043_377.jpg",
-                                            "width": 100,
-                                            "linkUrl": "",
-                                            "id": 13,
-                                            "height": 100
-                                          },
-                                          {
-                                            "url": "http://chaozhi.weizoom.com/static/upload/20160921/147445026606_576.jpg",
-                                            "width": 100,
-                                            "linkUrl": "",
-                                            "id": 14,
-                                            "height": 100
-                                          },
-                                          {
-                                            "url": "http://chaozhi.weizoom.com/static/upload/20160921/1474450271012_241.png",
-                                            "width": 100,
-                                            "linkUrl": "",
-                                            "id": 15,
-                                            "height": 100
-                                          }
-                                        ],
-                                        "is_delivery": false,
-                                        "id": 11,
-                                        "is_sellout": false,
-                                        "price_info": {
-                                          "display_original_price": 22,
-                                          "display_price": 22,
-                                          "display_market_price": "0.00",
-                                          "max_price": 44,
-                                          "min_price": 22
-                                        },
                                         "models": [
                                           {
                                             "original_price": 22,
@@ -887,7 +887,7 @@
                           },
                           "is_delivery": {
                               "type": "string",
-                              "description": "是勾选配送时间"
+                              "description": "是否勾选配送时间,如：true或false"
                           },
                           "sales": {
                               "type": "string",
@@ -897,46 +897,46 @@
                               "type": "string",
                               "description": "商品限售区域类型"
                           },
-                          "limit_zone_detail": {
-                              "type": "object",
-                              "description": "商品限制区域详细信息",
-                              "properties": {
-                                  "provinceId": {
-                                      "type": "string",
-                                      "description": "商品限制区域省份ID,如：10"
-                                  },
-                                  "zoneName": {
-                                      "type": "string",
-                                      "description": "商品限制区域所属大区名称,如：直辖市或华东地区"
-                                  },
-                                  "provinceName": {
-                                      "type": "string",
-                                      "description": "商品限制区域省份名称,如，江苏省"
-                                  },
-                                  "cities": {
-                                      "type": "object",
-                                      "description": "商品限制区域城市详细信息",
-                                      "properties": {
-                                          "cityId": {
-                                              "type": "string",
-                                              "description": "商品限制区域城市ID,如：77"
-                                          },
-                                          "cityName": {
-                                              "type": "string",
-                                              "description": "商品限制区域城市名称,如：南通市"
-                                          }
-                                      }
-                                  },
-                              }
-                          },
                           "created_at": {
                               "type": "string",
                               "description": "商品创建时间"
                           },
                           "is_use_cod_pay_interface": {
                               "type": "boolean",
-                              "description": "是否货到付款"
+                              "description": "是否货到付款,如：true或false"
                            },
+                          "limit_zone_detail":{
+                              "type": "object",
+                              "description": "限制发货区域详细信息",
+                              "properties": {
+                                  "cities": {
+                                      "type": "object",
+                                      "description": "城市信息",
+                                      "properties": {
+                                          "cityId": {
+                                              "type": "object",
+                                              "description": "城市ID"
+                                          },
+                                          "cityName": {
+                                              "type": "string",
+                                              "description": "城市名称"
+                                          }
+                                       }
+                                  },
+                                  "provinceId": {
+                                      "type": "string",
+                                      "description": "省份ID"
+                                  },
+                                  "zoneName":{
+                                      "type": "string",
+                                      "description": "区域名称，如：华东地区"
+                                  },
+                                  "provinceName": {
+                                      "type": "string",
+                                      "description": "省份名称，如：山东省"
+                                  }
+                               }
+                          },
                           "swipe_images": {
                               "type": "object",
                               "description": "轮播图",
@@ -1015,7 +1015,7 @@
                           },
                           "is_sellout": {
                               "type": "boolean",
-                              "description": "是否售光, 如：True  or  False"
+                              "description": "是否售光,如：true或false"
                           },
                           "min_limit":{
                               "type": "string",
@@ -1031,11 +1031,11 @@
                           },
                           "is_enable_bill": {
                               "type": "number",
-                              "description": "是否开具发票, 如：True  or  False"
+                              "description": "是否开具发票,如：true或false"
                           },
                           "is_use_custom_model": {
                               "type": "boolean",
-                              "description": "是否为通用规格, 如：True  or  False"
+                              "description": "是否为通用规格,如：true或false"
                           },
                           "models": {
                               "type":"object",
@@ -1050,7 +1050,7 @@
                                   },
                                   "is_deleted":{
                                       "type": "boolean",
-                                      "description": "是否删除, 如：True  or  False"  
+                                      "description": "是否删除"  
                                   },
                                   "name":{
                                       "type": "string",
