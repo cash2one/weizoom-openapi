@@ -19,7 +19,6 @@ class AOrderList(api_resource.ApiResource):
 
 	@param_required(['woid', 'cur_page', 'order_status'])
 	def get(args):
-		print "111111111"*100
 
 		woid = args['woid']
 		cur_page = int(args['cur_page'])
@@ -28,7 +27,7 @@ class AOrderList(api_resource.ApiResource):
 		else:
 			order_type = -1
 		if int(woid) == 3:
-			access_token = 'N7W7Q2gmONrBnr27O/HJ5zjMa9HADm25lRkijLzYLHsvNHJoZP/53hbqL8V9rZKxpupcgSKzmL/tvGtu5RaDTw%3D%3D'
+			access_token = 'ahQamDeQgZfrWpdR00CsZ6U%2BoRqZ0tVJK0rr27XW1DKudojNeZ2Kz8RpENSpxPDLtg7OhA5WFTLF8E2%2Btg%2BSvg%3D%3D'
 			timestamp = str(long(time.time() * 1000))
 			data = {'timestamp':timestamp, 'woid': woid, 'order_type':order_type, 'cur_page':cur_page,
 				u'access_token':access_token
@@ -79,7 +78,7 @@ class AOrderList(api_resource.ApiResource):
 
 			if code == 500:
 				
-				errcode = 73001
+				errcode = 74001
 				watchdog.info("get order list failed!! errcode:{}, msg:{}".format(errcode, unicode_full_stack()),log_type='OPENAPI_ORDER')
 				return errcode,{'orders': [], 'success':False, 'page_info': page_info}
 		else:

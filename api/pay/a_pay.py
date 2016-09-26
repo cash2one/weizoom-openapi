@@ -19,24 +19,18 @@ class APay(api_resource.ApiResource):
 		woid = args['woid']
 		order_id = args['order_id']
 		if int(woid) == 3:
-			access_token = 'N7W7Q2gmONrBnr27O/HJ5zjMa9HADm25lRkijLzYLHsvNHJoZP/53hbqL8V9rZKxpupcgSKzmL/tvGtu5RaDTw%3D%3D'
+			access_token = 'ahQamDeQgZfrWpdR00CsZ6U%2BoRqZ0tVJK0rr27XW1DKudojNeZ2Kz8RpENSpxPDLtg7OhA5WFTLF8E2%2Btg%2BSvg%3D%3D'
 		timestamp = str(long(time.time() * 1000))
 		data = { 'order_id':order_id, 'timestamp':timestamp, 'woid': woid, u'access_token':access_token, 'pay_interface_type':'2'}
-		print "data",data
 		resp = Resource.use('apiserver').put({
 							'resource': 'pay.pay_result',
 							'data': data
 						})
-		print resp
-
 		
 		status = 0
 		code = 0
 		errcode= 0
 		reason= ''
-		print "*"*100
-		print resp
-		print "*"*100
 		if resp:
 			code = resp["code"]
 			if code == 200:
@@ -46,11 +40,11 @@ class APay(api_resource.ApiResource):
 					msg = resp['data']['msg']
 					reason = msg
 					if u'非待支付订单' in msg:
-						errcode = 71000
+						errcode = 79000
 			if code == 500:
 				reason = resp['errMsg']
 				msg = '支付请求参数错误或缺少参数'
-				errcode = 71001
+				errcode = 79001
 		PayLog.save({
 			'woid': args['woid'],
 			'order_id': order_id,

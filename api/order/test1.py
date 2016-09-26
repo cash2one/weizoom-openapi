@@ -1,7 +1,7 @@
 # -*- coding: utf-8 -*-
 __author__ = 'Administrator'
 import requests
-from eaglet.utils.resource_client import Resource
+# from eaglet.utils.resource_client import Resource
 import json
 import time
 headers = {'User-Agent': 'Mozilla/5.0 (Windows NT 6.1; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/45.0.2454.93 Safari/537.36'}
@@ -83,7 +83,7 @@ _ids:????
 #     u'ship_tel': u'13811223344', u'message': '{}', u'order_type': u'undefined', u'area': u'1_1_8', 
 #     u'is_order_from_shopping_cart': u'false', u'ship_name': u'bill', 
 #     u'product_ids': u'12_11',
-#     u'access_token':'N7W7Q2gmONrBnr27O/HJ5zjMa9HADm25lRkijLzYLHsvNHJoZP/53hbqL8V9rZKxpupcgSKzmL/tvGtu5RaDTw%3D%3D'}
+#     u'access_token':'ahQamDeQgZfrWpdR00CsZ6U%2BoRqZ0tVJK0rr27XW1DKudojNeZ2Kz8RpENSpxPDLtg7OhA5WFTLF8E2%2Btg%2BSvg%3D%3D'}
 
 # resp = Resource.use('apiserver').put({
 #                     'resource': 'mall.order',
@@ -98,7 +98,7 @@ _ids:????
 """
 # timestamp = str(long(time.time() * 1000))
 # data = {u'pay_interface_type': u'2', 'order_id':u'20160921205050481', 'timestamp':timestamp, 'woid': u'3', 
-#     u'access_token':'N7W7Q2gmONrBnr27O/HJ5zjMa9HADm25lRkijLzYLHsvNHJoZP/53hbqL8V9rZKxpupcgSKzmL/tvGtu5RaDTw%3D%3D'
+#     u'access_token':'ahQamDeQgZfrWpdR00CsZ6U%2BoRqZ0tVJK0rr27XW1DKudojNeZ2Kz8RpENSpxPDLtg7OhA5WFTLF8E2%2Btg%2BSvg%3D%3D'
 #     }
 # resp = Resource.use('apiserver').put({
 #                     'resource': 'pay.pay_result',
@@ -112,7 +112,7 @@ _ids:????
 """
 # timestamp = str(long(time.time() * 1000))
 # data = {u'pay_interface_type': u'2', 'order_id':u'20160922162029557', 'timestamp':timestamp, 'woid': u'3', 'action':'cancel',
-#     u'access_token':'N7W7Q2gmONrBnr27O/HJ5zjMa9HADm25lRkijLzYLHsvNHJoZP/53hbqL8V9rZKxpupcgSKzmL/tvGtu5RaDTw%3D%3D'
+#     u'access_token':'ahQamDeQgZfrWpdR00CsZ6U%2BoRqZ0tVJK0rr27XW1DKudojNeZ2Kz8RpENSpxPDLtg7OhA5WFTLF8E2%2Btg%2BSvg%3D%3D'
 #     }
 # resp = Resource.use('apiserver').post({
 #                     'resource': 'mall.order',
@@ -125,7 +125,7 @@ _ids:????
 """
 # timestamp = str(long(time.time() * 1000))
 # data = {'order_id':u'20160921205050481', 'timestamp':timestamp, 'woid': u'3', 
-#     u'access_token':'N7W7Q2gmONrBnr27O/HJ5zjMa9HADm25lRkijLzYLHsvNHJoZP/53hbqL8V9rZKxpupcgSKzmL/tvGtu5RaDTw%3D%3D'
+#     u'access_token':'ahQamDeQgZfrWpdR00CsZ6U%2BoRqZ0tVJK0rr27XW1DKudojNeZ2Kz8RpENSpxPDLtg7OhA5WFTLF8E2%2Btg%2BSvg%3D%3D'
 #     }
 # resp = Resource.use('apiserver').get({
 #                     'resource': 'mall.order',
@@ -139,7 +139,7 @@ _ids:????
 """
 # timestamp = str(long(time.time() * 1000))
 # data = {'timestamp':timestamp, 'woid': u'3', 'order_type':-1, 'cur_page':1,
-#     u'access_token':'N7W7Q2gmONrBnr27O/HJ5zjMa9HADm25lRkijLzYLHsvNHJoZP/53hbqL8V9rZKxpupcgSKzmL/tvGtu5RaDTw%3D%3D'
+#     u'access_token':'ahQamDeQgZfrWpdR00CsZ6U%2BoRqZ0tVJK0rr27XW1DKudojNeZ2Kz8RpENSpxPDLtg7OhA5WFTLF8E2%2Btg%2BSvg%3D%3D'
 #     }
 # resp = Resource.use('apiserver').get({
 #                     'resource': 'mall.order_list',
@@ -158,7 +158,7 @@ _ids:????
 """
 # timestamp = str(long(time.time() * 1000))
 # data = {'timestamp':timestamp, 'woid': u'3', 'order_id':'20160922174514355^1s', 
-#     u'access_token':'N7W7Q2gmONrBnr27O/HJ5zjMa9HADm25lRkijLzYLHsvNHJoZP/53hbqL8V9rZKxpupcgSKzmL/tvGtu5RaDTw%3D%3D'
+#     u'access_token':'ahQamDeQgZfrWpdR00CsZ6U%2BoRqZ0tVJK0rr27XW1DKudojNeZ2Kz8RpENSpxPDLtg7OhA5WFTLF8E2%2Btg%2BSvg%3D%3D'
 #     }
 # resp = Resource.use('apiserver').get({
 #                     'resource': 'mall.express_details',
@@ -177,8 +177,9 @@ _ids:????
 测试openapi put order
 """
 # products = [
-#     {"product_id":12,"product_model_name":'standard',"product_count":2,},
-#     {"product_id":10,"product_model_name":"3:7","product_count":1, },
+#     {"product_id":13,"product_model_name":'3:7',"product_count":2,},
+#     {"product_id":13,"product_model_name":'3:8',"product_count":2,},
+#     {"product_id":10,"product_model_name":"standard","product_count":1, },
 #     ]
 # products = json.dumps(products)
 # data = {
@@ -201,16 +202,18 @@ _ids:????
 """
 测试openapi put pay
 # """
-woid = 3
-order_id = u'20160922162029557'
-data = {
-    'woid':woid,
-    'order_id':order_id,
-}
-resp = requests.post("http://dev.openapi.com/pay/third_pay?_method=put", data=data)
+# woid = 3
+# order_id = u'20160922162029557'
+# order_ids = ['20160926184550388', '20160926184550078', '20160926184548509' ]
+# for order_id in order_ids:
+# 	data = {
+# 	    'woid':woid,
+# 	    'order_id':order_id,
+# 	}
+# 	resp = requests.post("http://dev.openapi.com/pay/third_pay?_method=put", data=data)
+# print resp
 
-
-print resp.text
+# print resp.text
 """
 测试openapi put pay
 """
@@ -237,7 +240,7 @@ print resp.text
 """
 # timestamp = str(long(time.time() * 1000))
 # data = {'timestamp':timestamp, 'woid': u'3', 'order_status':-1, 'cur_page':3,
-#     u'access_token':'N7W7Q2gmONrBnr27O/HJ5zjMa9HADm25lRkijLzYLHsvNHJoZP/53hbqL8V9rZKxpupcgSKzmL/tvGtu5RaDTw%3D%3D'
+#     u'access_token':'ahQamDeQgZfrWpdR00CsZ6U%2BoRqZ0tVJK0rr27XW1DKudojNeZ2Kz8RpENSpxPDLtg7OhA5WFTLF8E2%2Btg%2BSvg%3D%3D'
 #     }
 # resp = requests.get("http://dev.openapi.com/mall/order_list", data=data)
 # # order = resp['data']['orders'][0]
@@ -264,3 +267,24 @@ print resp.text
 测试订单物流
 """
 
+
+
+"""
+测试openapi post order(取消订单、退款)
+"""
+
+order_id ='20160926162019205^1s'
+order_ids = ['20160926165121411', '20160926165123216^2s', '20160926165124218^2s', '20160926165125780^2s', '20160926165126960^2s', '20160926165127176^2s']
+order_ids = ['20160926194619314']
+for order_id in order_ids:
+	data = {
+	    'woid':3,
+	    'order_id': order_id
+	}
+	resp = requests.post("http://dev.openapi.com/mall/order", data=data)
+	print resp
+	# print dir(resp)
+	print resp.text
+"""
+测试openapi post order
+"""

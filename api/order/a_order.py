@@ -23,7 +23,7 @@ class AOrder(api_resource.ApiResource):
 		woid = args['woid']
 		order_id = args['order_id'].split('^')[0]
 		if int(woid) == 3:
-			access_token = 'N7W7Q2gmONrBnr27O/HJ5zjMa9HADm25lRkijLzYLHsvNHJoZP/53hbqL8V9rZKxpupcgSKzmL/tvGtu5RaDTw%3D%3D'
+			access_token = 'ahQamDeQgZfrWpdR00CsZ6U%2BoRqZ0tVJK0rr27XW1DKudojNeZ2Kz8RpENSpxPDLtg7OhA5WFTLF8E2%2Btg%2BSvg%3D%3D'
 		timestamp = str(long(time.time() * 1000))
 		data = {'order_id':order_id, 'timestamp':timestamp, 'woid': woid, 
 			u'access_token':access_token
@@ -85,7 +85,7 @@ class AOrder(api_resource.ApiResource):
 				errcode = 72000
 				return errcode,{'order_id': order_id, 'success':False}
 		else:
-			msg = '获取订单详情请求参数错误或缺少参数'
+			msg = '获取订单详情请求存在问题，请联系管理员'
 			errcode = 72001
 			return errcode,{'order_id': order_id, 'success':False}
 		
@@ -111,7 +111,7 @@ class AOrder(api_resource.ApiResource):
 		product_model_names = "$".join(product_model_names)
 
 		if int(woid) == 3:
-			access_token = 'N7W7Q2gmONrBnr27O/HJ5zjMa9HADm25lRkijLzYLHsvNHJoZP/53hbqL8V9rZKxpupcgSKzmL/tvGtu5RaDTw%3D%3D'
+			access_token = 'ahQamDeQgZfrWpdR00CsZ6U%2BoRqZ0tVJK0rr27XW1DKudojNeZ2Kz8RpENSpxPDLtg7OhA5WFTLF8E2%2Btg%2BSvg%3D%3D'
 		timestamp = str(long(time.time() * 1000))
 		data = {u'xa-choseInterfaces': u'2',
 			u'product_counts': product_counts, u'ship_address': ship_address, 'woid': woid, 
@@ -167,15 +167,17 @@ class AOrder(api_resource.ApiResource):
 	def post(args):
 		print "111111111"*100
 		woid = args['woid']
-		order_id = args['order_id'].split('^')[0]
+		access_token = args['access_token']
+		order_id = args['order_id']
 		if int(woid) == 3:
-			access_token = 'N7W7Q2gmONrBnr27O/HJ5zjMa9HADm25lRkijLzYLHsvNHJoZP/53hbqL8V9rZKxpupcgSKzmL/tvGtu5RaDTw%3D%3D'
+			access_token = 'ahQamDeQgZfrWpdR00CsZ6U%2BoRqZ0tVJK0rr27XW1DKudojNeZ2Kz8RpENSpxPDLtg7OhA5WFTLF8E2%2Btg%2BSvg%3D%3D'
+
 		timestamp = str(long(time.time() * 1000))
 		data = {'order_id':order_id, 'timestamp':timestamp, 'woid': u'3',
-			u'access_token':access_token
+			u'access_token':access_token, 'action':'cancel'
 			}
-		resp = Resource.use('apiserver').post({
-					'resource': 'mall.order',
+		resp = Resource.use('apiserver').put({
+					'resource': 'mall.refund',
 					'data': data
 				})
 		status = 0
@@ -194,7 +196,9 @@ class AOrder(api_resource.ApiResource):
 			if code == 500:
 				
 				msg = resp['data']['msg']
-				errcode = 72000
+				errcode = 73000
+				if msg == u'有子订单的状态不是待发货,不能取消订单':
+					errcode = 73001
 				watchdog.info("cancel order failed!! errcode:{}, msg:{}".format(errcode, msg),log_type='OPENAPI_ORDER')
 				return errcode,{'success':False}
 		else:

@@ -12,19 +12,18 @@ import time
 
 class AExpressDetail(api_resource.ApiResource):
 	"""
-	获取订单列表
+	获取订单物流信息
 	"""
 	app = 'mall'
 	resource = 'express_details'
 
 	@param_required(['woid', 'order_id'])
 	def get(args):
-		print "111111111"*100
 
 		order_id = args['order_id']
 		woid = args['woid']
 		if int(woid) == 3:
-			access_token = 'N7W7Q2gmONrBnr27O/HJ5zjMa9HADm25lRkijLzYLHsvNHJoZP/53hbqL8V9rZKxpupcgSKzmL/tvGtu5RaDTw%3D%3D'
+			access_token = 'ahQamDeQgZfrWpdR00CsZ6U%2BoRqZ0tVJK0rr27XW1DKudojNeZ2Kz8RpENSpxPDLtg7OhA5WFTLF8E2%2Btg%2BSvg%3D%3D'
 			timestamp = str(long(time.time() * 1000))
 			data = {
 				'timestamp':timestamp, 'woid': woid, 'order_id':order_id,u'access_token':access_token
@@ -50,7 +49,7 @@ class AExpressDetail(api_resource.ApiResource):
 
 			if code == 500:
 				msg = '获取物流信息请求参数错误或缺少参数'
-				errcode = 74001
+				errcode = 75001
 				watchdog.error("get express detail failed!! errcode:{}, msg:{}".format(errcode,unicode_full_stack()),log_type='OPENAPI_ORDER')
 				return errcode,{'express': '{}', 'success':False}
 		else:
