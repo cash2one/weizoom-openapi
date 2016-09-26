@@ -45,16 +45,16 @@ class AExpressDetail(api_resource.ApiResource):
 				for express_detail in data['express_details']:
 					for i in ['express_id', 'ftime', 'status', 'id', 'created_at']:
 						del express_detail[i]
-				return 200,{'express':data, 'success':True}
+				return {'express':data, 'success':True, 'errcode':errcode}
 
 			if code == 500:
 				msg = '获取物流信息请求参数错误或缺少参数'
 				errcode = 75001
 				watchdog.error("get express detail failed!! errcode:{}, msg:{}".format(errcode,unicode_full_stack()),log_type='OPENAPI_ORDER')
-				return errcode,{'express': '{}', 'success':False}
+				return {'express': '{}', 'success':False, 'errcode':errcode}
 		else:
 			errcode = 995995
 			watchdog.error("get express detail failed!! errcode:{}, msg:{}".format(errcode,unicode_full_stack()),log_type='OPENAPI_ORDER')
-			return errcode,{'express': '{}', 'success':False}
+			return {'express': '{}', 'success':False, 'errcode':errcode}
 		
 

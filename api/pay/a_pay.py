@@ -53,13 +53,13 @@ class APay(api_resource.ApiResource):
 			'reason': str(reason)
 			})
 		if code == 200 and status:
-			return 200,{'order_id': order_id, 'success':True}
+			return {'order_id': order_id, 'success':True, 'errcode':errcode}
 		elif code == 200 and not status:
-			return errcode,{'order_id': order_id, 'success':False}
+			return {'order_id': order_id, 'success':False, 'errcode':errcode}
 		elif code == 500:
-			return errcode,{'order_id': order_id, 'success':False}
+			return {'order_id': order_id, 'success':False, 'errcode':errcode}
 		else:
-			return 995995,{'order_id': order_id, 'success':False}
+			return {'order_id': order_id, 'success':False, 'errcode':errcode}
 
 
 

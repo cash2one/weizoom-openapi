@@ -1562,7 +1562,7 @@
             },
             "post": {
                 "summary": "取消订单接口",
-                "description": "取消订单接口",
+                "description": "取消订单接口:\n 1、可取消主订单和子订单,主订单状态取自子订单集合中的订单状态最小值。\n 2、只能取消待支付、待发货状态的订单 \n 3、当子订单中存在非待支付、待发货状态的订单，不能取消主订单",
                 "parameters": [
                     {
                         "name": "access_token",
@@ -1575,13 +1575,6 @@
                         "name": "order_id",
                         "in": "query",
                         "description": "订单编号",
-                        "required": true,
-                        "type": "string"
-                    },
-                    {
-                        "name": "cancel",
-                        "in": "query",
-                        "description": "取消订单",
                         "required": true,
                         "type": "string"
                     }
@@ -1642,7 +1635,7 @@
                     {
                         "name": "order_status",
                         "in": "query",
-                        "description": "订单状态：  1  已取消：取消订单(回退销量)  \n3  待发货：已付款，未发货  \n4  已发货：已付款，已发货  \n5  已完成：为已完成状态",
+                        "description": "订单状态：  1  已取消：取消订单(回退销量)  \n3  待发货：已付款，未发货  \n4  已发货：已付款，已发货  \n5  已完成：为已完成状态 \n  7  退款完成：订单状态，对第三方而言并未退款",
                         "required": false,
                         "type": "integer"
                     }
@@ -1692,8 +1685,8 @@
         },
         "/mall/express_details/": {
             "get": {
-                "summary": "获取物流信息",
-                "description": "获取子订单的物流信息，子订单的order_id如20160922174514355^1s",
+                "summary": "获取子订单的物流信息",
+                "description": "获取子订单的物流信息，子订单的order_id如20160922174514355^1s,",
                 "parameters": [
                     {
                         "name": "access_token",
@@ -1747,7 +1740,7 @@
                 }
             }
         },
-        "/pay/thid_pay/": {
+        "/pay/third_pay/": {
             "put": {
                 "summary": "支付接口",
                 "description": "支付接口",

@@ -77,17 +77,17 @@ class AOrder(api_resource.ApiResource):
 						sub_order_detail['products'].append(tmp_sub_order_product)
 					order_detail['sub_orders'].append(sub_order_detail)
 
-				return 200,{'order':order_detail, 'is_success':True}
+				return {'order':order_detail, 'is_success':True, 'errcode':errcode}
 
 
 			if code == 500:
 				msg = '获取订单详情请求参数错误或缺少参数'
 				errcode = 72000
-				return errcode,{'order_id': order_id, 'success':False}
+				return {'order_id': order_id, 'success':False, 'errcode':errcode}
 		else:
 			msg = '获取订单详情请求存在问题，请联系管理员'
 			errcode = 72001
-			return errcode,{'order_id': order_id, 'success':False}
+			return {'order_id': order_id, 'success':False, 'errcode':errcode}
 		
 
 	@param_required(['ship_name', 'ship_tel', 'ship_address', 'products', 'woid'])
@@ -156,18 +156,19 @@ class AOrder(api_resource.ApiResource):
 			})
 
 		if code == 200:
-			return 200,{'order_id': order_id, 'success':True},''
+			return {'order_id': order_id, 'success':True, 'errcode':errcode}
 		elif code == 500:
-			return errcode,{'order_id': order_id, 'success':False}
+			return {'order_id': order_id, 'success':False, 'errcode':errcode}
 		else:
+			errcode = 995995
 			watchdog.error("create order failed!! msg:{}".format(unicode_full_stack()),log_type='OPENAPI_ORDER')
-			return 995995,{'order_id': order_id, 'success':False}
+			return {'order_id': order_id, 'success':False, 'errcode':errcode}
 			
 	@param_required(['woid', 'order_id'])
 	def post(args):
-		print "111111111"*100
+
 		woid = args['woid']
-		access_token = args['access_token']
+
 		order_id = args['order_id']
 		if int(woid) == 3:
 			access_token = 'ahQamDeQgZfrWpdR00CsZ6U%2BoRqZ0tVJK0rr27XW1DKudojNeZ2Kz8RpENSpxPDLtg7OhA5WFTLF8E2%2Btg%2BSvg%3D%3D'
@@ -184,14 +185,10 @@ class AOrder(api_resource.ApiResource):
 		code = 0
 		errcode= 0
 
-		print "*"*100
-		print resp
-		print "*"*100
 		if resp:
 			code = resp["code"]
 			if code == 200:
-				return 200,{'is_success':True}
-
+				return {'is_success':True, 'errcode':errcode}
 
 			if code == 500:
 				
@@ -200,9 +197,9 @@ class AOrder(api_resource.ApiResource):
 				if msg == u'有子订单的状态不是待发货,不能取消订单':
 					errcode = 73001
 				watchdog.info("cancel order failed!! errcode:{}, msg:{}".format(errcode, msg),log_type='OPENAPI_ORDER')
-				return errcode,{'success':False}
+				return {'success':False, 'errcode':errcode}
 		else:
 			
 			errcode = 995995
 			watchdog.error("cancel order failed!! errcode:{}, msg:{}".format(errcode, unicode_full_stack()),log_type='OPENAPI_ORDER')
-			return errcode,{'success':False}
+			return {'success':False, 'errcode':errcode}

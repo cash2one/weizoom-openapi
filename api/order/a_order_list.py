@@ -36,7 +36,7 @@ class AOrderList(api_resource.ApiResource):
 								'resource': 'mall.express_details',
 								'data': data
 				})
-		status = 0
+
 		code = 0
 		errcode= 0
 
@@ -74,16 +74,16 @@ class AOrderList(api_resource.ApiResource):
 					'total_count': data['page_info']['object_count'],
 				}
 
-				return 200,{'orders':tmp_orders, 'success':True, 'page_info':page_info}
+				return {'orders':tmp_orders, 'success':True, 'page_info':page_info, 'errcode':errcode}
 
 			if code == 500:
 				
 				errcode = 74001
 				watchdog.info("get order list failed!! errcode:{}, msg:{}".format(errcode, unicode_full_stack()),log_type='OPENAPI_ORDER')
-				return errcode,{'orders': [], 'success':False, 'page_info': page_info}
+				return {'orders': [], 'success':False, 'page_info': page_info, 'errcode':errcode}
 		else:
 			errcode = 995995
 			watchdog.error("get order list failed!! errcode:{}, msg:{}".format(errcode, unicode_full_stack()),log_type='OPENAPI_ORDER')
-			return errcode,{'orders': [], 'success':False, 'page_info': page_info}
+			return {'orders': [], 'success':False, 'page_info': page_info, 'errcode':errcode}
 		
 
