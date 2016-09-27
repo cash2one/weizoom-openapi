@@ -33,16 +33,15 @@ class AOrderList(api_resource.ApiResource):
 				u'access_token':access_token
 				}
 			resp = Resource.use('apiserver').get({
-								'resource': 'mall.express_details',
+								'resource': 'mall.order_list',
 								'data': data
 				})
 
-		code = 0
-		errcode= 0
 
+		errcode= 0
+		page_info = {}
 		if resp:
 			code = resp["code"]
-			page_info = {}
 			if code == 200:
 				order_detail = {}
 				data = resp["data"]

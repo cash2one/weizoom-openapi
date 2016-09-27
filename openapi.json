@@ -885,6 +885,47 @@
                                     "type": "string"
                                 }
                             }
+                        },
+                        "examples": {
+                            "application/json": {
+                                "code": 200,
+                                "data": {
+                                    "page_info": {
+                                        "max_page": 1,
+                                        "total_count": 1,
+                                        "cur_page": 1
+                                    },
+                                    "orders": [
+                                        {
+                                            "total_price": 7.0,
+                                            "order_id": "20160926165124218",
+                                            "created_at": "2016.09.26 16:51",
+                                            "products": [
+                                                {
+                                                    "product_id": 12,
+                                                    "price": 1.0,
+                                                    "product_name": "pad1",
+                                                    "product_model_name": "standard",
+                                                    "product_count": 2,
+                                                    "pic_url": "http://chaozhi.weizoom.com/static/upload/20160926/1474871164035_765.jpg"
+                                                }, 
+                                                {
+                                                    "product_id": 10,
+                                                    "price": 10.0,
+                                                    "product_name": "test1product",
+                                                    "product_model_name": "standard",
+                                                    "product_count": 1,
+                                                    "pic_url": "http://chaozhi.weizoom.com/static/upload/20160926/1474871228062_547.jpg"
+                                                }
+                                            ],
+                                            "product_count": 3,
+                                            "order_status": 4
+                                        }
+                                    ],
+                                    "success": true,
+                                    "errcode": 0
+                                }
+                            }
                         }
                     }
                 }
@@ -1045,6 +1086,16 @@
                                 },
                                 "innerErrMsg": {
                                     "type": "string"
+                                }
+                            }
+                        },
+                        "examples": {
+                            "application/json": {
+                                "code": 200,
+                                "data": {
+                                    "success": true,
+                                    "errcode": 0,
+                                    "order_id": "20160926165121411"
                                 }
                             }
                         }
