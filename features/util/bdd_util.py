@@ -6,11 +6,11 @@ from datetime import datetime
 import settings
 from client import Client
 from db.account.models import User, UserProfile
-from utils import string_util
-from db.member import models as member_models
-from db.mall import models as mall_models
+from util import string_util
+# from db.member import models as member_models
+# from db.mall import models as mall_models
 from eaglet.core import watchdog
-from business.account.member import Member
+# from business.account.member import Member
 
 tc = None
 

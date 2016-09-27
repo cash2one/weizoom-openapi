@@ -28,15 +28,6 @@ DATABASES = {
         'HOST': 'db.operation.com',
         'PORT': '',
         'CONN_MAX_AGE': 100
-    },
-    'apps_default': {
-        'ENGINE': 'mongo',                 # used MongoDB
-        'NAME': 'open',                # DATABASE NAME
-        'USER': None,                      # USERNAME
-        'PASSWORD': None,                  # PASSWORD
-        'HOST': 'mongo.apps.com',          # HOST
-        "ALIAS": 'open',                   # ALIAS
-        "PORT": 27017                      # PROT
     }
 }
 
@@ -98,6 +89,15 @@ WEAPP_DIR = '../weapp'
 WEAPP_BDD_SERVER_HOST = '127.0.0.1'
 WEAPP_BDD_SERVER_PORT = 8170
 ENABLE_BDD_DUMP_RESPONSE = True
+
+# BDD_SERVER相关配置
+BDD_SERVER2PORT = {
+    'weapp': 8170,
+    'weizoom_card': 8171,
+    'apiserver': 8172,
+    'openapi': 8173,
+    'poseidon': 8174
+}
 
 #watchdog相关
 WATCH_DOG_DEVICE = 'mysql'
