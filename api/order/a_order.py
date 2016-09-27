@@ -77,7 +77,7 @@ class AOrder(api_resource.ApiResource):
 						sub_order_detail['products'].append(tmp_sub_order_product)
 					order_detail['sub_orders'].append(sub_order_detail)
 
-				return {'order':order_detail, 'is_success':True, 'errcode':errcode}
+				return {'order':order_detail, 'success':True, 'errcode':errcode}
 
 
 			if code == 500:
@@ -188,7 +188,7 @@ class AOrder(api_resource.ApiResource):
 		if resp:
 			code = resp["code"]
 			if code == 200:
-				return {'is_success':True, 'errcode':errcode}
+				return {'success':True, 'errcode':errcode}
 
 			if code == 500:
 				

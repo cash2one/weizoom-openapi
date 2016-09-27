@@ -591,6 +591,69 @@
                                     "type": "string"
                                 }
                             }
+                        },
+                        "examples": {
+                            "application/json": {
+                                "code": 200,
+                                "data": {
+                                    "success": true,
+                                    "order": {
+                                        "sub_orders": [
+                                            {
+                                                "postage": 0.0,
+                                                "delivery_time": "", 
+                                                "express_company_name": "",
+                                                "order_id": "20160926194619314^1s",
+                                                "express_number": "",
+                                                "products": [
+                                                    {
+                                                        "product_id": 13,
+                                                        "price": 5.0,
+                                                        "product_name": "mac",
+                                                        "product_model_name": "3:7",
+                                                        "product_count": 2,
+                                                        "pic_url": "http://chaozhi.weizoom.com/static/upload/20160926/1474885237014_603.jpg"
+                                                    },
+                                                    {"product_id": 13,
+                                                    "price": 10.0,
+                                                    "product_name": "mac",
+                                                    "product_model_name": "3:8",
+                                                    "product_count": 2,
+                                                    "pic_url": "http://chaozhi.weizoom.com/static/upload/20160926/1474885237014_603.jpg"
+                                                    }
+                                                ],
+                                                "order_status": 5
+                                            },
+                                            {
+                                                "postage": 0.0,
+                                                "delivery_time": "",
+                                                "express_company_name": "",
+                                                "order_id": "20160926194619314^2s",
+                                                "express_number": "",
+                                                "products": [
+                                                    {
+                                                        "product_id": 10,
+                                                        "price": 10.0,
+                                                        "product_name": "test1product",
+                                                        "product_model_name": "standard",
+                                                        "product_count": 1,
+                                                        "pic_url": "http://chaozhi.weizoom.com/static/upload/20160926/1474871228062_547.jpg"
+                                                    }
+                                                ],
+                                                "order_status": 3
+                                            }
+                                        ],
+                                        "total_price": 40.0,
+                                        "order_id": "20160926194619314",
+                                        "created_at": "2016-09-26 19:46:19",
+                                        "ship_name": "\u5f20\u4e09",
+                                        "ship_address": "\u5f20\u4e09\u674e\u56db\u7684\u5730\u5740",
+                                        "ship_tel": "13766665555",
+                                        "order_status": 3
+                                    },
+                                    "errcode": 0
+                                }
+                            }
                         }
                     }
                 }
@@ -660,9 +723,9 @@
                                 "data": {
                                     "type": "object",
                                     "properties": {
-                                        "msg": {
-                                            "type": "string",
-                                            "description": "信息描述"
+                                        "errcode": {
+                                            "type": "number",
+                                            "description": "错误码"
                                         },
                                         "order_id": {
                                             "type": "string",
@@ -679,6 +742,16 @@
                                 },
                                 "innerErrMsg": {
                                     "type": "string"
+                                }
+                            }
+                        },
+                        "examples": {
+                            "application/json": {
+                                "code": 200,
+                                "data": {
+                                    "order_id": "20160927152821329",
+                                    "success": true,
+                                    "errcode":0
                                 }
                             }
                         }
@@ -731,6 +804,15 @@
                                 },
                                 "innerErrMsg": {
                                     "type": "string"
+                                }
+                            }
+                        },
+                        "examples": {
+                            "application/json": {
+                                "code": 200,
+                                "data": {
+                                    "success": true,
+                                    "errcode":0
                                 }
                             }
                         }
@@ -858,6 +940,53 @@
                                 },
                                 "innerErrMsg": {
                                     "type": "string"
+                                }
+                            }
+                        },
+                        "examples": {
+                            "application/json": {
+                                "code": 200,
+                                "data": {
+                                    "express": {
+                                        "order_id": "20160926194620603^1s",
+                                        "status": "已发货",
+                                        "express_number": "99999999",
+                                        "express_details": [
+                                            {
+                                                "context": "呼和浩特市邮政速递物流分公司金川揽投部安排投递（投递员姓名：安长虹;联系电话：18047140142）",
+                                                "display_index": 8,
+                                                "time": "2015-03-11 09:53:48"
+                                            },
+                                            {
+                                                "context": "到达  呼和浩特市 处理中心",
+                                                "display_index": 7,
+                                                "time": "2015-03-10 18:06:00"
+                                            },
+                                            {
+                                                "context": "离开北京市 发往呼和浩特市（经转）",
+                                                "display_index": 6,
+                                                "time": "2015-03-09 18:39:00"
+                                            },
+                                            {
+                                                "context": "到达北京黄村转运站处理中心（经转）",
+                                                "display_index": 5,
+                                                "time": "2015-03-09 09:01:00"
+                                            },
+                                            {
+                                                "context": "离开广州市 发往北京市（经转）",
+                                                "display_index": 4,
+                                                "time": "2015-03-08 01:15:00"
+                                            },
+                                            {
+                                                "context": "<nihao123>深圳市横岗速递营销部已收件，（揽投员姓名：钟定基;联系电话：）",
+                                                "display_index": 1,
+                                                "time": "2015-03-06 21:16:58"
+                                            }
+                                        ],
+                                        "express_company_name": "申通快递"
+                                    },
+                                    "errcode": 0,
+                                    "success": true
                                 }
                             }
                         }
