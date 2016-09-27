@@ -28,6 +28,15 @@ DATABASES = {
         'HOST': 'db.operation.com',
         'PORT': '',
         'CONN_MAX_AGE': 100
+    },
+    'apps_default': {
+        'ENGINE': 'mongo',                 # used MongoDB
+        'NAME': 'open',                # DATABASE NAME
+        'USER': None,                      # USERNAME
+        'PASSWORD': None,                  # PASSWORD
+        'HOST': 'mongo.apps.com',          # HOST
+        "ALIAS": 'open',                   # ALIAS
+        "PORT": 27017                      # PROT
     }
 }
 

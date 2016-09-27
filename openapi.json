@@ -535,11 +535,11 @@
                 }
             }
         },
-        "/mall/order/":{
-            "get":{
-                "summary":"获取订单详情接口",
-                "description":"获取订单详情接口",
-                "parameters":[
+        "/mall/order/": {
+            "get": {
+                "summary": "获取订单详情接口",
+                "description": "获取订单详情接口",
+                "parameters": [
                     {
                         "name": "access_token",
                         "in": "query",
@@ -555,7 +555,7 @@
                         "type": "string"
                     }
                 ],
-                "tags":[
+                "tags": [
                     "order"
                 ],
                 "responses": {
@@ -595,10 +595,10 @@
                     }
                 }
             },
-            "put":{
-                "summary":"创建订单接口",
-                "description":"创建订单接口",
-                "parameters":[
+            "put": {
+                "summary": "创建订单接口",
+                "description": "创建订单接口",
+                "parameters": [
                     {
                         "name": "access_token",
                         "in": "query",
@@ -612,20 +612,6 @@
                         "description": "交易流水号",
                         "required": true,
                         "type": "string"
-                    },
-                    {
-                        "name": "deal_price",
-                        "in": "query",
-                        "description": "交易总金额",
-                        "required": true,
-                        "type": "string"
-                    },
-                    {
-                        "name": "apply_stock_id",
-                        "in": "query",
-                        "description": "申请库存资源的id",
-                        "required": true,
-                        "type": "number"
                     },
                     {
                         "name": "ship_name",
@@ -653,12 +639,12 @@
                         "in": "body",
                         "description": "商品集合",
                         "required": true,
-                        "schema":{
-                           "$ref": "#/definitions/OrderProduct"
-                          }
+                        "schema": {
+                            "$ref": "#/definitions/PutOrderProduct"
+                        }
                     }
                 ],
-                "tags":[
+                "tags": [
                     "order"
                 ],
                 "responses": {
@@ -699,10 +685,10 @@
                     }
                 }
             },
-            "post":{
-                "summary":"取消订单接口",
-                "description": "取消订单接口",
-                "parameters":[
+            "post": {
+                "summary": "取消订单接口",
+                "description": "取消订单接口:\n 1、可取消主订单和子订单,主订单状态取自子订单集合中的订单状态最小值。\n 2、只能取消待支付、待发货状态的订单 \n 3、当子订单中存在非待支付、待发货状态的订单，不能取消主订单",
+                "parameters": [
                     {
                         "name": "access_token",
                         "in": "query",
@@ -716,16 +702,9 @@
                         "description": "订单编号",
                         "required": true,
                         "type": "string"
-                    },
-                    {
-                        "name": "cancel",
-                        "in": "query",
-                        "description": "取消订单",
-                        "required": true,
-                        "type": "string"
                     }
                 ],
-                "tags":[
+                "tags": [
                     "order"
                 ],
                 "responses": {
@@ -741,10 +720,6 @@
                                 "data": {
                                     "type": "object",
                                     "properties": {
-                                        "msg": {
-                                            "type": "string",
-                                            "description": "信息描述"
-                                        },
                                         "success": {
                                             "type": "boolean",
                                             "description": "true or false"
@@ -778,35 +753,140 @@
                     {
                         "name": "cur_page",
                         "in": "query",
-                        "description": "分页器当前请求页,默认第1页",
-                        "required": false,
+                        "description": "分页器当前请求页",
+                        "required": true,
                         "type": "integer"
                     },
                     {
                         "name": "order_status",
                         "in": "query",
-                        "description": "订单状态：  1  已取消：取消订单(回退销量)  \n3  待发货：已付款，未发货  \n4  已发货：已付款，已发货  \n5  已完成：为已完成状态",
+                        "description": "订单状态：  1  已取消：取消订单(回退销量)  \n3  待发货：已付款，未发货  \n4  已发货：已付款，已发货  \n5  已完成：为已完成状态 \n  7  退款完成：订单状态，对第三方而言并未退款",
                         "required": false,
                         "type": "integer"
-                    },
-                    {
-                        "name": "date_interval",
-                        "in": "query",
-                        "description": "查询时间：2014-10-07|2014-10-08，注：使用‘|’区分，该参数和date_interval_type结合使用",
-                        "required": false,
-                        "type": "string"
-                    },
-                    {
-                        "name": "date_interval_type",
-                        "in": "query",
-                        "description": "时间类型：1 下单时间 3 发货时间 6 订单完成时间 7 订单取消时间",
-                        "required": false,
-                        "type": "string"
                     }
-                    
                 ],
                 "tags": [
                     "order"
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Successful response",
+                        "schema": {
+                            "type": "object",
+                            "properties": {
+                                "code": {
+                                    "type": "integer",
+                                    "description": "返回码"
+                                },
+                                "data": {
+                                    "type": "object",
+                                    "properties": {
+                                        "orders": {
+                                            "type": "array",
+                                            "items": {
+                                                "$ref": "#/definitions/Order"
+                                            }
+                                        },
+                                        "success": {
+                                            "type": "boolean",
+                                            "description": "是否请求成功"
+                                        },
+                                        "page_info": {
+                                            "$ref": "#/definitions/PageInfo"
+                                        }
+                                    }
+                                },
+                                "errMsg": {
+                                    "type": "string"
+                                },
+                                "innerErrMsg": {
+                                    "type": "string"
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "/mall/express_details/": {
+            "get": {
+                "summary": "获取子订单的物流信息",
+                "description": "获取子订单的物流信息，子订单的order_id如20160922174514355^1s,",
+                "parameters": [
+                    {
+                        "name": "access_token",
+                        "in": "query",
+                        "description": "access_token,访问令牌",
+                        "required": true,
+                        "type": "string"
+                    },
+                    {
+                        "name": "order_id",
+                        "in": "query",
+                        "description": "子订单编号",
+                        "required": true,
+                        "type": "string"
+                    }
+                ],
+                "tags": [
+                    "order"
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Successful response",
+                        "schema": {
+                            "type": "object",
+                            "properties": {
+                                "code": {
+                                    "type": "integer",
+                                    "description": "返回码"
+                                },
+                                "data": {
+                                    "type": "object",
+                                    "properties": {
+                                        "express": {
+                                            "$ref": "#/definitions/Express"
+                                        },
+                                        "success": {
+                                            "type": "boolean",
+                                            "description": "是否请求成功"
+                                        }
+                                    }
+                                },
+                                "errMsg": {
+                                    "type": "string"
+                                },
+                                "innerErrMsg": {
+                                    "type": "string"
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "/pay/third_pay/": {
+            "put": {
+                "summary": "支付接口",
+                "description": "支付接口",
+                "parameters": [
+                    {
+                        "name": "access_token",
+                        "in": "query",
+                        "description": "access_token,访问令牌",
+                        "required": true,
+                        "type": "string"
+                    },
+                    {
+                        "name": "order_id",
+                        "in": "query",
+                        "description": "订单编号",
+                        "required": true,
+                        "type": "string"
+                    }
+                ],
+                "tags": [
+                    "pay"
                 ],
                 "responses": {
                     "200": {
@@ -821,11 +901,13 @@
                                 "data": {
                                     "type": "object",
                                     "properties": {
-                                        "orders": {
-                                            "type": "array",
-                                            "items": {
-                                                "$ref": "#/definitions/Order"
-                                            }
+                                        "order_id": {
+                                            "type": "string",
+                                            "description": "订单编号"
+                                        },
+                                        "success": {
+                                            "type": "boolean",
+                                            "description": "true or false"
                                         }
                                     }
                                 },
@@ -1187,65 +1269,22 @@
                     "type": "string",
                     "description": "订单金额（实付金额RMB）."
                 },
-                "ship_name": {
+                "order_status": {
                     "type": "string",
-                    "description": "收货人"
-                },
-                "ship_address": {
-                    "type": "string",
-                    "description": "收获地址"
-                },
-                "ship_tel": {
-                    "type": "string",
-                    "description": "收获电话"
+                    "description": "订单状态"
                 },
                 "product_count": {
                     "type": "string",
                     "description": "购买商品数量"
                 },
-                "payment_time": {
-                    "type": "string",
-                    "description": "支付时间"
-                },
-                "order_status": {
-                    "type": "string",
-                    "description": "订单状态"
-                },
-                "express_company_name": {
-                    "type": "string",
-                    "description": "快递名称"
-                },
-                "express_number": {
-                    "type": "string",
-                    "description": "快递号"
-                },
-                "remark": {
-                    "type": "string",
-                    "description": "订单备注"
-                },
-                "postage": {
-                    "type": "string",
-                    "description": "快递费"
-                },
                 "created_at": {
                     "type": "string",
                     "description": "订单创建时间"
                 },
-                "delivery_time": {
-                    "type": "string",
-                    "description": "发货时间"
-                },
-                "pay_time": {
-                    "type": "string",
-                    "description": "付款时间"
-                },
-                "cancel_time": {
-                    "type": "string",
-                    "description": "取消订单时间"
-                },
-                "finish_time": {
-                    "type": "string",
-                    "description": "订单完成时间"
+                "products": {
+                    "items": {
+                        "$ref": "#/definitions/OrderProduct"
+                    }
                 }
             }
         },
@@ -1272,17 +1311,39 @@
                     "type": "string",
                     "description": "收获电话"
                 },
-                "product_count": {
-                    "type": "number",
-                    "description": "购买商品数量"
-                },
-                "payment_time": {
-                    "type": "string",
-                    "description": "支付时间"
-                },
                 "order_status": {
                     "type": "string",
                     "description": "订单状态"
+                },
+                "created_at": {
+                    "type": "string",
+                    "description": "订单创建时间"
+                },
+                "sub_orders": {
+                    "items": {
+                        "$ref": "#/definitions/SubOrders"
+                    }
+                }
+            }
+        },
+        "SubOrders": {
+            "type": "object",
+            "properties": {
+                "order_id": {
+                    "description": "订单编号",
+                    "type": "string"
+                },
+                "order_status": {
+                    "description": "订单状态",
+                    "type": "number"
+                },
+                "product_model_name": {
+                    "description": "商品规格名称",
+                    "type": "string"
+                },
+                "product_count": {
+                    "description": "商品数量",
+                    "type": "number"
                 },
                 "express_company_name": {
                     "type": "string",
@@ -1292,79 +1353,149 @@
                     "type": "string",
                     "description": "快递号"
                 },
-                "remark": {
-                    "type": "string",
-                    "description": "订单备注"
-                },
                 "postage": {
                     "type": "string",
-                    "description": "快递费"
+                    "description": "邮费"
                 },
-                "created_at": {
-                    "type": "string",
-                    "description": "订单创建时间"
-                },
-                "delivery_time": {
-                    "type": "string",
-                    "description": "发货时间"
-                },
-                "pay_time": {
-                    "type": "string",
-                    "description": "付款时间"
-                },
-                "cancel_time": {
-                    "type": "string",
-                    "description": "取消订单时间"
-                },
-                "finish_time": {
-                    "type": "string",
-                    "description": "订单完成时间"
-                },
-                "express_details":{
-                    "type": "string",
-                    "description": "物流信息"
-                },
-                "deal_id":{
-                    "description": "交易流水号",
-                    "type": "string"
-                },
-                "deal_price":{
-                    "description": "交易总金额",
-                    "type": "string"
-                },
-                "apply_stock_id":{
-                    "description": "申请库存资源的id",
-                    "type": "number"
-                },
-                "products":{
+                "products": {
                     "items": {
-                        "$ref": "#/definitions/OrderProduct"
+                        "$ref": "#/definitions/SubOrderProduct"
                     }
                 }
             }
         },
-        "OrderProduct":{
+        "SubOrderProduct": {
             "type": "object",
             "properties": {
-                "product_id":{
+                "product_id": {
                     "description": "商品id",
                     "type": "number"
                 },
-                "product_model_id":{
-                    "description": "商品规格id",
-                    "type": "number"
-                },
-                "product_name":{
+                "product_name": {
                     "description": "商品名称",
                     "type": "string"
                 },
-                "product_count":{
+                "price": {
+                    "description": "商品价格",
+                    "type": "string"
+                },
+                "product_model_name": {
+                    "description": "商品规格名称",
+                    "type": "string"
+                },
+                "product_count": {
                     "description": "商品数量",
                     "type": "number"
                 },
-                "product_price":{
-                    "description": "单个商品售价",
+                "pic_url": {
+                    "description": "商品图片",
                     "type": "string"
+                }
+            }
+        },
+        "PutOrderProduct": {
+            "type": "object",
+            "properties": {
+                "product_id": {
+                    "description": "商品id",
+                    "type": "number"
+                },
+                "product_model_name": {
+                    "description": "商品规格名称",
+                    "type": "string"
+                },
+                "product_count": {
+                    "description": "商品数量",
+                    "type": "number"
+                }
+            }
+        },
+        "OrderProduct": {
+            "type": "object",
+            "properties": {
+                "product_id": {
+                    "description": "商品id",
+                    "type": "number"
+                },
+                "product_name": {
+                    "description": "商品名称",
+                    "type": "string"
+                },
+                "price": {
+                    "description": "商品价格",
+                    "type": "string"
+                },
+                "product_model_name": {
+                    "description": "商品规格名称",
+                    "type": "string"
+                },
+                "product_count": {
+                    "description": "商品数量",
+                    "type": "number"
+                },
+                "pic_url": {
+                    "description": "商品图片",
+                    "type": "string"
+                }
+            }
+        },
+        "Express": {
+            "type": "object",
+            "properties": {
+                "order_id": {
+                    "description": "订单编号",
+                    "type": "string"
+                },
+                "status": {
+                    "description": "订单状态(已发货、已完成)",
+                    "type": "string"
+                },
+                "express_company_name": {
+                    "description": "快递公司",
+                    "type": "string"
+                },
+                "express_number": {
+                    "description": "快递单号",
+                    "type": "string"
+                },
+                "express_details": {
+                    "items": {
+                        "$ref": "#/definitions/ExpressDetail"
+                    }
+                }
+            }
+        },
+        "ExpressDetail": {
+            "type": "object",
+            "properties": {
+                "time": {
+                    "description": "物流时间",
+                    "type": "string"
+                },
+                "display_index": {
+                    "description": "排序(该条物流在物流详情中的排序)",
+                    "type": "number"
+                },
+                "context": {
+                    "description": "该条物流详情描述",
+                    "type": "string"
+                }
+            }
+        },
+        "PageInfo": {
+            "type": "object",
+            "properties": {
+                "max_page": {
+                    "description": "最大页数",
+                    "type": "number"
+                },
+                "cur_page": {
+                    "description": "当前页数",
+                    "type": "number"
+                },
+                "total_count": {
+                    "description": "订单总数",
+                    "type": "number"
                 }
             }
         }
