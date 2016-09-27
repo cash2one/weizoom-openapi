@@ -14,8 +14,8 @@ import unittest
 
 import settings
 from features.util import bdd_util
-# from core.cache import utils as cache_utils
-# from core.service import celeryconfig
+from core.cache import utils as cache_utils
+from core.service import celeryconfig
 
 ######################################################################################
 # __clear_all_account_data: 清空账号数据
@@ -38,8 +38,7 @@ def __create_system_user(username):
 
 
 def before_all(context):
-	pass
-	#cache_utils.clear_db()
+	cache_utils.clear_db()
 	# __clear_all_account_data()
 	# __create_system_user('jobs')
 	# __create_system_user('bill')
@@ -69,7 +68,7 @@ def before_all(context):
 	#client = bdd_util.login('manager')
 
 	# 让Celery以同步方式运行
-	#celeryconfig.CELERY_ALWAYS_EAGER = True
+	celeryconfig.CELERY_ALWAYS_EAGER = True
 
 
 
