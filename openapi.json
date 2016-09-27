@@ -1515,7 +1515,7 @@
                         "description": "商品集合",
                         "required": true,
                         "schema": {
-                            "$ref": "#/definitions/OrderProduct"
+                            "$ref": "#/definitions/PutOrderProduct"
                         }
                     }
                 ],
@@ -2359,6 +2359,23 @@
                 "pic_url": {
                     "description": "商品图片",
                     "type": "string"
+                }
+            }
+        },
+        "PutOrderProduct": {
+            "type": "object",
+            "properties": {
+                "product_id": {
+                    "description": "商品id",
+                    "type": "number"
+                },
+                "product_model_name": {
+                    "description": "商品规格名称",
+                    "type": "string"
+                },
+                "product_count": {
+                    "description": "商品数量",
+                    "type": "number"
                 }
             }
         },
