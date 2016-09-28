@@ -8,6 +8,7 @@ import json
 from eaglet.core import api_resource
 from eaglet.decorator import param_required
 from eaglet.core import watchdog
+from eaglet.core.exceptionutil import unicode_full_stack
 from eaglet.utils.resource_client import Resource
 
 from api.error_codes import * 
@@ -22,22 +23,24 @@ class AProducts(api_resource.ApiResource):
     Args:
         取值以及说明:
           woid  : weapp_owner_id 
-          cur_page : 第几页
-          count_per_page : 每页商品数量
+          cur_page : 第几页  --暂时不实现
+          count_per_page : 每页商品数量 --暂时不实现
     """
     app = "mall"
     resource = "products"
 
-    @param_required(['woid', 'cur_page', 'count_per_page'])
+    @param_required(['woid'])
     def get(args):
         #返回三方的响应数据结构
         data = {}
         reaponse_data = {}
         reaponse_data['errMsg'] = ''
         reaponse_data['innerErrMsg'] = ''
+        #测试用，测试完需删除
+        # access_token = "VUIec%2BljmWLuzfiKwO9HK%2BRSD60IIjwhnGV9Fhgv3AHcDnK%2B370L3cd0gIJnI8/4VIp25yPerA/MN7wL6M6%2Bvw%3D%3D"
+        # args['woid'] = '32'
         try:
-            param_data = {'access_token':"ON8T43aov1sYciFu92VJ%2BHqvnAjJCOiGFjlBPRKajwSFEdNHagXWGhs6UJo1%2B9gDjFEYPllBTUyl8uBvdxICBw%3D%3D", 
-                    'woid':args['woid'], 'cur_page':args['cur_page'], 'count_per_page':args['count_per_page'],'category_id':0}
+            param_data = {'access_token':args['apiserver_access_token'], 'woid':args['woid'],'category_id':0}
             resp = Resource.use('apiserver').get({
                     'resource':'mall.products',
                     'data':param_data
@@ -73,13 +76,14 @@ class AProducts(api_resource.ApiResource):
                 del product['is_member_product']
                 del product['promotion_js']
                 del product['categories']
-
+            print '======================',products
             data['items'] = products
             #200：查询商品列表成功，请联系管理员
             reaponse_data['code'] = SUCCESS_CODE
             reaponse_data['data'] = data
             return reaponse_data
         except:
+            watchdog.error(unicode_full_stack())
             data['items'] = []
             reaponse_data['errMsg'] = code2msg['FAIL_GET_PRODUCT_LIST_CODE']
             reaponse_data['innerErrMsg'] = code2msg['FAIL_GET_PRODUCT_LIST_CODE']
