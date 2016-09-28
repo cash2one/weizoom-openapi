@@ -46,7 +46,7 @@ MIDDLEWARES = [
     'eaglet.middlewares.debug_middleware.RedisMiddleware',
     'eaglet.middlewares.zipkin_middleware.ZipkinMiddleware',
     #账号信息中间件
-   # 'middleware.auth.Auth',
+    'middleware.auth.Auth',
 ]
 #sevice celery 相关
 EVENT_DISPATCHER = 'redis'
