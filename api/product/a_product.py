@@ -29,11 +29,6 @@ class AProduct(api_resource.ApiResource):
 
     @param_required(['woid', 'product_id'])
     def get(args):
-        """
-            错误码：
-            41000:GET_PRODUCTS_LIST_SUCCESS
-            41999:GET_PRODUCTS_LIST_FAILED
-        """
         #返回三方的响应数据结构
         data = {}
         reaponse_data = {}
