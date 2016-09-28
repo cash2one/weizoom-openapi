@@ -34,9 +34,12 @@ class AProduct(api_resource.ApiResource):
         reaponse_data = {}
         reaponse_data['errMsg'] = ''
         reaponse_data['innerErrMsg'] = ''
+        #测试用，测试完需删除
+        access_token = "9JVJNjsW3gLwjW8CNOS1i/gx1wJGbuLN6SQ3y7QQxnx43e1q4WDECPDQgNJbx/fLMrJV5kzFlZxKusYukBn40Q%3D%3D"
+        args['woid'] = '24'
+        args['product_id'] = '79'
         try:
-            param_data = {'access_token':"t35ncyKizpml4vYNtfZchcf0yrCC6DWhYfHC8hRehNrGyHw4BFk2lpYsx/GcDtffaTzbOuhmnvoC8/btdKeUFw%3D%3D", 
-                    'woid':args['woid'], 'product_id':args['product_id'], 'category_id':0}
+            param_data = {'access_token':access_token, 'woid':args['woid'], 'product_id':args['product_id'], 'category_id':0}
             resp = Resource.use('apiserver').get({
                     'resource':'mall.product',
                     'data':param_data
