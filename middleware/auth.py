@@ -21,7 +21,7 @@ class Auth(object):
 				"errmsg": "invalid access_token"
 			})
 
-		app = cache_util.get_cache_wrapper(hashlib.md5(x).hexdigest())
+		app = cache_util.get_cache_wrapper(hashlib.md5(access_token).hexdigest())
 		if not app:
 			raise redirects.HTTPMiddlewareError( {
 				"errcode": 40003,
