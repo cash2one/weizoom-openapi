@@ -22,8 +22,8 @@ class AOrder(api_resource.ApiResource):
 	def get(args):
 		woid = args['woid']
 		order_id = args['order_id'].split('^')[0]
-		if int(woid) == 3:
-			access_token = 'ahQamDeQgZfrWpdR00CsZ6U%2BoRqZ0tVJK0rr27XW1DKudojNeZ2Kz8RpENSpxPDLtg7OhA5WFTLF8E2%2Btg%2BSvg%3D%3D'
+		
+		access_token = args['apiserver_access_token']
 		timestamp = str(long(time.time() * 1000))
 		data = {'order_id':order_id, 'timestamp':timestamp, 'woid': woid, 
 			u'access_token':access_token
@@ -41,6 +41,8 @@ class AOrder(api_resource.ApiResource):
 			if code == 200:
 				order_detail = {}
 				order = resp["data"]['order']
+				print "><"*100
+				print 'order', order
 				
 				order_detail['order_id'] = order['order_id']
 				order_detail['order_status'] = order['status']
@@ -51,31 +53,55 @@ class AOrder(api_resource.ApiResource):
 				
 				order_detail['created_at'] = order['created_at']
 				order_detail['sub_orders'] = []
-				for sub_order in order['sub_orders']:
-					sub_order_detail = {}
-					sub_order_detail['order_id'] = sub_order['order_id']
-					sub_order_detail['order_status'] = sub_order['status']
+				if order['sub_orders']:
+					for sub_order in order['sub_orders']:
+						sub_order_detail = {}
+						sub_order_detail['order_id'] = sub_order['order_id']
+						sub_order_detail['order_status'] = sub_order['status']
 
-					sub_order_detail['express_company_name'] = sub_order['express_company_name']
-					sub_order_detail['express_number'] = sub_order['express_number']
-					sub_order_detail['delivery_time'] = sub_order['delivery_time']
-					sub_order_detail['postage'] = sub_order['postage']
+						sub_order_detail['express_company_name'] = sub_order['express_company_name']
+						sub_order_detail['express_number'] = sub_order['express_number']
+						sub_order_detail['delivery_time'] = sub_order['delivery_time']
+						sub_order_detail['postage'] = sub_order['postage']
 
-					sub_order_detail['postage'] = sub_order['postage']
-					sub_order_detail['products'] = []
-					for sub_order_product in sub_order['products']:
-						tmp_sub_order_product = {}
-						tmp_sub_order_product['product_id'] = sub_order_product['model']['product_id']
-						tmp_sub_order_product['product_name'] = sub_order_product['name']
-						tmp_sub_order_product['price'] = sub_order_product['price']
-						tmp_sub_order_product['product_count'] = sub_order_product['purchase_count']
-						tmp_sub_order_product['product_model_name'] = sub_order_product['model_name']
-						
-						tmp_sub_order_product['pic_url'] = sub_order_product['thumbnails_url']
-						
-						
-						sub_order_detail['products'].append(tmp_sub_order_product)
-					order_detail['sub_orders'].append(sub_order_detail)
+						# sub_order_detail['postage'] = sub_order['postage']
+						sub_order_detail['products'] = []
+						for sub_order_product in sub_order['products']:
+							tmp_sub_order_product = {}
+							tmp_sub_order_product['product_id'] = sub_order_product['model']['product_id']
+							tmp_sub_order_product['product_name'] = sub_order_product['name']
+							tmp_sub_order_product['price'] = sub_order_product['price']
+							tmp_sub_order_product['product_count'] = sub_order_product['purchase_count']
+							tmp_sub_order_product['product_model_name'] = sub_order_product['model_name']
+							
+							tmp_sub_order_product['pic_url'] = sub_order_product['thumbnails_url']
+							
+							
+							sub_order_detail['products'].append(tmp_sub_order_product)
+						order_detail['sub_orders'].append(sub_order_detail)
+				elif order['products']:
+					supplier2orders = {}
+					for product in order['products']:
+						if supplier2orders.has_key(product['supplier']):
+							pass
+						else:
+							supplier2orders[product['supplier']] = []
+							supplier2orders[product['supplier']].append({
+								'order_id':'',
+								'order_status': order['status'],
+								'express_company_name':order.get('express_company_name', ''),
+								'express_number':order.get('express_number', ''),
+								'delivery_time': order['delivery_time'],
+								'postage': order['postage'],
+								'products':[{
+									'product_id': product['id'],
+									'product_name': product['name'],
+									'price': product['model']['price'],
+									'product_count': product['purchase_count'],
+									'product_model_name': product['model']['name'],
+								}]
+							})
+
 
 				return {'order':order_detail, 'success':True, 'errcode':errcode}
 
@@ -110,8 +136,8 @@ class AOrder(api_resource.ApiResource):
 		product_counts = "_".join(product_counts)
 		product_model_names = "$".join(product_model_names)
 
-		if int(woid) == 3:
-			access_token = 'ahQamDeQgZfrWpdR00CsZ6U%2BoRqZ0tVJK0rr27XW1DKudojNeZ2Kz8RpENSpxPDLtg7OhA5WFTLF8E2%2Btg%2BSvg%3D%3D'
+		
+		access_token = args['apiserver_access_token']
 		timestamp = str(long(time.time() * 1000))
 		data = {u'xa-choseInterfaces': u'2',
 			u'product_counts': product_counts, u'ship_address': ship_address, 'woid': woid, 
@@ -170,8 +196,8 @@ class AOrder(api_resource.ApiResource):
 		woid = args['woid']
 
 		order_id = args['order_id']
-		if int(woid) == 3:
-			access_token = 'ahQamDeQgZfrWpdR00CsZ6U%2BoRqZ0tVJK0rr27XW1DKudojNeZ2Kz8RpENSpxPDLtg7OhA5WFTLF8E2%2Btg%2BSvg%3D%3D'
+		
+		access_token = args['apiserver_access_token']
 
 		timestamp = str(long(time.time() * 1000))
 		data = {'order_id':order_id, 'timestamp':timestamp, 'woid': u'3',

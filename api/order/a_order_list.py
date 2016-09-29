@@ -12,30 +12,30 @@ import time
 class AOrderList(api_resource.ApiResource):
 	"""
 	获取订单列表
-	apiserver 每页8条
+	apiserver 每页20条
 	"""
 	app = 'mall'
 	resource = 'order_list'
 
-	@param_required(['woid', 'cur_page', 'order_status'])
+	@param_required(['woid', 'cur_page'])
 	def get(args):
-
+		count_per_page = args.get('count_per_page', 20)
 		woid = args['woid']
 		cur_page = int(args['cur_page'])
 		if args.has_key('order_status') and str(args['order_status']).isdigit():
 			order_type = int(args['order_status'])
 		else:
 			order_type = -1
-		if int(woid) == 3:
-			access_token = 'ahQamDeQgZfrWpdR00CsZ6U%2BoRqZ0tVJK0rr27XW1DKudojNeZ2Kz8RpENSpxPDLtg7OhA5WFTLF8E2%2Btg%2BSvg%3D%3D'
-			timestamp = str(long(time.time() * 1000))
-			data = {'timestamp':timestamp, 'woid': woid, 'order_type':order_type, 'cur_page':cur_page,
-				u'access_token':access_token
-				}
-			resp = Resource.use('apiserver').get({
-								'resource': 'mall.order_list',
-								'data': data
-				})
+		
+		access_token = args['apiserver_access_token']
+		timestamp = str(long(time.time() * 1000))
+		data = {'timestamp':timestamp, 'woid': woid, 'order_type':order_type, 'cur_page':cur_page,
+			u'access_token':access_token, 'count_per_page':count_per_page
+			}
+		resp = Resource.use('apiserver').get({
+							'resource': 'mall.order_list',
+							'data': data
+			})
 
 
 		errcode= 0
@@ -49,7 +49,7 @@ class AOrderList(api_resource.ApiResource):
 				for order in data['orders']:
 					tmp_data = {
 					'order_id':order['order_id'],
-					'total_price': order['final_price'],
+					'final_price': order['final_price'],
 					'order_status': order['status'],
 					
 					'product_count': order['product_count'],

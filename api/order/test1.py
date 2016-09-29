@@ -177,9 +177,10 @@ _ids:????
 测试openapi put order
 """
 # products = [
-#     {"product_id":13,"product_model_name":'3:7',"product_count":2,},
-#     {"product_id":13,"product_model_name":'3:8',"product_count":2,},
-#     {"product_id":10,"product_model_name":"standard","product_count":1, },
+#     # {"product_id":13,"product_model_name":'3:7',"product_count":2,},
+#     # {"product_id":13,"product_model_name":'3:8',"product_count":2,},
+#     {"product_id":32,"product_model_name":"standard","product_count":1, },
+#     {"product_id":31,"product_model_name":"standard","product_count":1, },
 #     ]
 # products = json.dumps(products)
 # data = {
@@ -188,10 +189,11 @@ _ids:????
 #     'ship_tel':'13766665555',
 #     'ship_address':u'张三李四的地址',
 #     'deal_id':'17600',
-#     'products':products
+#     'products':products,
+#     'access_token':'%2Br1YiuidTiwdK9xXaiWc6ajNmkCNtKq7ODBLhW7xXC9i7vX8UWibW0sKBYhM1'
 # }
 # resp = requests.post("http://dev.openapi.com/mall/order?_method=put", data=data)
-# print resp
+# # print resp
 # # print dir(resp)
 # print resp.text
 """
@@ -221,11 +223,12 @@ _ids:????
 """
 测试openapi get order 
 """
-# woid = 3
-# order_id = u'20160922114955019'
-# data = {'order_id':order_id, 'woid': u'3', }
-# resp = requests.get("http://dev.openapi.com/mall/order", data=data)
-# print resp.text
+woid = 3
+order_id = u'20160928220451562'
+access_token = '%2Br1YiuidTiwdK9xXaiWc6ajNmkCNtKq7ODBLhW7xXC9i7vX8UWibW0sKBYhM1'
+data = {'order_id':order_id, 'woid': u'3', 'access_token':access_token}
+resp = requests.get("http://dev.openapi.com/mall/order", data=data)
+print resp.text
 
 
 """
@@ -273,18 +276,18 @@ _ids:????
 测试openapi post order(取消订单、退款)
 """
 
-order_id ='20160926162019205^1s'
-order_ids = ['20160926165121411', '20160926165123216^2s', '20160926165124218^2s', '20160926165125780^2s', '20160926165126960^2s', '20160926165127176^2s']
-order_ids = ['20160926194619314']
-for order_id in order_ids:
-	data = {
-	    'woid':3,
-	    'order_id': order_id
-	}
-	resp = requests.post("http://dev.openapi.com/mall/order", data=data)
-	print resp
-	# print dir(resp)
-	print resp.text
+# order_id ='20160926162019205^1s'
+# order_ids = ['20160926165121411', '20160926165123216^2s', '20160926165124218^2s', '20160926165125780^2s', '20160926165126960^2s', '20160926165127176^2s']
+# order_ids = ['20160926194619314']
+# for order_id in order_ids:
+# 	data = {
+# 	    'woid':3,
+# 	    'order_id': order_id
+# 	}
+# 	resp = requests.post("http://dev.openapi.com/mall/order", data=data)
+# 	print resp
+# 	# print dir(resp)
+# 	print resp.text
 """
 测试openapi post order
 """

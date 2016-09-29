@@ -18,8 +18,8 @@ class APay(api_resource.ApiResource):
 	def put(args):
 		woid = args['woid']
 		order_id = args['order_id']
-		if int(woid) == 3:
-			access_token = 'ahQamDeQgZfrWpdR00CsZ6U%2BoRqZ0tVJK0rr27XW1DKudojNeZ2Kz8RpENSpxPDLtg7OhA5WFTLF8E2%2Btg%2BSvg%3D%3D'
+		
+		access_token = args['apiserver_access_token']
 		timestamp = str(long(time.time() * 1000))
 		data = { 'order_id':order_id, 'timestamp':timestamp, 'woid': woid, u'access_token':access_token, 'pay_interface_type':'2'}
 		resp = Resource.use('apiserver').put({
