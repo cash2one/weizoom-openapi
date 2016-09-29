@@ -41,8 +41,6 @@ class AOrder(api_resource.ApiResource):
 			if code == 200:
 				order_detail = {}
 				order = resp["data"]['order']
-				print "><"*100
-				print 'order', order
 				
 				order_detail['order_id'] = order['order_id']
 				order_detail['order_status'] = order['status']
@@ -50,8 +48,18 @@ class AOrder(api_resource.ApiResource):
 				order_detail['ship_address'] = order['ship_address']
 				order_detail['ship_name'] = order['ship_name']
 				order_detail['ship_tel'] = order['ship_tel']
-				
+				order_detail['postage'] = order['postage']
+
 				order_detail['created_at'] = order['created_at']
+				order_detail['products'] = []
+				for product in order['products']:
+					order_detail['products'].append({
+						'product_id': product['id'],
+						'product_name': product['name'],
+						'price': product['price'],
+						'product_count': product['purchase_count'],
+						'product_model_name': product['model']['name'],
+						})
 				order_detail['sub_orders'] = []
 				if order['sub_orders']:
 					for sub_order in order['sub_orders']:
@@ -73,46 +81,12 @@ class AOrder(api_resource.ApiResource):
 							tmp_sub_order_product['price'] = sub_order_product['price']
 							tmp_sub_order_product['product_count'] = sub_order_product['purchase_count']
 							tmp_sub_order_product['product_model_name'] = sub_order_product['model_name']
-							
 							tmp_sub_order_product['pic_url'] = sub_order_product['thumbnails_url']
-							
-							
+
 							sub_order_detail['products'].append(tmp_sub_order_product)
 						order_detail['sub_orders'].append(sub_order_detail)
-				elif order['products']:
-					supplier2orders = {}
-					for product in order['products']:
-						if supplier2orders.has_key(product['supplier']):
-							supplier2orders[product['supplier']]['products'].append({
-									'product_id': product['id'],
-									'product_name': product['name'],
-									'price': product['model']['price'],
-									'product_count': product['purchase_count'],
-									'product_model_name': product['model']['name'],
-								})
-						else:
-							supplier2orders[product['supplier']] = {}
-							supplier2orders[product['supplier']] = {
-								'order_id':'',
-								'order_status': order['status'],
-								'express_company_name':order.get('express_company_name', ''),
-								'express_number':order.get('express_number', ''),
-								'delivery_time': order['delivery_time'],
-								'postage': order['postage'],
-								'products':[{
-									'product_id': product['id'],
-									'product_name': product['name'],
-									'price': product['model']['price'],
-									'product_count': product['purchase_count'],
-									'product_model_name': product['model']['name'],
-								}]
-							}
-					for sub_order in supplier2orders.values():
-						order_detail['sub_orders'].append(sub_order)
-
 
 				return {'order':order_detail, 'success':True, 'errcode':errcode}
-
 
 			if code == 500:
 				msg = '获取订单详情请求参数错误或缺少参数'
