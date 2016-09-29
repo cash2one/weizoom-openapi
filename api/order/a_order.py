@@ -83,10 +83,16 @@ class AOrder(api_resource.ApiResource):
 					supplier2orders = {}
 					for product in order['products']:
 						if supplier2orders.has_key(product['supplier']):
-							pass
+							supplier2orders[product['supplier']]['products'].append({
+									'product_id': product['id'],
+									'product_name': product['name'],
+									'price': product['model']['price'],
+									'product_count': product['purchase_count'],
+									'product_model_name': product['model']['name'],
+								})
 						else:
-							supplier2orders[product['supplier']] = []
-							supplier2orders[product['supplier']].append({
+							supplier2orders[product['supplier']] = {}
+							supplier2orders[product['supplier']] = {
 								'order_id':'',
 								'order_status': order['status'],
 								'express_company_name':order.get('express_company_name', ''),
@@ -100,7 +106,9 @@ class AOrder(api_resource.ApiResource):
 									'product_count': product['purchase_count'],
 									'product_model_name': product['model']['name'],
 								}]
-							})
+							}
+					for sub_order in supplier2orders.values():
+						order_detail['sub_orders'].append(sub_order)
 
 
 				return {'order':order_detail, 'success':True, 'errcode':errcode}
