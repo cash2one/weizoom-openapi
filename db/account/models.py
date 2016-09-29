@@ -13,6 +13,7 @@ class App(models.Model):
 	is_active = models.BooleanField(default=False)
 	#TODO copid
 	name = models.CharField(max_length=100)
+	apiserver_access_token = models.CharField(max_length=256, default="")
 	created_at = models.DateTimeField(default=datetime.datetime.now)
 
 	class Meta:
@@ -26,6 +27,7 @@ class AccessToken(models.Model):
 	access_token = models.CharField(max_length=256)
 	expires_in = models.CharField(max_length=100, verbose_name='expires_in')
 	is_active = models.BooleanField(default=False)
+
 	created_at = models.DateTimeField(auto_now_add=True)
 
 	class Meta:

@@ -30,7 +30,8 @@ class App(business_model.Model):
 		'app_secret',
 		'woid',
 		'is_active',
-		'name'
+		'name',
+		'apiserver_access_token'
 	)
 
 	@staticmethod

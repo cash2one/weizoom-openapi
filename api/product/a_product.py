@@ -29,23 +29,23 @@ class AProduct(api_resource.ApiResource):
 
     @param_required(['woid', 'product_id'])
     def get(args):
-        """
-            错误码：
-            41000:GET_PRODUCTS_LIST_SUCCESS
-            41999:GET_PRODUCTS_LIST_FAILED
-        """
         #返回三方的响应数据结构
         data = {}
         reaponse_data = {}
         reaponse_data['errMsg'] = ''
         reaponse_data['innerErrMsg'] = ''
+        #测试用，测试完需删除
+        # access_token = "tfl4nJZfz%2BjWBCYBnv/3XuLWjv1ibJZayCyfUgi3/E8KVY0gCvAw8Koo0PxtvcrOs1IQhI%2BWrhKjGhR/ZysTgQ%3D%3D"
+        # args['woid'] = '24'
+        # args['product_id'] = '135'
+        # args['product_id'] = '145'
         try:
-            param_data = {'access_token':"t35ncyKizpml4vYNtfZchcf0yrCC6DWhYfHC8hRehNrGyHw4BFk2lpYsx/GcDtffaTzbOuhmnvoC8/btdKeUFw%3D%3D", 
-                    'woid':args['woid'], 'product_id':args['product_id'], 'category_id':0}
+            param_data = {'access_token':args['apiserver_access_token'], 'woid':args['woid'], 'product_id':args['product_id'], 'category_id':0}
             resp = Resource.use('apiserver').get({
                     'resource':'mall.product',
                     'data':param_data
                 })
+            print '===========================',repr(resp)
             #41999：查询商品详情，请联系管理员
             if not resp or resp['code'] != 200:
                 data['items'] = []
