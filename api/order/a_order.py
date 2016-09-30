@@ -44,7 +44,7 @@ class AOrder(api_resource.ApiResource):
 				
 				order_detail['order_id'] = order['order_id']
 				order_detail['order_status'] = order['status']
-				order_detail['total_price'] = order['final_price']
+				order_detail['final_price'] = order['final_price']
 				order_detail['ship_address'] = order['ship_address']
 				order_detail['ship_name'] = order['ship_name']
 				order_detail['ship_tel'] = order['ship_tel']
