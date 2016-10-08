@@ -99,7 +99,7 @@
                         },
                         "examples": {
                             "application/json": {
-                                    "code": 0,
+                                    "code": 200,
                                     "errMsg": "",
                                     "innerErrMsg": "",
                                     "data": {
@@ -505,7 +505,7 @@
                         },
                         "examples": {
                             "application/json": {
-                                "code": 0,
+                                "code": 200,
                                 "errMsg": "",
                                 "innerErrMsg": "",
                                 "data": {
@@ -1106,6 +1106,10 @@
                 "data": {
                     "type": "object",
                     "properties": {
+                          "errcode": {
+                              "type": "number",
+                              "description": "系统产生的错误码，如果系统正常返回，则该字段不存在"
+                           },
                           "name": {
                               "type": "string",
                               "description": "商品名称"
@@ -1371,6 +1375,10 @@
                 "data": {
                     "type": "object",
                     "properties": {
+                        "errcode": {
+                              "type": "number",
+                              "description": "系统产生的错误码，如果系统正常返回，则该字段不存在"
+                        },
                         "items": {
                             "type": "object",
                             "description": "商品列表", 
