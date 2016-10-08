@@ -99,7 +99,7 @@
                         },
                         "examples": {
                             "application/json": {
-                                    "code": 0,
+                                    "code": 200,
                                     "errMsg": "",
                                     "innerErrMsg": "",
                                     "data": {
@@ -505,7 +505,7 @@
                         },
                         "examples": {
                             "application/json": {
-                                "code": 0,
+                                "code": 200,
                                 "errMsg": "",
                                 "innerErrMsg": "",
                                 "data": {
