@@ -7,4 +7,4 @@ title %a%
 
 pip2 install git+https://git2.weizzz.com:84/microservice/eaglet.git
 
-python manage.py runserver 0.0.0.0 8010
+python manage.py runserver 0.0.0.0 8101
