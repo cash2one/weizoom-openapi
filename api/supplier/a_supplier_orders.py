@@ -8,6 +8,8 @@ from eaglet.core.exceptionutil import unicode_full_stack
 import json
 import time
 
+from util.error_codes import *
+
 class ASupplierOrderList(api_resource.ApiResource):
 	"""
 	获取供货商订单列表
@@ -71,6 +73,7 @@ class ASupplierOrderList(api_resource.ApiResource):
 					}
 					for product in order['products']:
 						tmp_order['products'].append({
+							'product_id': product['id'],
 							'price': product['price'],
 							'count': product['count'],
 							'total_price': product['total_price'],
@@ -82,9 +85,11 @@ class ASupplierOrderList(api_resource.ApiResource):
 
 			if code == 500:
 				# msg = u'获取供货商订单列表请求参数错误或缺少参数'
-				errcode = 76001
+				errcode = GET_SUPPLIER_ORDER_LIST_PARAMETER_ERROR
+				watchdog.info("get supplier orders failed!! errcode:{}, args:{}".format(errcode, args),log_type='OPENAPI_ORDER')
 				return {'errcode':errcode}
 		else:
 			# msg = u'获取供货商订单列表请求存在问题，请联系管理员'
-			errcode = 76002
+			errcode = SYSTEM_ERROR_CODE
+			watchdog.error("get supplier orders failed!! errcode:{}, msg:{}".format(errcode, unicode_full_stack()),log_type='OPENAPI_ORDER')
 			return {'errcode':errcode}

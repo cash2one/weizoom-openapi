@@ -295,7 +295,7 @@ _ids:????
 
 supplier_ids = 9
 timestamp = str(long(time.time() * 1000))
-data = {'timestamp':timestamp, 'woid': u'3', 'order_type':-1, 'cur_page':1, 'supplier_ids':supplier_ids, 'order_status': 4,
+data = {'timestamp':timestamp, 'woid': u'3', 'order_type':-1, 'cur_page':1, 'supplier_ids':supplier_ids, 'order_status': 3,
     u'access_token':'rN058mxjUGPCKtt1zGOmhs%2B72tPUCzSKxm6Ctxo3E2k26Va%2Brgg0sfWKgB9UK89TijJgdLbii00zArd35wpiHrek%2B2eUsjba2T/5dycqNm/OFTpXiYi7%2BMelXZC9aPmB'
     }
 # resp = Resource.use('openapi').get({
@@ -316,12 +316,12 @@ print resp.text
 # data = {'timestamp':timestamp, 'woid': u'3', 'express_company_name':'shentong', 'order_id':"001^11s", 'express_number':'12345678',
 #     u'access_token':'rN058mxjUGPCKtt1zGOmhs%2B72tPUCzSKxm6Ctxo3E2k26Va%2Brgg0sfWKgB9UK89TijJgdLbii00zArd35wpiHrek%2B2eUsjba2T/5dycqNm/OFTpXiYi7%2BMelXZC9aPmB'
 #     }
-# # resp = Resource.use('openapi').get({
+# # resp = Resource.use('openapi').put({
 # #                     'resource': 'mall.supplier_order',
 # #                     'data': data
 # #                 })
 # # print resp
 # # print resp['data']
-# resp = requests.post("http://dev.openapi.com/mall/delivery", data=data)
+# resp = requests.post("http://dev.openapi.com/mall/delivery?_method=put", data=data)
 # print resp
 # print resp.text
