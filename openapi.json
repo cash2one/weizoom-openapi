@@ -577,10 +577,6 @@
                                         },
                                         "order": {
                                             "$ref": "#/definitions/OrderDetail"
-                                        },
-                                        "success": {
-                                            "type": "boolean",
-                                            "description": "true or false"
                                         }
                                     }
                                 },
@@ -596,7 +592,6 @@
                             "application/json": {
                                 "code": 200,
                                 "data": {
-                                    "success": true,
                                     "order": {
                                         "sub_orders": [
                                             {
@@ -723,17 +718,9 @@
                                 "data": {
                                     "type": "object",
                                     "properties": {
-                                        "errcode": {
-                                            "type": "number",
-                                            "description": "错误码"
-                                        },
                                         "order_id": {
                                             "type": "string",
                                             "description": "订单编号"
-                                        },
-                                        "success": {
-                                            "type": "boolean",
-                                            "description": "true or false"
                                         }
                                     }
                                 },
@@ -750,8 +737,6 @@
                                 "code": 200,
                                 "data": {
                                     "order_id": "20160927152821329",
-                                    "success": true,
-                                    "errcode":0
                                 }
                             }
                         }
@@ -869,10 +854,6 @@
                                                 "$ref": "#/definitions/Order"
                                             }
                                         },
-                                        "success": {
-                                            "type": "boolean",
-                                            "description": "是否请求成功"
-                                        },
                                         "page_info": {
                                             "$ref": "#/definitions/PageInfo"
                                         }
@@ -921,9 +902,7 @@
                                             "product_count": 3,
                                             "order_status": 4
                                         }
-                                    ],
-                                    "success": true,
-                                    "errcode": 0
+                                    ]
                                 }
                             }
                         }
@@ -969,10 +948,6 @@
                                     "properties": {
                                         "express": {
                                             "$ref": "#/definitions/Express"
-                                        },
-                                        "success": {
-                                            "type": "boolean",
-                                            "description": "是否请求成功"
                                         }
                                     }
                                 },
@@ -1025,9 +1000,7 @@
                                             }
                                         ],
                                         "express_company_name": "申通快递"
-                                    },
-                                    "errcode": 0,
-                                    "success": true
+                                    }
                                 }
                             }
                         }
@@ -1074,10 +1047,6 @@
                                         "order_id": {
                                             "type": "string",
                                             "description": "订单编号"
-                                        },
-                                        "success": {
-                                            "type": "boolean",
-                                            "description": "true or false"
                                         }
                                     }
                                 },
@@ -1093,8 +1062,6 @@
                             "application/json": {
                                 "code": 200,
                                 "data": {
-                                    "success": true,
-                                    "errcode": 0,
                                     "order_id": "20160926165121411"
                                 }
                             }
