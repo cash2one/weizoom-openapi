@@ -46,9 +46,7 @@ class AccessToken(business_model.Model):
 			access_token=access_token,
 			expires_in='7200 '
 			)
-		print ">>>>>>>>>>!"
 		cache_util.set_cache_wrapper(hashlib.md5(access_token).hexdigest(),json.dumps(app.to_dict()) ,7200)
-		print ">>>>>>>>>>>@"
 		return AccessToken.from_model({
 			"model": db_model
 			})
@@ -61,12 +59,11 @@ class AccessToken(business_model.Model):
 	@param_required(['model'])
 	def from_model(args):
 		"""
-		工厂对象，根据member model获取integral业务对象
+		工厂对象，根据AccessToken model获取业务对象
 
-		@param[in] webapp_owner
-		@param[in] model: integral model
+		@param[in] model: model
 
-		@return Member业务对象
+		@return AccessToken业务对象
 		"""
 		model = args['model']
 

@@ -31,7 +31,8 @@ class App(business_model.Model):
 		'woid',
 		'is_active',
 		'name',
-		'apiserver_access_token'
+		'apiserver_access_token',
+		'supplier_ids'
 	)
 
 	@staticmethod
