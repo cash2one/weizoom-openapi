@@ -10,7 +10,7 @@ from eaglet.decorator import param_required
 from eaglet.core import watchdog
 from eaglet.utils.resource_client import Resource
 
-from api.error_codes import *
+from util.error_codes import *
 
 class AProduct(api_resource.ApiResource):
     """
@@ -45,13 +45,12 @@ class AProduct(api_resource.ApiResource):
                     'resource':'mall.product',
                     'data':param_data
                 })
-            print '===========================',repr(resp)
             #41999：查询商品详情，请联系管理员
             if not resp or resp['code'] != 200:
                 data['items'] = []
                 reaponse_data['errMsg'] = code2msg['FAIL_GET_PRODUCT_DETAIL_CODE']
                 reaponse_data['innerErrMsg'] = code2msg['FAIL_GET_PRODUCT_DETAIL_CODE']
-                reaponse_data['code'] = FAIL_GET_PRODUCT_DETAIL_CODE
+                reaponse_data['errorcode'] = FAIL_GET_PRODUCT_DETAIL_CODE
                 reaponse_data['data'] = data
                 return reaponse_data
             #获取商品列表
@@ -88,6 +87,6 @@ class AProduct(api_resource.ApiResource):
             reaponse_data['errMsg'] = code2msg['FAIL_GET_PRODUCT_DETAIL_CODE']
             reaponse_data['innerErrMsg'] = code2msg['FAIL_GET_PRODUCT_DETAIL_CODE']
             #41999：查询商品详情失败，请联系管理员
-            reaponse_data['code'] = FAIL_GET_PRODUCT_DETAIL_CODE
+            reaponse_data['errorcode'] = FAIL_GET_PRODUCT_DETAIL_CODE
             reaponse_data['data'] = data
             return reaponse_data

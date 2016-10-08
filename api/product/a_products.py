@@ -50,7 +50,7 @@ class AProducts(api_resource.ApiResource):
                 data['items'] = []
                 reaponse_data['errMsg'] = code2msg['FAIL_GET_PRODUCT_LIST_CODE']
                 reaponse_data['innerErrMsg'] = code2msg['FAIL_GET_PRODUCT_LIST_CODE']
-                reaponse_data['code'] = FAIL_GET_PRODUCT_LIST_CODE
+                reaponse_data['errorcode'] = FAIL_GET_PRODUCT_LIST_CODE
                 reaponse_data['data'] = data
                 return reaponse_data
             #获取商品列表
@@ -88,6 +88,6 @@ class AProducts(api_resource.ApiResource):
             reaponse_data['errMsg'] = code2msg['FAIL_GET_PRODUCT_LIST_CODE']
             reaponse_data['innerErrMsg'] = code2msg['FAIL_GET_PRODUCT_LIST_CODE']
             #41999：查询商品列表失败，请联系管理员
-            reaponse_data['code'] = FAIL_GET_PRODUCT_LIST_CODE
+            reaponse_data['errorcode'] = FAIL_GET_PRODUCT_LIST_CODE
             reaponse_data['data'] = data
             return reaponse_data
