@@ -1197,7 +1197,83 @@
                     }
                 }
             }
-        }
+        },
+        "/mall/delivery/": {
+            "put": {
+                "summary": "发货接口",
+                "description": "发货接口：目前针对的是供货商的账号",
+                "parameters": [
+                    {
+                        "name": "access_token",
+                        "in": "query",
+                        "description": "access_token,访问令牌",
+                        "required": true,
+                        "type": "string"
+                    },
+                    {
+                        "name": "order_id",
+                        "in": "query",
+                        "description": "订单编号",
+                        "required": true,
+                        "type": "string"
+                    },
+                    {
+                        "name": "express_company_name",
+                        "in": "query",
+                        "description": "快递公司名称",
+                        "required": true,
+                        "type": "string"
+                    },
+                    {
+                        "name": "express_number",
+                        "in": "query",
+                        "description": "快递号",
+                        "required": true,
+                        "type": "string"
+                    }
+                ],
+                "tags": [
+                    "order"
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Successful response",
+                        "schema": {
+                            "type": "object",
+                            "properties": {
+                                "code": {
+                                    "type": "integer",
+                                    "format": "int32"
+                                },
+                                "data": {
+                                    "type": "object",
+                                    "properties": {
+                                        "errcode": {
+                                            "type": "number",
+                                            "description": "错误编码, 0代表成功"
+                                        }
+                                    }
+                                },
+                                "errMsg": {
+                                    "type": "string"
+                                },
+                                "innerErrMsg": {
+                                    "type": "string"
+                                }
+                            }
+                        },
+                        "examples": {
+                            "application/json": {
+                                "code": 200,
+                                "data": {
+                                    "errcode": 0
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        },
     },
 
     "definitions": {
