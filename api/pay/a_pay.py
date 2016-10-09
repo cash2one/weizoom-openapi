@@ -50,7 +50,8 @@ class APay(api_resource.ApiResource):
 			'order_id': order_id,
 			'status': status,
 			'errcode': errcode,
-			'reason': str(reason)
+			'reason': str(reason),
+			'appid': args['appid']
 			})
 		if code == 200 and status:
 			return {'order_id': order_id, 'success':True, 'errcode':errcode}
