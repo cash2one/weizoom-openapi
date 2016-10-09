@@ -57,12 +57,12 @@ class PayLog(business_model.Model):
 
 		model = pay_models.PayLog.objects(order_id=order_id, status=1).first()
 		if model:
-			pay_log PayLog.from_model({
+			pay_log = PayLog.from_model({
 				"model": model
 				})
 			return pay_log
 		return None
-		
+
 
 	def __init__(self):
 		business_model.Model.__init__(self)

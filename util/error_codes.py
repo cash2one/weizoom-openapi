@@ -48,7 +48,7 @@ code2msg = {
 	ACCESS_TOKEN_EXPIRED_CODE : u'access_token过期',
 
 	PUT_ORDER_LOW_STOCKS: u'创建订单请求中有商品库存不足',
-	ORDER_PARAMETER_ERROR: u'创建订单请求参数错误或缺少参数',
+	PUT_ORDER_PARAMETER_ERROR: u'创建订单请求参数错误或缺少参数',
 	GET_ORDER_PARAMETER_ERROR: u'获取订单详情请求参数错误或缺少参数',
 	GET_ORDER_REQUEST_ERROR: u'获取订单详情请求存在问题，请联系管理员',
 	SUB_ORDER_STATUS_ERROR: u'有子订单的状态不是待发货,不能取消订单',
