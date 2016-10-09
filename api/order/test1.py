@@ -223,12 +223,12 @@ _ids:????
 """
 测试openapi get order 
 """
-woid = 3
-order_id = u'20160928220451562'
-access_token = '%2Br1YiuidTiwdK9xXaiWc6ajNmkCNtKq7ODBLhW7xXC9i7vX8UWibW0sKBYhM1'
-data = {'order_id':order_id, 'woid': u'3', 'access_token':access_token}
-resp = requests.get("http://dev.openapi.com/mall/order", data=data)
-print resp.text
+# woid = 3
+# order_id = u'20160928220451562'
+# access_token = '%2Br1YiuidTiwdK9xXaiWc6ajNmkCNtKq7ODBLhW7xXC9i7vX8UWibW0sKBYhM1'
+# data = {'order_id':order_id, 'woid': u'3', 'access_token':access_token}
+# resp = requests.get("http://dev.openapi.com/mall/order", data=data)
+# print resp.text
 
 
 """
@@ -291,3 +291,37 @@ print resp.text
 """
 测试openapi post order
 """
+
+
+supplier_ids = 9
+timestamp = str(long(time.time() * 1000))
+data = {'timestamp':timestamp, 'woid': u'3', 'order_type':-1, 'cur_page':1, 'supplier_ids':supplier_ids, 'order_status': 3,
+    u'access_token':'rN058mxjUGPCKtt1zGOmhs%2B72tPUCzSKxm6Ctxo3E2k26Va%2Brgg0sfWKgB9UK89TijJgdLbii00zArd35wpiHrek%2B2eUsjba2T/5dycqNm/OFTpXiYi7%2BMelXZC9aPmB'
+    }
+# resp = Resource.use('openapi').get({
+#                     'resource': 'mall.supplier_order',
+#                     'data': data
+#                 })
+# print resp
+# print resp['data']
+resp = requests.get("http://dev.openapi.com/mall/supplier_order", params=data)
+print resp
+print resp.text
+# 
+
+"""
+测试openapi 发货
+"""
+# timestamp = str(long(time.time() * 1000))
+# data = {'timestamp':timestamp, 'woid': u'3', 'express_company_name':'shentong', 'order_id':"001^11s", 'express_number':'12345678',
+#     u'access_token':'rN058mxjUGPCKtt1zGOmhs%2B72tPUCzSKxm6Ctxo3E2k26Va%2Brgg0sfWKgB9UK89TijJgdLbii00zArd35wpiHrek%2B2eUsjba2T/5dycqNm/OFTpXiYi7%2BMelXZC9aPmB'
+#     }
+# # resp = Resource.use('openapi').put({
+# #                     'resource': 'mall.supplier_order',
+# #                     'data': data
+# #                 })
+# # print resp
+# # print resp['data']
+# resp = requests.post("http://dev.openapi.com/mall/delivery?_method=put", data=data)
+# print resp
+# print resp.text

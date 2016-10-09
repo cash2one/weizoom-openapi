@@ -15,6 +15,7 @@ class App(models.Model):
 	name = models.CharField(max_length=100)
 	apiserver_access_token = models.CharField(max_length=256, default="")
 	created_at = models.DateTimeField(default=datetime.datetime.now)
+	supplier_ids = models.CharField(max_length=256, default="") #alter table poseidon.app add column supplier_ids varchar(256) default "" ;
 
 	class Meta:
 		db_table = 'app'

@@ -5,3 +5,4 @@ import auth
 import product
 import order
 import pay
+import supplier
