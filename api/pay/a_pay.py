@@ -33,7 +33,15 @@ class APay(api_resource.ApiResource):
 							'resource': 'pay.pay_result',
 							'data': data
 						})
-		
+		#
+		payment_log = PaymentLog.from_order_id({
+			'woid': args['woid'],
+			'order_id': args['order_id'],
+			})
+		if payment_log and payment_log.status:
+			errcode = PAY_ORDER_STATUS_ERROR
+			return {'errcode':errcode, 'errmsg':code2msg[errcode]}
+
 		status = 0
 		code = 0
 		errcode= SYSTEM_ERROR_CODE
@@ -55,13 +63,14 @@ class APay(api_resource.ApiResource):
 				reason = resp['errMsg']
 				msg = '支付请求参数错误或缺少参数'
 				errcode = PAY_ORDER_PARAMETER_ERROR
-		PaymentLog.save({
-			'woid': args['woid'],
-			'order_id': order_id,
-			'status': status,
-			'errcode': errcode,
-			'reason': str(reason)
-			})
+		if payment_log:
+			payment_log.update_status()
+		else:
+			PaymentLog.save({
+				'woid': args['woid'],
+				'order_id': order_id,
+				'status': status,
+				})
 		if code == 200 and status:
 			return {'order_id': order_id}
 		else:

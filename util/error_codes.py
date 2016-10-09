@@ -67,7 +67,7 @@ code2msg = {
 	DELIVERY_ORDER_NOT_EXIST: u'发货的订单不存在',
 	PAY_ORDER_STATUS_ERROR: u'订单状态不正确,非待支付订单',
 	PAY_ORDER_PARAMETER_ERROR: u'支付请求参数错误或缺少参数',
-	PAY_ORDER_ERROR, u'支付请求错误',
+	PAY_ORDER_ERROR: u'支付请求错误',
 
 	SYSTEM_ERROR_CODE : u'系统自身异常',
 	#查询商品详情的返回信息

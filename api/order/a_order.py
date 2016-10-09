@@ -189,7 +189,7 @@ class AOrder(api_resource.ApiResource):
 		access_token = args['apiserver_access_token']
 
 		timestamp = str(long(time.time() * 1000))
-		data = {'order_id':order_id, 'timestamp':timestamp, 'woid': u'3',
+		data = {'order_id':order_id, 'timestamp':timestamp, 'woid': woid,
 			u'access_token':access_token, 'action':'cancel'
 			}
 		resp = Resource.use('apiserver').put({
