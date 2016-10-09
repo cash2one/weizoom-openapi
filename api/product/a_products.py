@@ -1,7 +1,8 @@
 # -*- coding: utf-8 -*-
-"""@package wapi.mall.a_data
-服务演示数据
+"""@package db.notify.models
+通知信息表结构
 
+@author cdg
 """
 import json
 
@@ -34,8 +35,6 @@ class AProducts(api_resource.ApiResource):
         #返回三方的响应数据结构
         data = {}
         reaponse_data = {}
-        reaponse_data['errMsg'] = ''
-        reaponse_data['innerErrMsg'] = ''
         try:
             param_data = {'access_token':args['apiserver_access_token'], 'woid':args['woid'],'category_id':0}
             resp = Resource.use('apiserver').get({
@@ -44,8 +43,7 @@ class AProducts(api_resource.ApiResource):
                 })
             if not resp or resp['code'] != 200:
                 data['items'] = []
-                reaponse_data['errMsg'] = code2msg['FAIL_GET_PRODUCT_LIST_CODE']
-                reaponse_data['innerErrMsg'] = code2msg['FAIL_GET_PRODUCT_LIST_CODE']
+                data['errmsg'] = code2msg['FAIL_GET_PRODUCT_LIST_CODE']
                 data['errcode'] = FAIL_GET_PRODUCT_DETAIL_CODE
                 reaponse_data['data'] = data
                 return reaponse_data
@@ -78,8 +76,7 @@ class AProducts(api_resource.ApiResource):
         except:
             watchdog.error(unicode_full_stack())
             data['items'] = []
-            reaponse_data['errMsg'] = code2msg['FAIL_GET_PRODUCT_LIST_CODE']
-            reaponse_data['innerErrMsg'] = code2msg['FAIL_GET_PRODUCT_LIST_CODE']
+            data['errmsg'] = code2msg['FAIL_GET_PRODUCT_LIST_CODE']
             data['errcode'] = FAIL_GET_PRODUCT_DETAIL_CODE
             reaponse_data['data'] = data
             return reaponse_data
