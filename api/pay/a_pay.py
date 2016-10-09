@@ -1,15 +1,22 @@
 # -*- coding: utf-8 -*-
+"""
+@package db.notify.models
+通知信息表结构
+
+@author bert
+"""
 
 from eaglet.core import api_resource
 from eaglet.decorator import param_required
 from eaglet.utils.resource_client import Resource
+from business.pay.pay import PaymentLog
+from util.error_codes import *
 import time
 
-from business.pay.pay import PayLog
 
 class APay(api_resource.ApiResource):
 	"""
-	创建订单及修改订单
+	第三方支付
 	"""
 	app = 'pay'
 	resource = 'third_pay'
@@ -29,23 +36,26 @@ class APay(api_resource.ApiResource):
 		
 		status = 0
 		code = 0
-		errcode= 0
+		errcode= SYSTEM_ERROR_CODE
 		reason= ''
 		if resp:
 			code = resp["code"]
 			if code == 200:
 				if resp['data']['is_success'] == True:
 					status =1
+					errcode= SUCCESS_CODE
 				else:
 					msg = resp['data']['msg']
 					reason = msg
 					if u'非待支付订单' in msg:
-						errcode = 79000
+						errcode = PAY_ORDER_STATUS_ERROR
+					else:
+						errcode = PAY_ORDER_ERROR
 			if code == 500:
 				reason = resp['errMsg']
 				msg = '支付请求参数错误或缺少参数'
-				errcode = 79001
-		PayLog.save({
+				errcode = PAY_ORDER_PARAMETER_ERROR
+		PaymentLog.save({
 			'woid': args['woid'],
 			'order_id': order_id,
 			'status': status,
@@ -53,13 +63,9 @@ class APay(api_resource.ApiResource):
 			'reason': str(reason)
 			})
 		if code == 200 and status:
-			return {'order_id': order_id, 'success':True, 'errcode':errcode}
-		elif code == 200 and not status:
-			return {'order_id': order_id, 'success':False, 'errcode':errcode}
-		elif code == 500:
-			return {'order_id': order_id, 'success':False, 'errcode':errcode}
+			return {'order_id': order_id}
 		else:
-			return {'order_id': order_id, 'success':False, 'errcode':errcode}
+			return {'errcode':errcode, 'errmsg':code2msg[errcode]}
 
 
 

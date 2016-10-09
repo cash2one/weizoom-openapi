@@ -1,6 +1,10 @@
 # -*- coding: utf-8 -*-
-"""@package business.auth.app
 
+"""
+@package db.notify.models
+通知信息表结构
+
+@author bert
 """
 
 import json
@@ -20,7 +24,7 @@ from util import auth_util
 import logging
 from db.pay import models as pay_models
 
-class PayLog(business_model.Model):
+class PaymentLog(business_model.Model):
 	"""
 	Pay
 	"""
@@ -54,7 +58,7 @@ class PayLog(business_model.Model):
 		"""
 		model = args['model']
 
-		pay_log = PayLog()
+		pay_log = PaymentLog()
 		pay_log._init_slot_from_model(model)
 		return pay_log
 
@@ -80,14 +84,14 @@ class PayLog(business_model.Model):
 	@staticmethod
 	@param_required(['woid','order_id', 'status','errcode', 'reason'])
 	def save(args):
-		pay_log_model = pay_models.PayLog(
+		payment_log_model = pay_models.PaymentLog(
 			woid=args['woid'],
 			order_id=args['order_id'],
 			status=args['status'],
 			errcode=args['errcode'],
 			reason=args['reason']
 			)
-		pay_log_model.save()
-		pay_log = PayLog.from_model({'model':pay_log_model})
-		return pay_log
+		payment_log_model.save()
+		payment_log = PaymentLog.from_model({'model':payment_log_model})
+		return payment_log
 	#todo id使用额外参数的方式添加

@@ -1,6 +1,9 @@
 # -*- coding: utf-8 -*-
-"""@package business.auth.app
+"""
+@package db.notify.models
+通知信息表结构
 
+@author bert
 """
 
 import json
