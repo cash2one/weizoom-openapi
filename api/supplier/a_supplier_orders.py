@@ -20,9 +20,6 @@ class ASupplierOrderList(api_resource.ApiResource):
 	@param_required(['supplier_ids'])
 	def get(args):
 		supplier_ids = args['supplier_ids']
-		supplier_ids = 12
-		print "*"*100
-		print "supplier_ids",supplier_ids
 		found_begin_time = args.get('found_begin_time','')
 		found_end_time = args.get('found_end_time','')
 		order_status = args.get('order_status','')
