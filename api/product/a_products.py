@@ -36,21 +36,17 @@ class AProducts(api_resource.ApiResource):
         reaponse_data = {}
         reaponse_data['errMsg'] = ''
         reaponse_data['innerErrMsg'] = ''
-        #测试用，测试完需删除
-        # access_token = "VUIec%2BljmWLuzfiKwO9HK%2BRSD60IIjwhnGV9Fhgv3AHcDnK%2B370L3cd0gIJnI8/4VIp25yPerA/MN7wL6M6%2Bvw%3D%3D"
-        # args['woid'] = '32'
         try:
             param_data = {'access_token':args['apiserver_access_token'], 'woid':args['woid'],'category_id':0}
             resp = Resource.use('apiserver').get({
                     'resource':'mall.products',
                     'data':param_data
                 })
-            #41999：查询商品列表失败，请联系管理员
             if not resp or resp['code'] != 200:
                 data['items'] = []
                 reaponse_data['errMsg'] = code2msg['FAIL_GET_PRODUCT_LIST_CODE']
                 reaponse_data['innerErrMsg'] = code2msg['FAIL_GET_PRODUCT_LIST_CODE']
-                reaponse_data['code'] = FAIL_GET_PRODUCT_LIST_CODE
+                data['errcode'] = FAIL_GET_PRODUCT_DETAIL_CODE
                 reaponse_data['data'] = data
                 return reaponse_data
             #获取商品列表
@@ -76,10 +72,7 @@ class AProducts(api_resource.ApiResource):
                 del product['is_member_product']
                 del product['promotion_js']
                 del product['categories']
-            print '======================',products
             data['items'] = products
-            #200：查询商品列表成功，请联系管理员
-            reaponse_data['code'] = SUCCESS_CODE
             reaponse_data['data'] = data
             return reaponse_data
         except:
@@ -87,7 +80,6 @@ class AProducts(api_resource.ApiResource):
             data['items'] = []
             reaponse_data['errMsg'] = code2msg['FAIL_GET_PRODUCT_LIST_CODE']
             reaponse_data['innerErrMsg'] = code2msg['FAIL_GET_PRODUCT_LIST_CODE']
-            #41999：查询商品列表失败，请联系管理员
-            reaponse_data['code'] = FAIL_GET_PRODUCT_LIST_CODE
+            data['errcode'] = FAIL_GET_PRODUCT_DETAIL_CODE
             reaponse_data['data'] = data
             return reaponse_data
