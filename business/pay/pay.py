@@ -32,19 +32,7 @@ class PayLog(business_model.Model):
 		'errcode',
 		'reason',
 		'created_at',
-
 	)
-
-	# @staticmethod
-	# @param_required(['appid', 'secret'])
-	# def get(args):
-	# 	"""工厂方法
-
-	# 	@param[in] 'appid', 'secret'
-	# 	@return App对象
-	# 	"""
-	# 	app_obj = App.get_from_cache(args)
-	# 	return app_obj
 
 	@staticmethod
 	@param_required(['model'])
@@ -58,19 +46,22 @@ class PayLog(business_model.Model):
 		pay_log._init_slot_from_model(model)
 		return pay_log
 
-	# @staticmethod
-	# @param_required(['appid', 'secret'])
-	# def get_from_cache(args):
-	# 	appid = args["appid"]
-	# 	secret = args["secret"]
-	# 	#TODO from redis
-	# 	try:
-	# 		db_model = account_models.App.get(appid=appid, app_secret=secret)
-	# 		return App.from_model({
-	# 			"model": db_model
-	# 			})
-	# 	except :
-	# 	 	return None
+
+	@staticmethod
+	@param_required(['order_id'])
+	def from_order_id(args):
+		"""
+		
+		"""
+		order_id = args['order_id']
+
+		model = pay_models.PayLog.objects(order_id=order_id, status=1).first()
+		if model:
+			pay_log = PayLog.from_model({
+				"model": model
+				})
+			return pay_log
+		return None
 
 
 	def __init__(self):
