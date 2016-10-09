@@ -1,6 +1,8 @@
 #coding: utf8
 from eaglet.core.db import models
 
+from db.account.models import User
+
 import datetime
 
 #应用状态

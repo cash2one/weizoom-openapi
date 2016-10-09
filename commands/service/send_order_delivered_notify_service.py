@@ -48,7 +48,7 @@ def send_order_delivered_notify_service(data, raw_msg=None):
 	"""
 	order_id = data.get("order_id", None)
 	if order_id:
-		pay_log PayLog.from_order_id({
+		pay_log = PayLog.from_order_id({
 			"order_id": order_id
 			})
 		if pay_log:
