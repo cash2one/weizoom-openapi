@@ -1,5 +1,6 @@
 # -*- coding: utf-8 -*-
-"""@package db.notify.models
+"""
+@package db.notify.models
 通知信息表结构
 
 @author bert

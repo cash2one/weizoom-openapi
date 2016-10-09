@@ -12,7 +12,6 @@ import datetime
 class PaymentLog(models.Document):
 	"""
 	支付日志表
-	记录创建商品的deal_id和云商通创建的order的order_id
 	"""
 	woid = models.LongField()
 	order_id = models.StringField(default='', max_length=50)  #订单的order_id
