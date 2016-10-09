@@ -1,7 +1,8 @@
 # -*- coding: utf-8 -*-
-"""@package wapi.mall.a_data
-服务演示数据
+"""@package db.notify.models
+通知信息表结构
 
+@author cdg
 """
 import json
 
@@ -42,7 +43,7 @@ class AProducts(api_resource.ApiResource):
                 })
             if not resp or resp['code'] != 200:
                 data['items'] = []
-                data['errMsg'] = code2msg['FAIL_GET_PRODUCT_LIST_CODE']
+                data['errmsg'] = code2msg['FAIL_GET_PRODUCT_LIST_CODE']
                 data['errcode'] = FAIL_GET_PRODUCT_DETAIL_CODE
                 reaponse_data['data'] = data
                 return reaponse_data
@@ -75,7 +76,7 @@ class AProducts(api_resource.ApiResource):
         except:
             watchdog.error(unicode_full_stack())
             data['items'] = []
-            data['errMsg'] = code2msg['FAIL_GET_PRODUCT_LIST_CODE']
+            data['errmsg'] = code2msg['FAIL_GET_PRODUCT_LIST_CODE']
             data['errcode'] = FAIL_GET_PRODUCT_DETAIL_CODE
             reaponse_data['data'] = data
             return reaponse_data
