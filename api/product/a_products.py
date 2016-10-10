@@ -45,8 +45,7 @@ class AProducts(api_resource.ApiResource):
                 data['items'] = []
                 data['errmsg'] = code2msg['FAIL_GET_PRODUCT_LIST_CODE']
                 data['errcode'] = FAIL_GET_PRODUCT_DETAIL_CODE
-                reaponse_data['data'] = data
-                return reaponse_data
+                return data
             #获取商品列表
             products = resp['data']['products']
             """[
@@ -71,12 +70,10 @@ class AProducts(api_resource.ApiResource):
                 del product['promotion_js']
                 del product['categories']
             data['items'] = products
-            reaponse_data['data'] = data
-            return reaponse_data
+            return data
         except:
             watchdog.error(unicode_full_stack())
             data['items'] = []
             data['errmsg'] = code2msg['FAIL_GET_PRODUCT_LIST_CODE']
             data['errcode'] = FAIL_GET_PRODUCT_DETAIL_CODE
-            reaponse_data['data'] = data
-            return reaponse_data
+            return data
