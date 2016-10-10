@@ -549,7 +549,7 @@
         "/mall/order/": {
             "get": {
                 "summary": "获取订单详情接口",
-                "description": "获取订单详情接口",
+                "description": "获取订单详情接口:如果订单中需要多个仓库进行发货,订单在支付后才会拆分出子订单。",
                 "parameters": [
                     {
                         "name": "access_token",
@@ -600,56 +600,66 @@
                                 "code": 200,
                                 "data": {
                                     "order": {
+                                        "postage": 10,
                                         "sub_orders": [
                                             {
-                                                "postage": 0.0,
-                                                "delivery_time": "", 
-                                                "express_company_name": "",
-                                                "order_id": "20160926194619314^1s",
-                                                "express_number": "",
-                                                "products": [
-                                                    {
-                                                        "product_id": 13,
-                                                        "price": 5.0,
-                                                        "product_name": "mac",
-                                                        "product_model_name": "3:7",
-                                                        "product_count": 2,
-                                                        "pic_url": "http://chaozhi.weizoom.com/static/upload/20160926/1474885237014_603.jpg"
-                                                    },
-                                                    {"product_id": 13,
-                                                    "price": 10.0,
-                                                    "product_name": "mac",
-                                                    "product_model_name": "3:8",
-                                                    "product_count": 2,
-                                                    "pic_url": "http://chaozhi.weizoom.com/static/upload/20160926/1474885237014_603.jpg"
-                                                    }
-                                                ],
-                                                "order_status": 5
-                                            },
-                                            {
-                                                "postage": 0.0,
+                                                "postage": 10,
                                                 "delivery_time": "",
                                                 "express_company_name": "",
-                                                "order_id": "20160926194619314^2s",
+                                                "order_id": "20161009220753655^3s",
                                                 "express_number": "",
                                                 "products": [
                                                     {
-                                                        "product_id": 10,
-                                                        "price": 10.0,
-                                                        "product_name": "test1product",
+                                                        "product_id": 3,
+                                                        "price": 50,
+                                                        "product_name": "商品1",
                                                         "product_model_name": "standard",
                                                         "product_count": 1,
-                                                        "pic_url": "http://chaozhi.weizoom.com/static/upload/20160926/1474871228062_547.jpg"
+                                                        "pic_url": "http://chaozhi.weizoom.comlove.png"
+                                                    }
+                                                ],
+                                                "order_status": 3
+                                            },
+                                            {
+                                                "postage": 0,
+                                                "delivery_time": "",
+                                                "express_company_name": "",
+                                                "order_id": "20161009220753655^4s",
+                                                "express_number": "",
+                                                "products": [
+                                                    {
+                                                        "product_id": 4,
+                                                        "price": 50,
+                                                        "product_name": "商品2",
+                                                        "product_model_name": "standard",
+                                                        "product_count": 1,
+                                                        "pic_url": "http://chaozhi.weizoom.comlove.png"
                                                     }
                                                 ],
                                                 "order_status": 3
                                             }
                                         ],
-                                        "final_price": 40.0,
-                                        "order_id": "20160926194619314",
-                                        "created_at": "2016-09-26 19:46:19",
-                                        "ship_name": "\u5f20\u4e09",
-                                        "ship_address": "\u5f20\u4e09\u674e\u56db\u7684\u5730\u5740",
+                                        "ship_address": "张三李四的地址",
+                                        "order_id": "20161009220753655",
+                                        "created_at": "2016-10-09 22:07:53",
+                                        "ship_name": "张三",
+                                        "products": [
+                                            {
+                                                "product_count": 1,
+                                                "product_name": "商品1",
+                                                "price": 50,
+                                                "product_model_name": "standard",
+                                                "product_id": 3
+                                            },
+                                            {
+                                                "product_count": 1,
+                                                "product_name": "商品2",
+                                                "price": 50,
+                                                "product_model_name": "standard",
+                                                "product_id": 4
+                                            }
+                                        ],
+                                        "final_price": 110,
                                         "ship_tel": "13766665555",
                                         "order_status": 3
                                     },
@@ -692,7 +702,7 @@
                     {
                         "name": "deal_id",
                         "in": "query",
-                        "description": "交易流水号",
+                        "description": "交易流水号:第三方创建出订单的订单号，唯一。",
                         "required": true,
                         "type": "string"
                     },
@@ -720,7 +730,7 @@
                     {
                         "name": "products",
                         "in": "body",
-                        "description": "商品集合",
+                        "description": "商品集合,如:[{'product_id':12,'product_model_name':'standard','product_count':2,},{'product_id':11,'product_model_name':'standard','product_count':1, }],是一个json化的list",
                         "required": true,
                         "schema": {
                             "$ref": "#/definitions/PutOrderProduct"
@@ -799,7 +809,7 @@
                     {
                         "name": "order_id",
                         "in": "query",
-                        "description": "订单编号",
+                        "description": "订单编号，可以是主订单或者子订单。子订单:一个主订单可能有多个仓库进行发货的，我们将一个主订单进行拆分成多个仓库的子订单",
                         "required": true,
                         "type": "string"
                     }
@@ -1798,6 +1808,10 @@
                 "created_at": {
                     "type": "string",
                     "description": "订单创建时间"
+                },
+                "postage": {
+                    "type": "string",
+                    "description": "邮费"
                 },
                 "sub_orders": {
                     "items": {
