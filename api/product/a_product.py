@@ -39,7 +39,6 @@ class AProduct(api_resource.ApiResource):
                     'data':param_data
                 })
             if not resp or resp['code'] != 200:
-                data['items'] = []
                 data['errcode'] = FAIL_GET_PRODUCT_DETAIL_CODE
                 data['errmsg'] = code2msg['FAIL_GET_PRODUCT_DETAIL_CODE']
                 return data
@@ -67,10 +66,8 @@ class AProduct(api_resource.ApiResource):
 
             # product['sku'] = product['models']
             # del product['models']
-            data['items'] = product
-            return data
+            return product
         except:
-            data['items'] = []
             data['errcode'] = FAIL_GET_PRODUCT_DETAIL_CODE
             data['errmsg'] = code2msg['FAIL_GET_PRODUCT_DETAIL_CODE']
             return data
