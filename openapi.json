@@ -1443,7 +1443,11 @@
                     "properties": {
                           "errcode": {
                               "type": "number",
-                              "description": "系统产生的错误码，如果系统正常返回，则该字段不存在"
+                              "description": "系统产生的错误码，如果系统成功返回，则该字段不存在"
+                           },
+                           "errmsg": {
+                              "type": "number",
+                              "description": "系统产生的错误信息，如果系统成功返回，则该字段不存在"
                            },
                           "name": {
                               "type": "string",
@@ -1475,7 +1479,7 @@
                            },
                           "limit_zone_detail":{
                               "type": "object",
-                              "description": "限制发货区域详细信息",
+                              "description": "限制发货区域详细信息，当商品没有限制区域或者禁售区域时，该字段不存在！",
                               "properties": {
                                   "cities": {
                                       "type": "object",
@@ -1571,15 +1575,15 @@
                           },
                           "thumbnails_url": {
                               "type": "string",
-                              "description": "缩略图"
+                              "description": "商品缩略图"
                           },
                           "order_thumbnails_url": {
                               "type": "string",
-                              "description": "订单列表lvsuotu"
+                              "description": "订单列表商品的缩略图"
                           },
                           "pic_url": {
                               "type": "string",
-                              "description": "封面"
+                              "description": "封面图"
                           },
                           "is_sellout": {
                               "type": "boolean",
@@ -1587,7 +1591,7 @@
                           },
                           "min_limit":{
                               "type": "string",
-                              "description": "最大数量"
+                              "description": "最少数量"
                           },
                           "detail": {
                               "type": "string",
@@ -1622,7 +1626,7 @@
                                   },
                                   "name":{
                                       "type": "string",
-                                      "description": "规格id组装字符串，如果商品无规格该值：standard" 
+                                      "description": "规格name组装字符串，如果商品无规格,该值固定为：standard" 
                                   },
                                   "weight":{
                                       "type": "number",
