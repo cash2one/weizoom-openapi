@@ -1,4 +1,10 @@
 # -*- coding: utf-8 -*-
+"""
+@package db.notify.models
+通知信息表结构
+
+@author bert
+"""
 
 from eaglet.core import api_resource
 from eaglet.decorator import param_required
@@ -9,7 +15,7 @@ import json
 import time
 
 from business.order.order_relation import OrderRelation
-
+from util.error_codes import *
 
 class AOrder(api_resource.ApiResource):
 	"""
@@ -34,7 +40,7 @@ class AOrder(api_resource.ApiResource):
 				})
 		status = 0
 		code = 0
-		errcode= 0
+		errcode= SUCCESS_CODE
 
 		if resp:
 			code = resp["code"]
@@ -86,20 +92,23 @@ class AOrder(api_resource.ApiResource):
 							sub_order_detail['products'].append(tmp_sub_order_product)
 						order_detail['sub_orders'].append(sub_order_detail)
 
-				return {'order':order_detail, 'success':True, 'errcode':errcode}
+				return {'order':order_detail}
 
 			if code == 500:
-				msg = '获取订单详情请求参数错误或缺少参数'
-				errcode = 72000
-				return {'order_id': order_id, 'success':False, 'errcode':errcode}
+				# msg = '获取订单详情请求参数错误或缺少参数'
+				errcode = GET_ORDER_PARAMETER_ERROR
+				return {'errcode':errcode, 'errmsg':code2msg[errcode]}
 		else:
-			msg = '获取订单详情请求存在问题，请联系管理员'
-			errcode = 72001
-			return {'order_id': order_id, 'success':False, 'errcode':errcode}
+			# msg = '获取订单详情请求存在问题，请联系管理员'
+			errcode = GET_ORDER_REQUEST_ERROR
+			return {'errcode':errcode, 'errmsg':code2msg[errcode]}
 		
 
 	@param_required(['ship_name', 'ship_tel', 'ship_address', 'products', 'woid'])
 	def put(args):
+		'''
+		下单接口
+		'''
 		woid = args['woid']
 		ship_name = args['ship_name']
 		ship_address = args['ship_address']
@@ -135,23 +144,22 @@ class AOrder(api_resource.ApiResource):
 		order_id = ''
 		status = 0
 		code = 0
-		errcode= 0
+		errcode= SYSTEM_ERROR_CODE
 		reason= ''
 
 		if resp:
 			code = resp["code"]
 			if code == 200:
 				order_id = resp["data"]['order_id']
+				errcode= SUCCESS_CODE
 				status =1
 			if code == 500:
 				reason = resp['errMsg']
 				if reason['detail']:
-					msg = reason['detail'][0]['msg']
 					if u'库存不足' in msg:
-						errcode = 71000
+						errcode = PUT_ORDER_LOW_STOCKS
 				else:
-					msg = '创建订单请求参数错误或缺少参数'
-					errcode = 71001
+					errcode = PUT_ORDER_PARAMETER_ERROR
 
 		OrderRelation.save({
 			'woid': args['woid'],
@@ -164,13 +172,12 @@ class AOrder(api_resource.ApiResource):
 			})
 
 		if code == 200:
-			return {'order_id': order_id, 'success':True, 'errcode':errcode}
+			return {'order_id': order_id}
 		elif code == 500:
-			return {'order_id': order_id, 'success':False, 'errcode':errcode}
+			return {'errcode':errcode, 'errmsg':code2msg[errcode]}
 		else:
-			errcode = 995995
 			watchdog.error("create order failed!! msg:{}".format(unicode_full_stack()),log_type='OPENAPI_ORDER')
-			return {'order_id': order_id, 'success':False, 'errcode':errcode}
+			return {'errcode':errcode, 'errmsg':code2msg[errcode]}
 			
 	@param_required(['woid', 'order_id'])
 	def post(args):
@@ -182,7 +189,7 @@ class AOrder(api_resource.ApiResource):
 		access_token = args['apiserver_access_token']
 
 		timestamp = str(long(time.time() * 1000))
-		data = {'order_id':order_id, 'timestamp':timestamp, 'woid': u'3',
+		data = {'order_id':order_id, 'timestamp':timestamp, 'woid': woid,
 			u'access_token':access_token, 'action':'cancel'
 			}
 		resp = Resource.use('apiserver').put({
@@ -191,23 +198,21 @@ class AOrder(api_resource.ApiResource):
 				})
 		status = 0
 		code = 0
-		errcode= 0
+		errcode= SUCCESS_CODE
 
 		if resp:
 			code = resp["code"]
 			if code == 200:
-				return {'success':True, 'errcode':errcode}
+				return {'errcode':errcode}
 
 			if code == 500:
-				
 				msg = resp['data']['msg']
-				errcode = 73000
+				errcode = SUB_ORDER_STATUS_ERROR
 				if msg == u'有子订单的状态不是待发货,不能取消订单':
-					errcode = 73001
+					errcode = CANCEL_ORDER_ERROR
 				watchdog.info("cancel order failed!! errcode:{}, msg:{}".format(errcode, msg),log_type='OPENAPI_ORDER')
-				return {'success':False, 'errcode':errcode}
+				return {'errcode':errcode, 'errmsg':code2msg[errcode]}
 		else:
-			
-			errcode = 995995
+			errcode = SYSTEM_ERROR_CODE
 			watchdog.error("cancel order failed!! errcode:{}, msg:{}".format(errcode, unicode_full_stack()),log_type='OPENAPI_ORDER')
-			return {'success':False, 'errcode':errcode}
+			return {'errcode':errcode, 'errmsg':code2msg[errcode]}

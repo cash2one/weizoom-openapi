@@ -1,14 +1,21 @@
 # -*- coding: utf-8 -*-
+"""
+@package db.notify.models
+通知信息表结构
+
+@author bert
+"""
 
 from eaglet.core import api_resource
 from eaglet.decorator import param_required
 from eaglet.utils.resource_client import Resource
 from eaglet.core import watchdog
 from eaglet.core.exceptionutil import unicode_full_stack
+from util.error_codes import *
 import json
 import time
 
-from util.error_codes import *
+
 
 class ASupplierOrderList(api_resource.ApiResource):
 	"""
@@ -84,9 +91,9 @@ class ASupplierOrderList(api_resource.ApiResource):
 				# msg = u'获取供货商订单列表请求参数错误或缺少参数'
 				errcode = GET_SUPPLIER_ORDER_LIST_PARAMETER_ERROR
 				watchdog.info("get supplier orders failed!! errcode:{}, args:{}".format(errcode, args),log_type='OPENAPI_ORDER')
-				return {'errcode':errcode}
+				return {'errcode':errcode, 'errmsg':code2msg[errcode]}
 		else:
 			# msg = u'获取供货商订单列表请求存在问题，请联系管理员'
 			errcode = SYSTEM_ERROR_CODE
 			watchdog.error("get supplier orders failed!! errcode:{}, msg:{}".format(errcode, unicode_full_stack()),log_type='OPENAPI_ORDER')
-			return {'errcode':errcode}
+			return {'errcode':errcode, 'errmsg':code2msg[errcode]}

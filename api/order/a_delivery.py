@@ -1,4 +1,10 @@
 # -*- coding: utf-8 -*-
+"""
+@package db.notify.models
+通知信息表结构
+
+@author bert
+"""
 
 from eaglet.core import api_resource
 from eaglet.decorator import param_required
@@ -39,6 +45,7 @@ class ADelivery(api_resource.ApiResource):
 			if resp['code'] == 200:
 				if resp['data']['result'] == 'SUCCESS':
 					errcode = SUCCESS_CODE
+					return {'errcode': errcode}
 				else:
 					if resp['data']['msg'] == u'不能对当前订单发货':
 						errcode = DELIVERY_ORDER_HAS_MULTIPLE_CHILD_ORDERS
@@ -50,4 +57,4 @@ class ADelivery(api_resource.ApiResource):
 
 		if errcode == SYSTEM_ERROR_CODE:
 			watchdog.error("delivery failed!! errcode:{}, msg:{}".format(errcode, unicode_full_stack()),log_type='OPENAPI_ORDER')
-		return {'errcode': errcode}
+		return {'errcode':errcode, 'errmsg':code2msg[errcode]}

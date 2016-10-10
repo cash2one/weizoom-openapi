@@ -29,8 +29,7 @@ class PayLog(business_model.Model):
 		'woid',
 		'order_id',
 		'status',
-		'errcode',
-		'reason',
+		'appid',
 		'created_at',
 	)
 
@@ -68,15 +67,20 @@ class PayLog(business_model.Model):
 		business_model.Model.__init__(self)
 
 
+	def update_status(self):
+		pay_models.PaymentLog.objects(woid=self.woid,order_id=self.order_id,).update(status=1)
+
+
 	@staticmethod
-	@param_required(['woid','order_id', 'status','errcode', 'reason'])
+	@param_required(['woid','order_id', 'status','appid'])
 	def save(args):
 		pay_log_model = pay_models.PayLog(
 			woid=args['woid'],
 			order_id=args['order_id'],
 			status=args['status'],
-			errcode=args['errcode'],
-			reason=args['reason']
+			# errcode=args['errcode'],
+			# reason=args['reason']
+			appid=args['appid']
 			)
 		pay_log_model.save()
 		pay_log = PayLog.from_model({'model':pay_log_model})

@@ -1,10 +1,17 @@
 # -*- coding: utf-8 -*-
+"""
+@package db.notify.models
+通知信息表结构
+
+@author bert
+"""
 
 from eaglet.core import api_resource
 from eaglet.decorator import param_required
 from eaglet.utils.resource_client import Resource
 from eaglet.core import watchdog
 from eaglet.core.exceptionutil import unicode_full_stack
+from util.error_codes import *
 import json
 import time
 
@@ -22,19 +29,18 @@ class AExpressDetail(api_resource.ApiResource):
 
 		order_id = args['order_id']
 		woid = args['woid']
-		if int(woid) == 3:
-			access_token = 'ahQamDeQgZfrWpdR00CsZ6U%2BoRqZ0tVJK0rr27XW1DKudojNeZ2Kz8RpENSpxPDLtg7OhA5WFTLF8E2%2Btg%2BSvg%3D%3D'
-			timestamp = str(long(time.time() * 1000))
-			data = {
-				'timestamp':timestamp, 'woid': woid, 'order_id':order_id,u'access_token':access_token
-				}
-			resp = Resource.use('apiserver').get({
-								'resource': 'mall.express_details',
-								'data': data
-				})
+		access_token = args['apiserver_access_token']
+		timestamp = str(long(time.time() * 1000))
+		data = {
+			'timestamp':timestamp, 'woid': woid, 'order_id':order_id,u'access_token':access_token
+			}
+		resp = Resource.use('apiserver').get({
+							'resource': 'mall.express_details',
+							'data': data
+			})
 
 
-		errcode= 0
+		errcode = SUCCESS_CODE
 
 		if resp:
 			code = resp["code"]
@@ -45,16 +51,16 @@ class AExpressDetail(api_resource.ApiResource):
 				for express_detail in data['express_details']:
 					for i in ['express_id', 'ftime', 'status', 'id', 'created_at']:
 						del express_detail[i]
-				return {'express':data, 'success':True, 'errcode':errcode}
+				return {'express':data}
 
 			if code == 500:
-				msg = '获取物流信息请求参数错误或缺少参数'
-				errcode = 75001
+				# msg = '获取物流信息请求参数错误或缺少参数'
+				errcode = GET_EXPRESS_DETAILS_PARAMETER_ERROR
 				watchdog.error("get express detail failed!! errcode:{}, msg:{}".format(errcode,unicode_full_stack()),log_type='OPENAPI_ORDER')
-				return {'express': '{}', 'success':False, 'errcode':errcode}
+				return {'errcode':errcode, 'errmsg':code2msg[errcode]}
 		else:
-			errcode = 995995
+			errcode = SYSTEM_ERROR_CODE
 			watchdog.error("get express detail failed!! errcode:{}, msg:{}".format(errcode,unicode_full_stack()),log_type='OPENAPI_ORDER')
-			return {'express': '{}', 'success':False, 'errcode':errcode}
+			return {'errcode':errcode, 'errmsg':code2msg[errcode]}
 		
 
