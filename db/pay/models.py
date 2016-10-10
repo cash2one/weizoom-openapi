@@ -12,6 +12,7 @@ class PayLog(models.Document):
 	status = models.IntField() #支付状态，成功或者失败 0支付失败 1支付成功
 	errcode = models.IntField() #向第三方的返回码
 	reason = models.StringField() #来自apiserver的返回结果的详细信息
+	appid = models.StringField() #应用appid
 	created_at = models.DateTimeField(default=datetime.datetime.now()) #创建时间
 	
 	meta = {

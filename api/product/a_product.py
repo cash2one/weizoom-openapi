@@ -11,7 +11,7 @@ from eaglet.decorator import param_required
 from eaglet.core import watchdog
 from eaglet.utils.resource_client import Resource
 
-from api.error_codes import *
+from util.error_codes import *
 
 class AProduct(api_resource.ApiResource):
     """

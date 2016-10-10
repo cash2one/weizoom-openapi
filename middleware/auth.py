@@ -27,8 +27,10 @@ class Auth(object):
 				"errcode": 40003,
 				"errmsg": "invalid access_token"
 			})
-
+		
+		req.context['appid'] = json.loads(app)['appid']
 		req.context['woid'] = json.loads(app)['woid']
 		req.context['apiserver_access_token'] = json.loads(app)['apiserver_access_token']
+		req.context['supplier_ids'] = json.loads(app)['supplier_ids']
 		watchdog.info("auth:woid:%s" % req.context['woid'])
 		watchdog.info("auth:apiserver_access_token:%s" % req.context['apiserver_access_token'])
