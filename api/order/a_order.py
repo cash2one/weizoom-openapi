@@ -131,7 +131,7 @@ class AOrder(api_resource.ApiResource):
 		access_token = args['apiserver_access_token']
 		timestamp = str(long(time.time() * 1000))
 		data = {u'xa-choseInterfaces': u'2',
-			u'product_counts': product_counts, u'ship_address': ship_address, 'woid': woid, 
+			u'product_counts': product_counts, u'ship_address': ship_address, 'woid': woid, 'lock':False,
 			u'timestamp': timestamp, u'integral': u'undefined', u'coupon_id': u'0', u'product_model_names': product_model_names,  
 			u'ship_tel': ship_tel, u'message': '{}', u'order_type': u'undefined', u'area': u' ', 
 			u'is_order_from_shopping_cart': u'false', u'ship_name': ship_name, 
