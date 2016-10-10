@@ -58,6 +58,12 @@
                                 }
                             }
                         }
+                    },
+                    "default": {
+                        "description": "请求存在错误的时候的返回",
+                        "schema": {
+                          "$ref": "#/definitions/ErrorModel"
+                        }
                     }
                 }
             }
@@ -206,7 +212,6 @@
                                             "weight": 2,
                                             "price": 22,
                                             "user_code": "",
-                                            "purchase_price": 11,
                                             "market_price": 0,
                                             "stock_type": 1,
                                             "property2value": {
@@ -248,7 +253,6 @@
                                             "weight": 2,
                                             "price": 33,
                                             "user_code": "",
-                                            "purchase_price": 16.5,
                                             "market_price": 0,
                                             "stock_type": 1,
                                             "property2value": {
@@ -290,7 +294,6 @@
                                             "weight": 2,
                                             "price": 44,
                                             "user_code": "",
-                                            "purchase_price": 22,
                                             "market_price": 0,
                                             "stock_type": 1,
                                             "property2value": {
@@ -332,7 +335,6 @@
                                             "weight": 2,
                                             "price": 22,
                                             "user_code": "",
-                                            "purchase_price": 11,
                                             "market_price": 0,
                                             "stock_type": 1,
                                             "property2value": {
@@ -374,7 +376,6 @@
                                             "weight": 2,
                                             "price": 33,
                                             "user_code": "",
-                                            "purchase_price": 16.5,
                                             "market_price": 0,
                                             "stock_type": 1,
                                             "property2value": {
@@ -416,7 +417,6 @@
                                             "weight": 2,
                                             "price": 44,
                                             "user_code": "",
-                                            "purchase_price": 22,
                                             "market_price": 0,
                                             "stock_type": 1,
                                             "property2value": {
@@ -456,6 +456,12 @@
                                         
                                     }
                                 }
+                        }
+                    },
+                    "default": {
+                        "description": "请求存在错误的时候的返回",
+                        "schema": {
+                          "$ref": "#/definitions/ErrorModel"
                         }
                     }
                 }
@@ -530,7 +536,12 @@
                                 }
                             }
                         }
-
+                    },
+                    "default": {
+                        "description": "请求存在错误的时候的返回",
+                        "schema": {
+                          "$ref": "#/definitions/ErrorModel"
+                        }
                     }
                 }
             }
@@ -571,10 +582,6 @@
                                 "data": {
                                     "type": "object",
                                     "properties": {
-                                        "msg": {
-                                            "type": "string",
-                                            "description": "信息描述"
-                                        },
                                         "order": {
                                             "$ref": "#/definitions/OrderDetail"
                                         }
@@ -646,8 +653,26 @@
                                         "ship_tel": "13766665555",
                                         "order_status": 3
                                     },
-                                    "errcode": 0
+                                "errMsg": "",
+                                "innerErrMsg": ""
                                 }
+                            }
+                        }
+                    },
+                    "default": {
+                        "description": "请求存在错误的时候的返回",
+                        "schema": {
+                          "$ref": "#/definitions/ErrorModel"
+                        },
+                        "examples": {
+                            "application/json": {
+                                "code": 200,
+                                "data": {
+                                    "errcode": 72001,
+                                    "errmsg":"\u83b7\u53d6\u8ba2\u5355\u8be6\u60c5\u8bf7\u6c42\u5b58\u5728\u95ee\u9898\uff0c\u8bf7\u8054\u7cfb\u7ba1\u7406\u5458"
+                                },
+                                "errMsg": "",
+                                "innerErrMsg": ""
                             }
                         }
                     }
@@ -740,6 +765,23 @@
                                 }
                             }
                         }
+                    },
+                    "default": {
+                        "description": "请求存在错误的时候的返回",
+                        "schema": {
+                          "$ref": "#/definitions/ErrorModel"
+                        },
+                        "examples": {
+                            "application/json": {
+                                "code": 200,
+                                "data": {
+                                    "errcode": 71000,
+                                    "errmsg":"\u521b\u5efa\u8ba2\u5355\u8bf7\u6c42\u4e2d\u6709\u5546\u54c1\u5e93\u5b58\u4e0d\u8db3"
+                                },
+                                "errMsg": "",
+                                "innerErrMsg": ""
+                            }
+                        }
                     }
                 }
             },
@@ -778,9 +820,9 @@
                                 "data": {
                                     "type": "object",
                                     "properties": {
-                                        "success": {
-                                            "type": "boolean",
-                                            "description": "true or false"
+                                        "errcode": {
+                                            "type": "number",
+                                            "description": "错误编码, 0代表成功"
                                         }
                                     }
                                 },
@@ -796,9 +838,25 @@
                             "application/json": {
                                 "code": 200,
                                 "data": {
-                                    "success": true,
                                     "errcode":0
                                 }
+                            }
+                        }
+                    },
+                    "default": {
+                        "description": "请求存在错误的时候的返回",
+                        "schema": {
+                          "$ref": "#/definitions/ErrorModel"
+                        },
+                        "examples": {
+                            "application/json": {
+                                "code": 200,
+                                "data": {
+                                    "errcode": 73000,
+                                    "errmsg":"\u6709\u5b50\u8ba2\u5355\u7684\u72b6\u6001\u4e0d\u662f\u5f85\u53d1\u8d27\u002c\u4e0d\u80fd\u53d6\u6d88\u8ba2\u5355"
+                                },
+                                "errMsg": "",
+                                "innerErrMsg": ""
                             }
                         }
                     }
@@ -906,6 +964,23 @@
                                 }
                             }
                         }
+                    },
+                    "default": {
+                        "description": "请求存在错误的时候的返回",
+                        "schema": {
+                          "$ref": "#/definitions/ErrorModel"
+                        },
+                        "examples": {
+                            "application/json": {
+                                "code": 200,
+                                "data": {
+                                    "errcode": 74001,
+                                    "errmsg":"\u83b7\u53d6\u8ba2\u5355\u5217\u8868\u5b58\u5728\u95ee\u9898"
+                                },
+                                "errMsg": "",
+                                "innerErrMsg": ""
+                            }
+                        }
                     }
                 }
             }
@@ -913,7 +988,7 @@
         "/mall/express_details/": {
             "get": {
                 "summary": "获取子订单的物流信息",
-                "description": "获取子订单的物流信息，子订单的order_id如20160922174514355^1s,",
+                "description": "获取子订单的物流信息，子订单的order_id如20160922174514355^1s。如果主订单只有1个子订单，直接获取主订单的物流信息。",
                 "parameters": [
                     {
                         "name": "access_token",
@@ -1004,6 +1079,23 @@
                                 }
                             }
                         }
+                    },
+                    "default": {
+                        "description": "请求存在错误的时候的返回",
+                        "schema": {
+                          "$ref": "#/definitions/ErrorModel"
+                        },
+                        "examples": {
+                            "application/json": {
+                                "code": 200,
+                                "data": {
+                                    "errcode": 75001,
+                                    "errmsg":"\u83b7\u53d6\u7269\u6d41\u4fe1\u606f\u8bf7\u6c42\u53c2\u6570\u9519\u8bef\u6216\u7f3a\u5c11\u53c2\u6570"
+                                },
+                                "errMsg": "",
+                                "innerErrMsg": ""
+                            }
+                        }
                     }
                 }
             }
@@ -1064,6 +1156,23 @@
                                 "data": {
                                     "order_id": "20160926165121411"
                                 }
+                            }
+                        }
+                    },
+                    "default": {
+                        "description": "请求存在错误的时候的返回",
+                        "schema": {
+                          "$ref": "#/definitions/ErrorModel"
+                        },
+                        "examples": {
+                            "application/json": {
+                                "code": 200,
+                                "data": {
+                                    "errcode": 995995,
+                                    "errmsg":"\u7cfb\u7edf\u81ea\u8eab\u5f02\u5e38"
+                                },
+                                "errMsg": "",
+                                "innerErrMsg": ""
                             }
                         }
                     }
@@ -1194,6 +1303,12 @@
                                 }
                             }
                         }
+                    },
+                    "default": {
+                        "description": "请求存在错误的时候的返回",
+                        "schema": {
+                          "$ref": "#/definitions/ErrorModel"
+                        }
                     }
                 }
             }
@@ -1269,6 +1384,12 @@
                                     "errcode": 0
                                 }
                             }
+                        }
+                    },
+                    "default": {
+                        "description": "请求存在错误的时候的返回",
+                        "schema": {
+                          "$ref": "#/definitions/ErrorModel"
                         }
                     }
                 }
@@ -1959,6 +2080,34 @@
                 "model_names": {
                     "description": "商品规格名称",
                     "type": "string"
+                }
+            }
+        },
+        "ErrorModel": {
+            "type": "object",
+            "properties": {
+                "code": {
+                    "type": "string",
+                    "description": "响应码"
+                },
+                "errMsg": {
+                    "type": "string"
+                },
+                "innerErrMsg": {
+                    "type": "string"
+                },
+                "data": {
+                    "type": "object",
+                    "properties": {
+                        "errcode": {
+                          "type": "number",
+                          "description": "错误编码"
+                        },
+                        "errmsg": {
+                            "description": "错误描述",
+                            "type": "string"
+                        }
+                    }
                 }
             }
         },
