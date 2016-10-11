@@ -34,13 +34,13 @@ class AProduct(api_resource.ApiResource):
         data = {}
         try:
             param_data = {'access_token':args['apiserver_access_token'], 'woid':args['woid'], 'product_id':args['product_id'], 'category_id':0}
-            resp = Resource.use('apiserver').get({
+            resp = Resource.use('default').get({
                     'resource':'mall.product',
                     'data':param_data
                 })
             if not resp or resp['code'] != 200:
                 data['errcode'] = FAIL_GET_PRODUCT_DETAIL_CODE
-                data['errmsg'] = code2msg['FAIL_GET_PRODUCT_DETAIL_CODE']
+                data['errmsg'] = code2msg[FAIL_GET_PRODUCT_DETAIL_CODE]
                 return data
             #获取商品列表
             product = resp['data']
@@ -69,5 +69,5 @@ class AProduct(api_resource.ApiResource):
             return product
         except:
             data['errcode'] = FAIL_GET_PRODUCT_DETAIL_CODE
-            data['errmsg'] = code2msg['FAIL_GET_PRODUCT_DETAIL_CODE']
+            data['errmsg'] = code2msg[FAIL_GET_PRODUCT_DETAIL_CODE]
             return data

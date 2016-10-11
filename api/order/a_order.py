@@ -34,7 +34,7 @@ class AOrder(api_resource.ApiResource):
 		data = {'order_id':order_id, 'timestamp':timestamp, 'woid': woid, 
 			u'access_token':access_token
 			}
-		resp = Resource.use('apiserver').get({
+		resp = Resource.use('default').get({
 					'resource': 'mall.order',
 					'data': data
 				})
@@ -137,7 +137,7 @@ class AOrder(api_resource.ApiResource):
 			u'is_order_from_shopping_cart': u'false', u'ship_name': ship_name, 
 			 u'product_ids': product_ids, u'access_token':access_token}
 
-		resp = Resource.use('apiserver').put({
+		resp = Resource.use('default').put({
 							'resource': 'mall.order',
 							'data': data
 						})
@@ -193,7 +193,7 @@ class AOrder(api_resource.ApiResource):
 		data = {'order_id':order_id, 'timestamp':timestamp, 'woid': woid,
 			u'access_token':access_token, 'action':'cancel'
 			}
-		resp = Resource.use('apiserver').put({
+		resp = Resource.use('default').put({
 					'resource': 'mall.refund',
 					'data': data
 				})

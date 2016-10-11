@@ -39,7 +39,7 @@ class AOrderList(api_resource.ApiResource):
 		data = {'timestamp':timestamp, 'woid': woid, 'order_type':order_type, 'cur_page':cur_page,
 			u'access_token':access_token, 'count_per_page':count_per_page
 			}
-		resp = Resource.use('apiserver').get({
+		resp = Resource.use('default').get({
 							'resource': 'mall.order_list',
 							'data': data
 			})

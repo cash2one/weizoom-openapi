@@ -37,12 +37,12 @@ class AProducts(api_resource.ApiResource):
         reaponse_data = {}
         try:
             param_data = {'access_token':args['apiserver_access_token'], 'woid':args['woid'],'category_id':0}
-            resp = Resource.use('apiserver').get({
+            resp = Resource.use('default').get({
                     'resource':'mall.products',
                     'data':param_data
                 })
             if not resp or resp['code'] != 200:
-                data['errmsg'] = code2msg['FAIL_GET_PRODUCT_LIST_CODE']
+                data['errmsg'] = code2msg[FAIL_GET_PRODUCT_LIST_CODE]
                 data['errcode'] = FAIL_GET_PRODUCT_DETAIL_CODE
                 return data
             #获取商品列表
@@ -72,6 +72,6 @@ class AProducts(api_resource.ApiResource):
             return data
         except:
             watchdog.error(unicode_full_stack())
-            data['errmsg'] = code2msg['FAIL_GET_PRODUCT_LIST_CODE']
+            data['errmsg'] = code2msg[FAIL_GET_PRODUCT_LIST_CODE]
             data['errcode'] = FAIL_GET_PRODUCT_DETAIL_CODE
             return data

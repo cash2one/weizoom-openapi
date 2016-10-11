@@ -30,7 +30,7 @@ class APay(api_resource.ApiResource):
 			errcode = PAY_ORDER_STATUS_ERROR
 			return {'errcode':errcode, 'errmsg':code2msg[errcode]}
 
-		resp = Resource.use('apiserver').put({
+		resp = Resource.use('default').put({
 							'resource': 'pay.pay_result',
 							'data': data
 						})
