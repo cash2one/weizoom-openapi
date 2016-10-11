@@ -42,7 +42,6 @@ class AProducts(api_resource.ApiResource):
                     'data':param_data
                 })
             if not resp or resp['code'] != 200:
-                data['items'] = []
                 data['errmsg'] = code2msg['FAIL_GET_PRODUCT_LIST_CODE']
                 data['errcode'] = FAIL_GET_PRODUCT_DETAIL_CODE
                 return data
@@ -73,7 +72,6 @@ class AProducts(api_resource.ApiResource):
             return data
         except:
             watchdog.error(unicode_full_stack())
-            data['items'] = []
             data['errmsg'] = code2msg['FAIL_GET_PRODUCT_LIST_CODE']
             data['errcode'] = FAIL_GET_PRODUCT_DETAIL_CODE
             return data
