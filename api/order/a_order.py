@@ -154,8 +154,9 @@ class AOrder(api_resource.ApiResource):
 				errcode= SUCCESS_CODE
 				status =1
 			if code == 500:
-				reason = resp['errMsg']
+				reason = resp['data']
 				if reason['detail']:
+					msg = reason['detail'][0]['msg']
 					if u'库存不足' in msg:
 						errcode = PUT_ORDER_LOW_STOCKS
 				else:
