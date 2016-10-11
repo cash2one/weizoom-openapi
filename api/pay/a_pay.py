@@ -6,11 +6,10 @@ from eaglet.utils.resource_client import Resource
 import time
 
 from business.pay.pay import PayLog
-from util.error_codes import *
 
 class APay(api_resource.ApiResource):
 	"""
-	第三方支付
+	创建订单及修改订单
 	"""
 	app = 'pay'
 	resource = 'third_pay'
@@ -23,47 +22,44 @@ class APay(api_resource.ApiResource):
 		access_token = args['apiserver_access_token']
 		timestamp = str(long(time.time() * 1000))
 		data = { 'order_id':order_id, 'timestamp':timestamp, 'woid': woid, u'access_token':access_token, 'pay_interface_type':'2'}
-		pay_log = PayLog.from_order_id({
-			'order_id': args['order_id'],
-			})
-		if pay_log:
-			errcode = PAY_ORDER_STATUS_ERROR
-			return {'errcode':errcode, 'errmsg':code2msg[errcode]}
-
-		resp = Resource.use('default').put({
+		resp = Resource.use('apiserver').put({
 							'resource': 'pay.pay_result',
 							'data': data
 						})
-
+		
 		status = 0
 		code = 0
-		errcode= SYSTEM_ERROR_CODE
-		# reason= ''
+		errcode= 0
+		reason= ''
 		if resp:
 			code = resp["code"]
 			if code == 200:
 				if resp['data']['is_success'] == True:
-					status = 1
-					errcode= SUCCESS_CODE
-					PayLog.save({
-						'woid': args['woid'],
-						'order_id': order_id,
-						'status': status,
-						'appid': args['appid']
-						})
+					status =1
 				else:
 					msg = resp['data']['msg']
-					# reason = msg
+					reason = msg
 					if u'非待支付订单' in msg:
-						errcode = PAY_ORDER_STATUS_ERROR
-					else:
-						errcode = PAY_ORDER_ERROR
-
-
+						errcode = 79000
+			if code == 500:
+				reason = resp['errMsg']
+				msg = '支付请求参数错误或缺少参数'
+				errcode = 79001
+		PayLog.save({
+			'woid': args['woid'],
+			'order_id': order_id,
+			'status': status,
+			'errcode': errcode,
+			'reason': str(reason)
+			})
 		if code == 200 and status:
-			return {'order_id': order_id}
+			return {'order_id': order_id, 'success':True, 'errcode':errcode}
+		elif code == 200 and not status:
+			return {'order_id': order_id, 'success':False, 'errcode':errcode}
+		elif code == 500:
+			return {'order_id': order_id, 'success':False, 'errcode':errcode}
 		else:
-			return {'errcode':errcode, 'errmsg':code2msg[errcode]}
+			return {'order_id': order_id, 'success':False, 'errcode':errcode}
 
 
 

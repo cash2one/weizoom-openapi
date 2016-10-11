@@ -34,7 +34,7 @@ class AOrder(api_resource.ApiResource):
 		data = {'order_id':order_id, 'timestamp':timestamp, 'woid': woid, 
 			u'access_token':access_token
 			}
-		resp = Resource.use('default').get({
+		resp = Resource.use('apiserver').get({
 					'resource': 'mall.order',
 					'data': data
 				})
@@ -131,13 +131,13 @@ class AOrder(api_resource.ApiResource):
 		access_token = args['apiserver_access_token']
 		timestamp = str(long(time.time() * 1000))
 		data = {u'xa-choseInterfaces': u'2',
-			u'product_counts': product_counts, u'ship_address': ship_address, 'woid': woid, 'lock':False,
+			u'product_counts': product_counts, u'ship_address': ship_address, 'woid': woid, 
 			u'timestamp': timestamp, u'integral': u'undefined', u'coupon_id': u'0', u'product_model_names': product_model_names,  
 			u'ship_tel': ship_tel, u'message': '{}', u'order_type': u'undefined', u'area': u' ', 
 			u'is_order_from_shopping_cart': u'false', u'ship_name': ship_name, 
 			 u'product_ids': product_ids, u'access_token':access_token}
 
-		resp = Resource.use('default').put({
+		resp = Resource.use('apiserver').put({
 							'resource': 'mall.order',
 							'data': data
 						})
@@ -154,9 +154,8 @@ class AOrder(api_resource.ApiResource):
 				errcode= SUCCESS_CODE
 				status =1
 			if code == 500:
-				reason = resp['data']
+				reason = resp['errMsg']
 				if reason['detail']:
-					msg = reason['detail'][0]['msg']
 					if u'库存不足' in msg:
 						errcode = PUT_ORDER_LOW_STOCKS
 				else:
@@ -193,7 +192,7 @@ class AOrder(api_resource.ApiResource):
 		data = {'order_id':order_id, 'timestamp':timestamp, 'woid': woid,
 			u'access_token':access_token, 'action':'cancel'
 			}
-		resp = Resource.use('default').put({
+		resp = Resource.use('apiserver').put({
 					'resource': 'mall.refund',
 					'data': data
 				})

@@ -1,17 +1,10 @@
 # -*- coding: utf-8 -*-
-"""
-@package db.notify.models
-通知信息表结构
-
-@author bert
-"""
 
 from eaglet.core import api_resource
 from eaglet.decorator import param_required
 from eaglet.utils.resource_client import Resource
 from eaglet.core import watchdog
 from eaglet.core.exceptionutil import unicode_full_stack
-from util.error_codes import *
 import json
 import time
 
@@ -39,7 +32,7 @@ class AOrderList(api_resource.ApiResource):
 		data = {'timestamp':timestamp, 'woid': woid, 'order_type':order_type, 'cur_page':cur_page,
 			u'access_token':access_token, 'count_per_page':count_per_page
 			}
-		resp = Resource.use('default').get({
+		resp = Resource.use('apiserver').get({
 							'resource': 'mall.order_list',
 							'data': data
 			})
@@ -80,16 +73,16 @@ class AOrderList(api_resource.ApiResource):
 					'total_count': data['page_info']['object_count'],
 				}
 
-				return {'orders':tmp_orders, 'page_info':page_info}
+				return {'orders':tmp_orders, 'success':True, 'page_info':page_info, 'errcode':errcode}
 
 			if code == 500:
 				
-				errcode = GET_ORDER_LIST_ERROR
+				errcode = 74001
 				watchdog.info("get order list failed!! errcode:{}, msg:{}".format(errcode, unicode_full_stack()),log_type='OPENAPI_ORDER')
-				return {'errcode':errcode, 'errmsg':code2msg[errcode]}
+				return {'orders': [], 'success':False, 'page_info': page_info, 'errcode':errcode}
 		else:
-			errcode = SYSTEM_ERROR_CODE
+			errcode = 995995
 			watchdog.error("get order list failed!! errcode:{}, msg:{}".format(errcode, unicode_full_stack()),log_type='OPENAPI_ORDER')
-			return {'errcode':errcode, 'errmsg':code2msg[errcode]}
+			return {'orders': [], 'success':False, 'page_info': page_info, 'errcode':errcode}
 		
 

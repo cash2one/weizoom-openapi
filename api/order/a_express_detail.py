@@ -34,7 +34,7 @@ class AExpressDetail(api_resource.ApiResource):
 		data = {
 			'timestamp':timestamp, 'woid': woid, 'order_id':order_id,u'access_token':access_token
 			}
-		resp = Resource.use('default').get({
+		resp = Resource.use('apiserver').get({
 							'resource': 'mall.express_details',
 							'data': data
 			})

@@ -34,7 +34,7 @@ class AProduct(api_resource.ApiResource):
         data = {}
         try:
             param_data = {'access_token':args['apiserver_access_token'], 'woid':args['woid'], 'product_id':args['product_id'], 'category_id':0}
-            resp = Resource.use('default').get({
+            resp = Resource.use('apiserver').get({
                     'resource':'mall.product',
                     'data':param_data
                 })
