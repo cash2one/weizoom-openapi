@@ -223,12 +223,19 @@ _ids:????
 """
 测试openapi get order 
 """
-# woid = 3
-# order_id = u'20160928220451562'
-# access_token = '%2Br1YiuidTiwdK9xXaiWc6ajNmkCNtKq7ODBLhW7xXC9i7vX8UWibW0sKBYhM1'
-# data = {'order_id':order_id, 'woid': u'3', 'access_token':access_token}
-# resp = requests.get("http://dev.openapi.com/mall/order", data=data)
+
+appid = 'wzf255e9d01218339c'
+secret='bb8aa1a40c2a750eac6bf8ead303d74d'
+data = {'appid':appid, 'secret':secret}
+resp = requests.get("http://dev.openapi.com/auth/access_token", data=data)
 # print resp.text
+access_token = json.loads(resp.text)['data']['access_token']
+woid = 3
+order_id = u'20161009220753661'
+# access_token = '%2B0ek1HpxjsldWLI91KEjwR3gvA3T3k86KOqChnqot4oQCRGcLahnCBcLOzt6Sg3KTl/4owjDNMWo0AN19sovWgzb8thbh/opET3kKCM'
+data = {'order_id':order_id, 'woid': u'3', 'access_token':access_token}
+resp = requests.get("http://dev.openapi.com/mall/order", data=data)
+print resp.text
 
 
 """
@@ -293,20 +300,20 @@ _ids:????
 """
 
 
-supplier_ids = 9
-timestamp = str(long(time.time() * 1000))
-data = {'timestamp':timestamp, 'woid': u'3', 'order_type':-1, 'cur_page':1, 'supplier_ids':supplier_ids, 'order_status': 3,
-    u'access_token':'rN058mxjUGPCKtt1zGOmhs%2B72tPUCzSKxm6Ctxo3E2k26Va%2Brgg0sfWKgB9UK89TijJgdLbii00zArd35wpiHrek%2B2eUsjba2T/5dycqNm/OFTpXiYi7%2BMelXZC9aPmB'
-    }
-# resp = Resource.use('openapi').get({
-#                     'resource': 'mall.supplier_order',
-#                     'data': data
-#                 })
+# supplier_ids = 9
+# timestamp = str(long(time.time() * 1000))
+# data = {'timestamp':timestamp, 'woid': u'3', 'order_type':-1, 'cur_page':1, 'supplier_ids':supplier_ids, 'order_status': 3,
+#     u'access_token':'rN058mxjUGPCKtt1zGOmhs%2B72tPUCzSKxm6Ctxo3E2k26Va%2Brgg0sfWKgB9UK89TijJgdLbii00zArd35wpiHrek%2B2eUsjba2T/5dycqNm/OFTpXiYi7%2BMelXZC9aPmB'
+#     }
+# # resp = Resource.use('openapi').get({
+# #                     'resource': 'mall.supplier_order',
+# #                     'data': data
+# #                 })
+# # print resp
+# # print resp['data']
+# resp = requests.get("http://dev.openapi.com/mall/supplier_order", params=data)
 # print resp
-# print resp['data']
-resp = requests.get("http://dev.openapi.com/mall/supplier_order", params=data)
-print resp
-print resp.text
+# print resp.text
 # 
 
 """

@@ -58,6 +58,12 @@
                                 }
                             }
                         }
+                    },
+                    "default": {
+                        "description": "请求存在错误的时候的返回",
+                        "schema": {
+                          "$ref": "#/definitions/ErrorModel"
+                        }
                     }
                 }
             }
@@ -206,7 +212,6 @@
                                             "weight": 2,
                                             "price": 22,
                                             "user_code": "",
-                                            "purchase_price": 11,
                                             "market_price": 0,
                                             "stock_type": 1,
                                             "property2value": {
@@ -248,7 +253,6 @@
                                             "weight": 2,
                                             "price": 33,
                                             "user_code": "",
-                                            "purchase_price": 16.5,
                                             "market_price": 0,
                                             "stock_type": 1,
                                             "property2value": {
@@ -290,7 +294,6 @@
                                             "weight": 2,
                                             "price": 44,
                                             "user_code": "",
-                                            "purchase_price": 22,
                                             "market_price": 0,
                                             "stock_type": 1,
                                             "property2value": {
@@ -332,7 +335,6 @@
                                             "weight": 2,
                                             "price": 22,
                                             "user_code": "",
-                                            "purchase_price": 11,
                                             "market_price": 0,
                                             "stock_type": 1,
                                             "property2value": {
@@ -374,7 +376,6 @@
                                             "weight": 2,
                                             "price": 33,
                                             "user_code": "",
-                                            "purchase_price": 16.5,
                                             "market_price": 0,
                                             "stock_type": 1,
                                             "property2value": {
@@ -416,7 +417,6 @@
                                             "weight": 2,
                                             "price": 44,
                                             "user_code": "",
-                                            "purchase_price": 22,
                                             "market_price": 0,
                                             "stock_type": 1,
                                             "property2value": {
@@ -456,6 +456,12 @@
                                         
                                     }
                                 }
+                        }
+                    },
+                    "default": {
+                        "description": "请求存在错误的时候的返回",
+                        "schema": {
+                          "$ref": "#/definitions/ErrorModel"
                         }
                     }
                 }
@@ -530,7 +536,12 @@
                                 }
                             }
                         }
-
+                    },
+                    "default": {
+                        "description": "请求存在错误的时候的返回",
+                        "schema": {
+                          "$ref": "#/definitions/ErrorModel"
+                        }
                     }
                 }
             }
@@ -538,7 +549,7 @@
         "/mall/order/": {
             "get": {
                 "summary": "获取订单详情接口",
-                "description": "获取订单详情接口",
+                "description": "获取订单详情接口:如果订单中需要多个仓库进行发货,订单在支付后才会拆分出子订单。",
                 "parameters": [
                     {
                         "name": "access_token",
@@ -571,10 +582,6 @@
                                 "data": {
                                     "type": "object",
                                     "properties": {
-                                        "msg": {
-                                            "type": "string",
-                                            "description": "信息描述"
-                                        },
                                         "order": {
                                             "$ref": "#/definitions/OrderDetail"
                                         }
@@ -593,61 +600,89 @@
                                 "code": 200,
                                 "data": {
                                     "order": {
+                                        "postage": 10,
                                         "sub_orders": [
                                             {
-                                                "postage": 0.0,
-                                                "delivery_time": "", 
-                                                "express_company_name": "",
-                                                "order_id": "20160926194619314^1s",
-                                                "express_number": "",
-                                                "products": [
-                                                    {
-                                                        "product_id": 13,
-                                                        "price": 5.0,
-                                                        "product_name": "mac",
-                                                        "product_model_name": "3:7",
-                                                        "product_count": 2,
-                                                        "pic_url": "http://chaozhi.weizoom.com/static/upload/20160926/1474885237014_603.jpg"
-                                                    },
-                                                    {"product_id": 13,
-                                                    "price": 10.0,
-                                                    "product_name": "mac",
-                                                    "product_model_name": "3:8",
-                                                    "product_count": 2,
-                                                    "pic_url": "http://chaozhi.weizoom.com/static/upload/20160926/1474885237014_603.jpg"
-                                                    }
-                                                ],
-                                                "order_status": 5
-                                            },
-                                            {
-                                                "postage": 0.0,
+                                                "postage": 10,
                                                 "delivery_time": "",
                                                 "express_company_name": "",
-                                                "order_id": "20160926194619314^2s",
+                                                "order_id": "20161009220753655^3s",
                                                 "express_number": "",
                                                 "products": [
                                                     {
-                                                        "product_id": 10,
-                                                        "price": 10.0,
-                                                        "product_name": "test1product",
+                                                        "product_id": 3,
+                                                        "price": 50,
+                                                        "product_name": "商品1",
                                                         "product_model_name": "standard",
                                                         "product_count": 1,
-                                                        "pic_url": "http://chaozhi.weizoom.com/static/upload/20160926/1474871228062_547.jpg"
+                                                        "pic_url": "http://chaozhi.weizoom.comlove.png"
+                                                    }
+                                                ],
+                                                "order_status": 3
+                                            },
+                                            {
+                                                "postage": 0,
+                                                "delivery_time": "",
+                                                "express_company_name": "",
+                                                "order_id": "20161009220753655^4s",
+                                                "express_number": "",
+                                                "products": [
+                                                    {
+                                                        "product_id": 4,
+                                                        "price": 50,
+                                                        "product_name": "商品2",
+                                                        "product_model_name": "standard",
+                                                        "product_count": 1,
+                                                        "pic_url": "http://chaozhi.weizoom.comlove.png"
                                                     }
                                                 ],
                                                 "order_status": 3
                                             }
                                         ],
-                                        "final_price": 40.0,
-                                        "order_id": "20160926194619314",
-                                        "created_at": "2016-09-26 19:46:19",
-                                        "ship_name": "\u5f20\u4e09",
-                                        "ship_address": "\u5f20\u4e09\u674e\u56db\u7684\u5730\u5740",
+                                        "ship_address": "张三李四的地址",
+                                        "order_id": "20161009220753655",
+                                        "created_at": "2016-10-09 22:07:53",
+                                        "ship_name": "张三",
+                                        "products": [
+                                            {
+                                                "product_count": 1,
+                                                "product_name": "商品1",
+                                                "price": 50,
+                                                "product_model_name": "standard",
+                                                "product_id": 3
+                                            },
+                                            {
+                                                "product_count": 1,
+                                                "product_name": "商品2",
+                                                "price": 50,
+                                                "product_model_name": "standard",
+                                                "product_id": 4
+                                            }
+                                        ],
+                                        "final_price": 110,
                                         "ship_tel": "13766665555",
                                         "order_status": 3
                                     },
-                                    "errcode": 0
+                                "errMsg": "",
+                                "innerErrMsg": ""
                                 }
+                            }
+                        }
+                    },
+                    "default": {
+                        "description": "请求存在错误的时候的返回",
+                        "schema": {
+                          "$ref": "#/definitions/ErrorModel"
+                        },
+                        "examples": {
+                            "application/json": {
+                                "code": 200,
+                                "data": {
+                                    "errcode": 72001,
+                                    "errmsg":"\u83b7\u53d6\u8ba2\u5355\u8be6\u60c5\u8bf7\u6c42\u5b58\u5728\u95ee\u9898\uff0c\u8bf7\u8054\u7cfb\u7ba1\u7406\u5458"
+                                },
+                                "errMsg": "",
+                                "innerErrMsg": ""
                             }
                         }
                     }
@@ -667,7 +702,7 @@
                     {
                         "name": "deal_id",
                         "in": "query",
-                        "description": "交易流水号",
+                        "description": "交易流水号:第三方创建出订单的订单号，唯一。",
                         "required": true,
                         "type": "string"
                     },
@@ -695,7 +730,7 @@
                     {
                         "name": "products",
                         "in": "body",
-                        "description": "商品集合",
+                        "description": "商品集合,如:[{'product_id':12,'product_model_name':'standard','product_count':2,},{'product_id':11,'product_model_name':'standard','product_count':1, }],是一个json化的list",
                         "required": true,
                         "schema": {
                             "$ref": "#/definitions/PutOrderProduct"
@@ -740,6 +775,23 @@
                                 }
                             }
                         }
+                    },
+                    "default": {
+                        "description": "请求存在错误的时候的返回",
+                        "schema": {
+                          "$ref": "#/definitions/ErrorModel"
+                        },
+                        "examples": {
+                            "application/json": {
+                                "code": 200,
+                                "data": {
+                                    "errcode": 71000,
+                                    "errmsg":"\u521b\u5efa\u8ba2\u5355\u8bf7\u6c42\u4e2d\u6709\u5546\u54c1\u5e93\u5b58\u4e0d\u8db3"
+                                },
+                                "errMsg": "",
+                                "innerErrMsg": ""
+                            }
+                        }
                     }
                 }
             },
@@ -757,7 +809,7 @@
                     {
                         "name": "order_id",
                         "in": "query",
-                        "description": "订单编号",
+                        "description": "订单编号，可以是主订单或者子订单。子订单:一个主订单可能有多个仓库进行发货的，我们将一个主订单进行拆分成多个仓库的子订单",
                         "required": true,
                         "type": "string"
                     }
@@ -778,9 +830,9 @@
                                 "data": {
                                     "type": "object",
                                     "properties": {
-                                        "success": {
-                                            "type": "boolean",
-                                            "description": "true or false"
+                                        "errcode": {
+                                            "type": "number",
+                                            "description": "错误编码, 0代表成功"
                                         }
                                     }
                                 },
@@ -796,9 +848,25 @@
                             "application/json": {
                                 "code": 200,
                                 "data": {
-                                    "success": true,
                                     "errcode":0
                                 }
+                            }
+                        }
+                    },
+                    "default": {
+                        "description": "请求存在错误的时候的返回",
+                        "schema": {
+                          "$ref": "#/definitions/ErrorModel"
+                        },
+                        "examples": {
+                            "application/json": {
+                                "code": 200,
+                                "data": {
+                                    "errcode": 73000,
+                                    "errmsg":"\u6709\u5b50\u8ba2\u5355\u7684\u72b6\u6001\u4e0d\u662f\u5f85\u53d1\u8d27\u002c\u4e0d\u80fd\u53d6\u6d88\u8ba2\u5355"
+                                },
+                                "errMsg": "",
+                                "innerErrMsg": ""
                             }
                         }
                     }
@@ -906,6 +974,23 @@
                                 }
                             }
                         }
+                    },
+                    "default": {
+                        "description": "请求存在错误的时候的返回",
+                        "schema": {
+                          "$ref": "#/definitions/ErrorModel"
+                        },
+                        "examples": {
+                            "application/json": {
+                                "code": 200,
+                                "data": {
+                                    "errcode": 74001,
+                                    "errmsg":"\u83b7\u53d6\u8ba2\u5355\u5217\u8868\u5b58\u5728\u95ee\u9898"
+                                },
+                                "errMsg": "",
+                                "innerErrMsg": ""
+                            }
+                        }
                     }
                 }
             }
@@ -913,7 +998,7 @@
         "/mall/express_details/": {
             "get": {
                 "summary": "获取子订单的物流信息",
-                "description": "获取子订单的物流信息，子订单的order_id如20160922174514355^1s,",
+                "description": "获取子订单的物流信息，子订单的order_id如20160922174514355^1s。如果主订单只有1个子订单，直接获取主订单的物流信息。",
                 "parameters": [
                     {
                         "name": "access_token",
@@ -1004,6 +1089,23 @@
                                 }
                             }
                         }
+                    },
+                    "default": {
+                        "description": "请求存在错误的时候的返回",
+                        "schema": {
+                          "$ref": "#/definitions/ErrorModel"
+                        },
+                        "examples": {
+                            "application/json": {
+                                "code": 200,
+                                "data": {
+                                    "errcode": 75001,
+                                    "errmsg":"\u83b7\u53d6\u7269\u6d41\u4fe1\u606f\u8bf7\u6c42\u53c2\u6570\u9519\u8bef\u6216\u7f3a\u5c11\u53c2\u6570"
+                                },
+                                "errMsg": "",
+                                "innerErrMsg": ""
+                            }
+                        }
                     }
                 }
             }
@@ -1064,6 +1166,23 @@
                                 "data": {
                                     "order_id": "20160926165121411"
                                 }
+                            }
+                        }
+                    },
+                    "default": {
+                        "description": "请求存在错误的时候的返回",
+                        "schema": {
+                          "$ref": "#/definitions/ErrorModel"
+                        },
+                        "examples": {
+                            "application/json": {
+                                "code": 200,
+                                "data": {
+                                    "errcode": 995995,
+                                    "errmsg":"\u7cfb\u7edf\u81ea\u8eab\u5f02\u5e38"
+                                },
+                                "errMsg": "",
+                                "innerErrMsg": ""
                             }
                         }
                     }
@@ -1194,6 +1313,12 @@
                                 }
                             }
                         }
+                    },
+                    "default": {
+                        "description": "请求存在错误的时候的返回",
+                        "schema": {
+                          "$ref": "#/definitions/ErrorModel"
+                        }
                     }
                 }
             }
@@ -1270,6 +1395,12 @@
                                 }
                             }
                         }
+                    },
+                    "default": {
+                        "description": "请求存在错误的时候的返回",
+                        "schema": {
+                          "$ref": "#/definitions/ErrorModel"
+                        }
                     }
                 }
             }
@@ -1312,7 +1443,11 @@
                     "properties": {
                           "errcode": {
                               "type": "number",
-                              "description": "系统产生的错误码，如果系统正常返回，则该字段不存在"
+                              "description": "系统产生的错误码，如果系统成功返回，则该字段不存在"
+                           },
+                           "errmsg": {
+                              "type": "number",
+                              "description": "系统产生的错误信息，如果系统成功返回，则该字段不存在"
                            },
                           "name": {
                               "type": "string",
@@ -1344,7 +1479,7 @@
                            },
                           "limit_zone_detail":{
                               "type": "object",
-                              "description": "限制发货区域详细信息",
+                              "description": "限制发货区域详细信息，当商品没有限制区域或者禁售区域时，该字段不存在！",
                               "properties": {
                                   "cities": {
                                       "type": "object",
@@ -1440,15 +1575,15 @@
                           },
                           "thumbnails_url": {
                               "type": "string",
-                              "description": "缩略图"
+                              "description": "商品缩略图"
                           },
                           "order_thumbnails_url": {
                               "type": "string",
-                              "description": "订单列表lvsuotu"
+                              "description": "订单列表商品的缩略图"
                           },
                           "pic_url": {
                               "type": "string",
-                              "description": "封面"
+                              "description": "封面图"
                           },
                           "is_sellout": {
                               "type": "boolean",
@@ -1456,7 +1591,7 @@
                           },
                           "min_limit":{
                               "type": "string",
-                              "description": "最大数量"
+                              "description": "最少数量"
                           },
                           "detail": {
                               "type": "string",
@@ -1491,7 +1626,7 @@
                                   },
                                   "name":{
                                       "type": "string",
-                                      "description": "规格id组装字符串，如果商品无规格该值：standard" 
+                                      "description": "规格name组装字符串，如果商品无规格,该值固定为：standard" 
                                   },
                                   "weight":{
                                       "type": "number",
@@ -1677,6 +1812,10 @@
                 "created_at": {
                     "type": "string",
                     "description": "订单创建时间"
+                },
+                "postage": {
+                    "type": "string",
+                    "description": "邮费"
                 },
                 "sub_orders": {
                     "items": {
@@ -1959,6 +2098,34 @@
                 "model_names": {
                     "description": "商品规格名称",
                     "type": "string"
+                }
+            }
+        },
+        "ErrorModel": {
+            "type": "object",
+            "properties": {
+                "code": {
+                    "type": "string",
+                    "description": "响应码"
+                },
+                "errMsg": {
+                    "type": "string"
+                },
+                "innerErrMsg": {
+                    "type": "string"
+                },
+                "data": {
+                    "type": "object",
+                    "properties": {
+                        "errcode": {
+                          "type": "number",
+                          "description": "错误编码"
+                        },
+                        "errmsg": {
+                            "description": "错误描述",
+                            "type": "string"
+                        }
+                    }
                 }
             }
         },
