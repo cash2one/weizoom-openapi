@@ -41,6 +41,8 @@ SYSTEM_ERROR_CODE = 995995
 #查询商品详情的返回码
 FAIL_GET_PRODUCT_DETAIL_CODE = 41001
 FAIL_GET_PRODUCT_LIST_CODE = 41002
+#查询商品分类信息的返回码
+FAIL_GET_PRODUCT_CATALOGS_CODE = 41003
 
 code2msg = {
 	SYSTEM_BUSY_CODE : u'系统繁忙 ',
@@ -73,4 +75,6 @@ code2msg = {
 	#查询商品详情的返回信息
 	FAIL_GET_PRODUCT_DETAIL_CODE : u'查询商品详情失败，请联系管理员',
 	FAIL_GET_PRODUCT_LIST_CODE : u'查询商品列表失败，请联系管理员',
+	#查询商品分类信息的返回码
+	FAIL_GET_PRODUCT_CATALOGS_CODE: u'查询商品分类信息失败，请联系管理员',
 }
