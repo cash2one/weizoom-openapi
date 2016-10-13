@@ -65,34 +65,35 @@ class AProduct(api_resource.ApiResource):
                 #多规格商品需要删除的key
                 del product["unified_postage_money"], product["owner_id"] 
 
-            catalog_info = {}
-            data = {}
-            param_data = {'access_token':args['apiserver_access_token']}
-            resp = Resource.use('apiserver').get({
-                    'resource':'product.product_catalogs',
-                    'data':param_data
-                })
+            if product['product_catalog_id'] != 0:
+                catalog_info = {}
+                data = {}
+                param_data = {'access_token':args['apiserver_access_token']}
+                resp = Resource.use('apiserver').get({
+                        'resource':'product.product_catalogs',
+                        'data':param_data
+                    })
 
-            if not resp or resp['code'] != 200:
-                data['errcode'] = FAIL_GET_PRODUCT_CATALOGS_CODE
-                data['errmsg'] = code2msg[FAIL_GET_PRODUCT_CATALOGS_CODE]
-                return data
-            #获取商品分类信息
-            data_catalogs = resp['data']
-            if not data_catalogs:
-                product['product_catalog_id'] = 0
-            else:
-                #此为全部分类信息的集合
-                for catalog in data_catalogs:
-                    if product['product_catalog_id'] == catalog['id']:
-                        #商品详情里面分类信息组成
-                        catalog_info['second_level_id'] = catalog['id']
-                        catalog_info['second_level_name'] = catalog['name']
-                        catalog_info['first_level_id'] = catalog['father_id']
-                for catalog in data_catalogs:
-                    if catalog['level'] == 1 and catalog_info['first_level_id'] == catalog['id']:
-                        catalog_info['first_level_name'] = catalog['name']
-                product['product_catalog_id'] = catalog_info
+                if not resp or resp['code'] != 200:
+                    data['errcode'] = FAIL_GET_PRODUCT_CATALOGS_CODE
+                    data['errmsg'] = code2msg[FAIL_GET_PRODUCT_CATALOGS_CODE]
+                    return data
+                #获取商品分类信息
+                data_catalogs = resp['data']
+                if not data_catalogs:
+                    product['product_catalog_id'] = 0
+                else:
+                    #此为全部分类信息的集合
+                    for catalog in data_catalogs:
+                        if product['product_catalog_id'] == catalog['id']:
+                            #商品详情里面分类信息组成
+                            catalog_info['second_level_id'] = catalog['id']
+                            catalog_info['second_level_name'] = catalog['name']
+                            catalog_info['first_level_id'] = catalog['father_id']
+                    for catalog in data_catalogs:
+                        if catalog['level'] == 1 and catalog_info['first_level_id'] == catalog['id']:
+                            catalog_info['first_level_name'] = catalog['name']
+                    product['product_catalog_id'] = catalog_info
             return product
         except:
             data['errcode'] = FAIL_GET_PRODUCT_DETAIL_CODE
