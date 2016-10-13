@@ -112,14 +112,14 @@
                                         "supplier_postage_config": {},
                                         "postage_type": "unified_postage_type",
                                         "total_stocks": 63,
-                                        "detail": "<html><body><p>12312</p></body></html>",
+                                        "detail": "<html><body><p>商品描述信息</p></body></html>",
                                         "pic_url": "http://dev.weapp.com",
                                         "min_limit": 0,
                                         "supplier": 2,
                                         "limit_zone": 0,
                                         "is_use_custom_model": true,
                                         "is_enable_bill": false,
-                                        "name": "衣服",
+                                        "name": "夏季韩版短袖",
                                         "created_at": "2016-09-21 17:31",
                                         "is_use_cod_pay_interface": false,
                                         "limit_zone_type": 0,
@@ -152,12 +152,18 @@
                                         "is_delivery": false,
                                         "id": 11,
                                         "is_sellout": false,
+                                        "product_catalog":{
+                                            "second_level_id": 2,
+                                            "first_level_name": "衣服",
+                                            "second_level_name": "短袖",
+                                            "first_level_id": 1
+                                        },
                                         "price_info": {
-                                          "display_original_price": 22,
-                                          "display_price": 22,
-                                          "display_market_price": "0.00",
-                                          "max_price": 44,
-                                          "min_price": 22
+                                            "display_original_price": 22,
+                                            "display_price": 22,
+                                            "display_market_price": "0.00",
+                                            "max_price": 44,
+                                            "min_price": 22
                                         },
                                         "limit_zone_detail": [
                                           {
@@ -487,20 +493,6 @@
                         "type": "string",
                         "description": "授权信息",
                         "required": true
-                    },
-                    {
-                        "name": "cur_page",
-                        "in": "query",
-                        "description": "当前请求页",
-                        "required": true,
-                        "type": "integer"
-                    },
-                    {
-                        "name": "count_per_page",
-                        "in": "query",
-                        "description": "每页显示数量",
-                        "required": true,
-                        "type": "integer"
                     }
                 ],
                 "responses": {
@@ -531,6 +523,83 @@
                                           "thumbnails_url": "http://chaozhi.weizoom.com/static/upload/20160921/1474448967063_375.jpg",
                                           "supplier": 2,
                                           "id": 10
+                                        }
+                                    ]
+                                }
+                            }
+                        }
+                    },
+                    "default": {
+                        "description": "请求存在错误的时候的返回",
+                        "schema": {
+                          "$ref": "#/definitions/ErrorModel"
+                        }
+                    }
+                }
+            }
+        },
+        "/mall/product_catalogs/": {
+            "get": {
+                "tags": [
+                    "product"
+                ],
+                "summary": "获取商品全部分类信息",
+                "description": "获取商品全部分类信息",
+                "consumes": [
+                    "application/x-www-form-urlencoded"
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "parameters": [
+                    {
+                        "in": "query",
+                        "name": "access_token",
+                        "type": "string",
+                        "description": "授权信息",
+                        "required": true
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Successful response",
+                        "schema": {
+                            "$ref": "#/definitions/ProductCatalogs"
+                        },
+                        "examples": {
+                            "application/json": {
+                                "code": 200,
+                                "errMsg": "",
+                                "innerErrMsg": "",
+                                "data": {
+                                    "catalogs": [
+                                        {
+                                            "first_level_name": "电脑",
+                                            "first_level_id": 6,
+                                            "second_level_info": [
+                                                {
+                                                    "second_level_id": 8,
+                                                    "second_level_name": "台式机"
+                                                },
+                                                {
+                                                    "second_level_id": 8,
+                                                    "second_level_name": "台式机"
+                                                }
+                                            ]
+                                        },
+                                        {
+                                            "first_level_name": "电脑",
+                                            "first_level_id": 6,
+                                            "second_level_info": [
+                                                {
+                                                    "second_level_id": 8,
+                                                    "second_level_name": "台式机"
+                                                },
+                                                {
+                                                    "second_level_id": 8,
+                                                    "second_level_name": "台式机"
+                                                }
+                                            ]
                                         }
                                     ]
                                 }
@@ -1595,7 +1664,7 @@
                           },
                           "detail": {
                               "type": "string",
-                              "description": "商品详情"
+                              "description": "商品详情:商品描述信息"
                           },
                           "limit_zone": {
                               "type": "string",
@@ -1609,9 +1678,32 @@
                               "type": "boolean",
                               "description": "是否为通用规格,如：true或false"
                           },
+                          "product_catalog":{
+                            "type":"object",
+                            "description": "商品分类信息",
+                                 "properties": {
+                                   "first_level_id":{
+                                        "type": "string",
+                                        "description": "商品一级分类信息"  
+                                    },
+                                    "first_level_name":{
+                                        "type": "string",
+                                        "description": "商品一级分类名称"  
+                                    },
+                                    "second_level_id":{
+                                        "type": "string",
+                                        "description": "商品二级分类信息"  
+                                    },
+                                    "second_level_name":{
+                                        "type": "string",
+                                        "description": "商品二级分类名称"  
+                                    }
+                                 }
+                          },
                           "models": {
                               "type":"object",
-                               "properties": {
+                              "description": "商品规格信息",
+                                 "properties": {
                                  "product_id":{
                                       "type": "string",
                                       "description": "商品ID"  
@@ -1745,6 +1837,58 @@
                                 "supplier": {
                                     "type": "string",
                                     "description": "供货商ID"
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "ProductCatalogs":{
+            "type": "object",
+            "properties": {
+                "code": {
+                    "type": "integer",
+                    "format": "int32"
+                },
+                "innerErrMsg": {
+                    "type": "string"
+                },
+                "errMsg": {
+                    "type": "string"
+                },
+                "data": {
+                    "type": "object",
+                    "properties": {
+                        "errcode": {
+                              "type": "number",
+                              "description": "系统产生的错误码，如果系统正常返回，则该字段不存在"
+                        },
+                        "catalogs": {
+                            "type": "object",
+                            "description": "商品全部分类信息", 
+                            "properties": {
+                                "first_level_name": {
+                                    "type": "string",
+                                    "description": "商品一级分类名称"
+                                },
+                                "first_level_id": {
+                                    "type": "number",
+                                    "description": "商品一级分类ID"
+                                },
+                                "second_level_info": {
+                                    "type": "object",
+                                    "description": "商品二级分类信息",
+                                    "properties": {
+                                        "second_level_id": {
+                                            "type": "number",
+                                            "description": "商品二级分类ID"
+                                        },
+                                        "second_level_name":{
+                                            "type": "string",
+                                            "description": "商品二级分类名称"
+                                        }
+                                    }
                                 }
                             }
                         }

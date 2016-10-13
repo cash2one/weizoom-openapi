@@ -81,7 +81,8 @@ class AProduct(api_resource.ApiResource):
                 #获取商品分类信息
                 data_catalogs = resp['data']
                 if not data_catalogs:
-                    product['product_catalog_id'] = 0
+                    product['product_catalog'] = 0
+                    del product['product_catalog_id']
                 else:
                     #此为全部分类信息的集合
                     for catalog in data_catalogs:
@@ -93,7 +94,8 @@ class AProduct(api_resource.ApiResource):
                     for catalog in data_catalogs:
                         if catalog['level'] == 1 and catalog_info['first_level_id'] == catalog['id']:
                             catalog_info['first_level_name'] = catalog['name']
-                    product['product_catalog_id'] = catalog_info
+                    product['product_catalog'] = catalog_info
+                    del product['product_catalog_id']
             return product
         except:
             data['errcode'] = FAIL_GET_PRODUCT_DETAIL_CODE
