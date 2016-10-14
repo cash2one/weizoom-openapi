@@ -69,7 +69,7 @@ class AProduct(api_resource.ApiResource):
                 data = {}
                 param_data = {'access_token':args['apiserver_access_token']}
                 resp = Resource.use('apiserver').get({
-                        'resource':'product.product_classifications',
+                        'resource':'product.product_classification',
                         'data':param_data
                     })
 
@@ -79,6 +79,7 @@ class AProduct(api_resource.ApiResource):
                     return data
                 #获取商品分类信息
                 data_classifications = resp['data']
+
                 if not data_classifications:
                     product['product_classification'] = 0
                     del product['classification_id']

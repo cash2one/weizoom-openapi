@@ -17,7 +17,7 @@ class AProductClassification(api_resource.ApiResource):
     商品分类信息
     API:
         method: get
-        url: mall/product_classifications/
+        url: mall/product_classification/
 
     Args:
         取值以及说明:
@@ -25,24 +25,24 @@ class AProductClassification(api_resource.ApiResource):
           product_id: 商品ID
     """
     app = "mall"
-    resource = "product_classifications"
+    resource = "product_classification"
 
     def get(args):
         try:
             data = {}
             param_data = {'access_token':args['apiserver_access_token']}
             resp = Resource.use('apiserver').get({
-                    'resource':'product.product_classifications',
+                    'resource':'product.product_classification',
                     'data':param_data
                 })
             if not resp or resp['code'] != 200:
                 data['errcode'] = FAIL_GET_PRODUCT_CLASSIFICATIONS_CODE
                 data['errmsg'] = code2msg[FAIL_GET_PRODUCT_CLASSIFICATIONS_CODE]
                 return data
+
             #获取商品分类信息
             if resp['data']:
                 product_classifications = resp['data']
-
                 classification_level_1 = []
                 classification_level_2 = []
                 #把商品的一级二级分类分成两个组
