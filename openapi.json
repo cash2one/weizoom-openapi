@@ -14,7 +14,7 @@
         "http"
     ],
     "paths": {
-        "/oauth/access_token/": {
+        "/auth/access_token/": {
             "get": {
                 "tags": [
                     "auth"
@@ -152,7 +152,7 @@
                                         "is_delivery": false,
                                         "id": 11,
                                         "is_sellout": false,
-                                        "product_catalog":{
+                                        "product_classification":{
                                             "second_level_id": 2,
                                             "first_level_name": "衣服",
                                             "second_level_name": "短袖",
@@ -1510,14 +1510,6 @@
                 "data": {
                     "type": "object",
                     "properties": {
-                          "errcode": {
-                              "type": "number",
-                              "description": "系统产生的错误码，如果系统成功返回，则该字段不存在"
-                           },
-                           "errmsg": {
-                              "type": "number",
-                              "description": "系统产生的错误信息，如果系统成功返回，则该字段不存在"
-                           },
                           "name": {
                               "type": "string",
                               "description": "商品名称"
@@ -1531,12 +1523,12 @@
                               "description": "是否勾选配送时间,如：true或false"
                           },
                           "sales": {
-                              "type": "string",
+                              "type": "number",
                               "description": "商品销量"
                           },
                           "limit_zone_type": {
                               "type": "string",
-                              "description": "商品限售区域类型"
+                              "description": "商品限售区域类型,0不限制 1禁售 2仅售"
                           },
                           "created_at": {
                               "type": "string",
@@ -1622,7 +1614,7 @@
                                   },
                                   "min_price": {
                                       "type": "string",
-                                      "description": "最低价度"
+                                      "description": "最低价"
                                   }
                                }
                           },
@@ -1632,11 +1624,11 @@
                            },
                           "postage_type": {
                               "type": "string",
-                              "description": "运费类型"
+                              "description": "运费类型,unified_postage_type统一运费 或者 custom_postage_type自定义运费"
                           },
                           "total_stocks": {
                               "type": "string",
-                              "description": "总库存数"
+                              "description": "总库存数,当stock_type库存类型为'无限'时，该字段值为'无限'；当stock_type库存类型为'有限'时，该字段值为number类型的数字"
                           },
                           "supplier": {
                               "type": "string",
@@ -1660,7 +1652,7 @@
                           },
                           "min_limit":{
                               "type": "string",
-                              "description": "最少数量"
+                              "description": "起购的最少数量"
                           },
                           "detail": {
                               "type": "string",
@@ -1668,7 +1660,7 @@
                           },
                           "limit_zone": {
                               "type": "string",
-                              "description": "商品限制区域"
+                              "description": "商品限制地区的模板id"
                           },
                           "is_enable_bill": {
                               "type": "number",
@@ -1678,7 +1670,7 @@
                               "type": "boolean",
                               "description": "是否为通用规格,如：true或false"
                           },
-                          "product_catalog":{
+                          "product_classification":{
                             "type":"object",
                             "description": "商品分类信息",
                                  "properties": {
@@ -1730,7 +1722,7 @@
                                   },
                                   "id":{
                                       "type": "number",
-                                      "description": "id"  
+                                      "description": "规格id"  
                                   },
                                   "stock_type":{
                                       "type": "number",
@@ -1738,17 +1730,19 @@
                                   },
                                   "stocks":{
                                       "type": "number",
-                                      "description": "库存"
+                                      "description": "库存数"
                                   },
                                   "property2value":{
                                       "type": "object",
+                                      "description":"规格属性",
                                       "properties":{
                                           "property_name": {
                                               "type":"object",
                                               "description":"规格名称，如尺寸、颜色",
                                               "properties": {
                                                     "id": {
-                                                        "type":"number"
+                                                        "type":"number",
+                                                        "description": "规格属性ID"
                                                       },
                                                     "name":{
                                                         "type":"string",
@@ -1760,18 +1754,19 @@
                                   },
                                  "property_values": {
                                       "type": "object",
+                                      "description":"规格与值的对应关系，可理解为property2value的详细信息",
                                       "properties":{
                                           "id": {
                                               "type":"number",
-                                              "description": "规格id"
+                                              "description": "规格属性ID"
                                             },
                                           "name":{
                                               "type":"string",
-                                              "description": "尺寸下的M，L，S"  
+                                              "description": "规格详细名称如果：尺寸下的M，L，S"  
                                             },
                                           "propertyName":{
                                               "type":"string",
-                                              "description": "如尺寸"  
+                                              "description": "规格名称，如尺寸"  
                                             },
                                           "image":{
                                               "type":"string",
@@ -1806,10 +1801,6 @@
                 "data": {
                     "type": "object",
                     "properties": {
-                        "errcode": {
-                              "type": "number",
-                              "description": "系统产生的错误码，如果系统正常返回，则该字段不存在"
-                        },
                         "items": {
                             "type": "object",
                             "description": "商品列表", 
@@ -1860,10 +1851,6 @@
                 "data": {
                     "type": "object",
                     "properties": {
-                        "errcode": {
-                              "type": "number",
-                              "description": "系统产生的错误码，如果系统正常返回，则该字段不存在"
-                        },
                         "catalogs": {
                             "type": "object",
                             "description": "商品全部分类信息", 

@@ -2,4 +2,4 @@
 
 import a_product
 import a_products
-import a_product_catalogs
+import a_product_classifications
