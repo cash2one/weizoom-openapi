@@ -64,8 +64,38 @@ class AProduct(api_resource.ApiResource):
                 #多规格商品需要删除的key
                 del product["unified_postage_money"], product["owner_id"] 
 
-            # product['sku'] = product['models']
-            # del product['models']
+            if product['classification_id'] != 0:
+                classification_info = {}
+                data = {}
+                param_data = {'access_token':args['apiserver_access_token']}
+                resp = Resource.use('apiserver').get({
+                        'resource':'product.product_classification',
+                        'data':param_data
+                    })
+
+                if not resp or resp['code'] != 200:
+                    data['errcode'] = FAIL_GET_PRODUCT_CLASSIFICATIONS_CODE
+                    data['errmsg'] = code2msg[FAIL_GET_PRODUCT_CLASSIFICATIONS_CODE]
+                    return data
+                #获取商品分类信息
+                data_classifications = resp['data']
+
+                if not data_classifications:
+                    product['product_classification'] = 0
+                    del product['classification_id']
+                else:
+                    #此为全部分类信息的集合
+                    for classification in data_classifications:
+                        if product['classification_id'] == classification['id']:
+                            #商品详情里面分类信息组成
+                            classification_info['second_level_id'] = classification['id']
+                            classification_info['second_level_name'] = classification['name']
+                            classification_info['first_level_id'] = classification['father_id']
+                    for classification in data_classifications:
+                        if classification['level'] == 1 and classification_info['first_level_id'] == classification['id']:
+                            classification_info['first_level_name'] = classification['name']
+                    product['product_classification'] = classification_info
+                    del product['classification_id']
             return product
         except:
             data['errcode'] = FAIL_GET_PRODUCT_DETAIL_CODE
