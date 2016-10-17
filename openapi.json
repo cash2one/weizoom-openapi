@@ -105,369 +105,378 @@
                         },
                         "examples": {
                             "application/json": {
-                                    "code": 200,
-                                    "errMsg": "",
-                                    "innerErrMsg": "",
-                                    "data": {
-                                        "supplier_postage_config": {},
-                                        "postage_type": "unified_postage_type",
-                                        "total_stocks": 63,
-                                        "detail": "<html><body><p>商品描述信息</p></body></html>",
-                                        "pic_url": "http://dev.weapp.com",
-                                        "min_limit": 0,
-                                        "supplier": 2,
-                                        "limit_zone": 0,
-                                        "is_use_custom_model": true,
-                                        "is_enable_bill": false,
-                                        "name": "夏季韩版短袖",
-                                        "created_at": "2016-09-21 17:31",
-                                        "is_use_cod_pay_interface": false,
-                                        "limit_zone_type": 0,
-                                        "sales": null,
-                                        "thumbnails_url": "http://chaozhi.weizoom.com/static/upload/20160921/1474450258043_377.jpg",
-                                        "order_thumbnails_url": "http://chaozhi.weizoom.com/static/upload/20160921/1474450258043_377.jpg",
-                                        "swipe_images": [
+                                "code": 200,
+                                "errMsg": "",
+                                "innerErrMsg": "",
+                                "data": {
+                                    "supplier_postage_config": {},
+                                    "postage_type": "unified_postage_type",
+                                    "total_stocks": 63,
+                                    "detail": "<html><body><p>商品描述信息</p></body></html>",
+                                    "pic_url": "http://dev.weapp.com",
+                                    "min_limit": 0,
+                                    "supplier": 2,
+                                    "limit_zone": 0,
+                                    "is_use_custom_model": true,
+                                    "is_enable_bill": false,
+                                    "name": "夏季韩版短袖",
+                                    "created_at": "2016-09-21 17:31",
+                                    "is_use_cod_pay_interface": false,
+                                    "limit_zone_type": 0,
+                                    "sales": null,
+                                    "thumbnails_url": "http://chaozhi.weizoom.com/static/upload/20160921/1474450258043_377.jpg",
+                                    "order_thumbnails_url": "http://chaozhi.weizoom.com/static/upload/20160921/1474450258043_377.jpg",
+                                    "swipe_images": [
+                                      {
+                                        "url": "http://chaozhi.weizoom.com/static/upload/20160921/1474450258043_377.jpg",
+                                        "width": 100,
+                                        "linkUrl": "",
+                                        "id": 13,
+                                        "height": 100
+                                      },
+                                      {
+                                        "url": "http://chaozhi.weizoom.com/static/upload/20160921/147445026606_576.jpg",
+                                        "width": 100,
+                                        "linkUrl": "",
+                                        "id": 14,
+                                        "height": 100
+                                      },
+                                      {
+                                        "url": "http://chaozhi.weizoom.com/static/upload/20160921/1474450271012_241.png",
+                                        "width": 100,
+                                        "linkUrl": "",
+                                        "id": 15,
+                                        "height": 100
+                                      }
+                                    ],
+                                    "is_delivery": false,
+                                    "id": 11,
+                                    "is_sellout": false,
+                                    "product_classification":{
+                                        "second_level_id": 2,
+                                        "first_level_name": "衣服",
+                                        "second_level_name": "短袖",
+                                        "first_level_id": 1
+                                    },
+                                    "price_info": {
+                                        "display_original_price": 22,
+                                        "display_price": 22,
+                                        "display_market_price": "0.00",
+                                        "max_price": 44,
+                                        "min_price": 22
+                                    },
+                                    "limit_zone_detail": [
+                                      {
+                                        "cities": [],
+                                        "provinceId": 1,
+                                        "zoneName": "直辖市",
+                                        "provinceName": "北京市"
+                                      },
+                                      {
+                                        "cities": [],
+                                        "provinceId": 2,
+                                        "zoneName": "直辖市",
+                                        "provinceName": "天津市"
+                                      },
+                                      {
+                                        "cities": [],
+                                        "provinceId": 3,
+                                        "zoneName": "华北-东北",
+                                        "provinceName": "河北省"
+                                      },
+                                      {
+                                        "cities": [],
+                                        "provinceId": 9,
+                                        "zoneName": "直辖市",
+                                        "provinceName": "上海市"
+                                      },
+                                      {
+                                        "cities": [
                                           {
-                                            "url": "http://chaozhi.weizoom.com/static/upload/20160921/1474450258043_377.jpg",
-                                            "width": 100,
-                                            "linkUrl": "",
-                                            "id": 13,
-                                            "height": 100
+                                            "cityId": 77,
+                                            "cityName": "常州市"
                                           },
                                           {
-                                            "url": "http://chaozhi.weizoom.com/static/upload/20160921/147445026606_576.jpg",
-                                            "width": 100,
-                                            "linkUrl": "",
-                                            "id": 14,
-                                            "height": 100
+                                            "cityId": 79,
+                                            "cityName": "南通市"
                                           },
                                           {
-                                            "url": "http://chaozhi.weizoom.com/static/upload/20160921/1474450271012_241.png",
-                                            "width": 100,
-                                            "linkUrl": "",
-                                            "id": 15,
-                                            "height": 100
+                                            "cityId": 81,
+                                            "cityName": "淮安市"
                                           }
                                         ],
-                                        "is_delivery": false,
-                                        "id": 11,
-                                        "is_sellout": false,
-                                        "product_classification":{
-                                            "second_level_id": 2,
-                                            "first_level_name": "衣服",
-                                            "second_level_name": "短袖",
-                                            "first_level_id": 1
+                                        "provinceId": 10,
+                                        "zoneName": "华东地区",
+                                        "provinceName": "江苏省"
+                                      }
+                                    ],
+                                    "models": [
+                                      {
+                                        "original_price": 22,
+                                        "is_deleted": false,
+                                        "name": "4:7_5:10",
+                                        "weight": 2,
+                                        "price": 22,
+                                        "user_code": "",
+                                        "market_price": 0,
+                                        "stock_type": 1,
+                                        "property2value": {
+                                          "尺寸": {
+                                            "id": 7,
+                                            "name": "L"
+                                          },
+                                          "颜色": {
+                                            "id": 10,
+                                            "name": "红色"
+                                          }
                                         },
-                                        "price_info": {
-                                            "display_original_price": 22,
-                                            "display_price": 22,
-                                            "display_market_price": "0.00",
-                                            "max_price": 44,
-                                            "min_price": 22
-                                        },
-                                        "limit_zone_detail": [
+                                        "property_values": [
                                           {
-                                            "cities": [],
-                                            "provinceId": 1,
-                                            "zoneName": "直辖市",
-                                            "provinceName": "北京市"
+                                            "name": "L",
+                                            "propertyName": "尺寸",
+                                            "id": 7,
+                                            "type": "product_model_property_value",
+                                            "image": "",
+                                            "propertyId": 4
                                           },
                                           {
-                                            "cities": [],
-                                            "provinceId": 2,
-                                            "zoneName": "直辖市",
-                                            "provinceName": "天津市"
-                                          },
-                                          {
-                                            "cities": [],
-                                            "provinceId": 3,
-                                            "zoneName": "华北-东北",
-                                            "provinceName": "河北省"
-                                          },
-                                          {
-                                            "cities": [],
-                                            "provinceId": 9,
-                                            "zoneName": "直辖市",
-                                            "provinceName": "上海市"
-                                          },
-                                          {
-                                            "cities": [
-                                              {
-                                                "cityId": 77,
-                                                "cityName": "常州市"
-                                              },
-                                              {
-                                                "cityId": 79,
-                                                "cityName": "南通市"
-                                              },
-                                              {
-                                                "cityId": 81,
-                                                "cityName": "淮安市"
-                                              }
-                                            ],
-                                            "provinceId": 10,
-                                            "zoneName": "华东地区",
-                                            "provinceName": "江苏省"
+                                            "name": "红色",
+                                            "propertyName": "颜色",
+                                            "id": 10,
+                                            "type": "product_model_property_value",
+                                            "image": "",
+                                            "propertyId": 5
                                           }
                                         ],
-                                        "models": [
-                                          {
-                                            "original_price": 22,
-                                            "is_deleted": false,
-                                            "name": "4:7_5:10",
-                                            "weight": 2,
-                                            "price": 22,
-                                            "user_code": "",
-                                            "market_price": 0,
-                                            "stock_type": 1,
-                                            "property2value": {
-                                              "尺寸": {
-                                                "id": 7,
-                                                "name": "L"
-                                              },
-                                              "颜色": {
-                                                "id": 10,
-                                                "name": "红色"
-                                              }
-                                            },
-                                            "property_values": [
-                                              {
-                                                "name": "L",
-                                                "propertyName": "尺寸",
-                                                "id": 7,
-                                                "type": "product_model_property_value",
-                                                "image": "",
-                                                "propertyId": 4
-                                              },
-                                              {
-                                                "name": "红色",
-                                                "propertyName": "颜色",
-                                                "id": 10,
-                                                "type": "product_model_property_value",
-                                                "image": "",
-                                                "propertyId": 5
-                                              }
-                                            ],
-                                            "stocks": 13,
-                                            "id": 17,
-                                            "product_id": 11
+                                        "stocks": 13,
+                                        "id": 17,
+                                        "product_id": 11
+                                      },
+                                      {
+                                        "original_price": 33,
+                                        "is_deleted": false,
+                                        "name": "4:8_5:10",
+                                        "weight": 2,
+                                        "price": 33,
+                                        "user_code": "",
+                                        "market_price": 0,
+                                        "stock_type": 1,
+                                        "property2value": {
+                                          "尺寸": {
+                                            "id": 8,
+                                            "name": "M"
                                           },
-                                          {
-                                            "original_price": 33,
-                                            "is_deleted": false,
-                                            "name": "4:8_5:10",
-                                            "weight": 2,
-                                            "price": 33,
-                                            "user_code": "",
-                                            "market_price": 0,
-                                            "stock_type": 1,
-                                            "property2value": {
-                                              "尺寸": {
-                                                "id": 8,
-                                                "name": "M"
-                                              },
-                                              "颜色": {
-                                                "id": 10,
-                                                "name": "红色"
-                                              }
-                                            },
-                                            "property_values": [
-                                              {
-                                                "name": "M",
-                                                "propertyName": "尺寸",
-                                                "id": 8,
-                                                "type": "product_model_property_value",
-                                                "image": "",
-                                                "propertyId": 4
-                                              },
-                                              {
-                                                "name": "红色",
-                                                "propertyName": "颜色",
-                                                "id": 10,
-                                                "type": "product_model_property_value",
-                                                "image": "",
-                                                "propertyId": 5
-                                              }
-                                            ],
-                                            "stocks": 12,
-                                            "id": 18,
-                                            "product_id": 11
-                                          },
-                                          {
-                                            "original_price": 44,
-                                            "is_deleted": false,
-                                            "name": "4:9_5:10",
-                                            "weight": 2,
-                                            "price": 44,
-                                            "user_code": "",
-                                            "market_price": 0,
-                                            "stock_type": 1,
-                                            "property2value": {
-                                              "尺寸": {
-                                                "id": 9,
-                                                "name": "S"
-                                              },
-                                              "颜色": {
-                                                "id": 10,
-                                                "name": "红色"
-                                              }
-                                            },
-                                            "property_values": [
-                                              {
-                                                "name": "S",
-                                                "propertyName": "尺寸",
-                                                "id": 9,
-                                                "type": "product_model_property_value",
-                                                "image": "",
-                                                "propertyId": 4
-                                              },
-                                              {
-                                                "name": "红色",
-                                                "propertyName": "颜色",
-                                                "id": 10,
-                                                "type": "product_model_property_value",
-                                                "image": "",
-                                                "propertyId": 5
-                                              }
-                                            ],
-                                            "stocks": 22,
-                                            "id": 19,
-                                            "product_id": 11
-                                          },
-                                          {
-                                            "original_price": 22,
-                                            "is_deleted": false,
-                                            "name": "4:7_5:11",
-                                            "weight": 2,
-                                            "price": 22,
-                                            "user_code": "",
-                                            "market_price": 0,
-                                            "stock_type": 1,
-                                            "property2value": {
-                                              "尺寸": {
-                                                "id": 7,
-                                                "name": "L"
-                                              },
-                                              "颜色": {
-                                                "id": 11,
-                                                "name": "黄色"
-                                              }
-                                            },
-                                            "property_values": [
-                                              {
-                                                "name": "L",
-                                                "propertyName": "尺寸",
-                                                "id": 7,
-                                                "type": "product_model_property_value",
-                                                "image": "",
-                                                "propertyId": 4
-                                              },
-                                              {
-                                                "name": "黄色",
-                                                "propertyName": "颜色",
-                                                "id": 11,
-                                                "type": "product_model_property_value",
-                                                "image": "",
-                                                "propertyId": 5
-                                              }
-                                            ],
-                                            "stocks": 2,
-                                            "id": 20,
-                                            "product_id": 11
-                                          },
-                                          {
-                                            "original_price": 33,
-                                            "is_deleted": false,
-                                            "name": "4:8_5:11",
-                                            "weight": 2,
-                                            "price": 33,
-                                            "user_code": "",
-                                            "market_price": 0,
-                                            "stock_type": 1,
-                                            "property2value": {
-                                              "尺寸": {
-                                                "id": 8,
-                                                "name": "M"
-                                              },
-                                              "颜色": {
-                                                "id": 11,
-                                                "name": "黄色"
-                                              }
-                                            },
-                                            "property_values": [
-                                              {
-                                                "name": "M",
-                                                "propertyName": "尺寸",
-                                                "id": 8,
-                                                "type": "product_model_property_value",
-                                                "image": "",
-                                                "propertyId": 4
-                                              },
-                                              {
-                                                "name": "黄色",
-                                                "propertyName": "颜色",
-                                                "id": 11,
-                                                "type": "product_model_property_value",
-                                                "image": "",
-                                                "propertyId": 5
-                                              }
-                                            ],
-                                            "stocks": 2,
-                                            "id": 21,
-                                            "product_id": 11
-                                          },
-                                          {
-                                            "original_price": 44,
-                                            "is_deleted": false,
-                                            "name": "4:9_5:11",
-                                            "weight": 2,
-                                            "price": 44,
-                                            "user_code": "",
-                                            "market_price": 0,
-                                            "stock_type": 1,
-                                            "property2value": {
-                                              "尺寸": {
-                                                "id": 9,
-                                                "name": "S"
-                                              },
-                                              "颜色": {
-                                                "id": 11,
-                                                "name": "黄色"
-                                              }
-                                            },
-                                            "property_values": [
-                                              {
-                                                "name": "S",
-                                                "propertyName": "尺寸",
-                                                "id": 9,
-                                                "type": "product_model_property_value",
-                                                "image": "",
-                                                "propertyId": 4
-                                              },
-                                              {
-                                                "name": "黄色",
-                                                "propertyName": "颜色",
-                                                "id": 11,
-                                                "type": "product_model_property_value",
-                                                "image": "",
-                                                "propertyId": 5
-                                              }
-                                            ],
-                                            "stocks": 12,
-                                            "id": 22,
-                                            "product_id": 11
+                                          "颜色": {
+                                            "id": 10,
+                                            "name": "红色"
                                           }
-                                        ]
-                                        
-                                        
-                                    }
+                                        },
+                                        "property_values": [
+                                          {
+                                            "name": "M",
+                                            "propertyName": "尺寸",
+                                            "id": 8,
+                                            "type": "product_model_property_value",
+                                            "image": "",
+                                            "propertyId": 4
+                                          },
+                                          {
+                                            "name": "红色",
+                                            "propertyName": "颜色",
+                                            "id": 10,
+                                            "type": "product_model_property_value",
+                                            "image": "",
+                                            "propertyId": 5
+                                          }
+                                        ],
+                                        "stocks": 12,
+                                        "id": 18,
+                                        "product_id": 11
+                                      },
+                                      {
+                                        "original_price": 44,
+                                        "is_deleted": false,
+                                        "name": "4:9_5:10",
+                                        "weight": 2,
+                                        "price": 44,
+                                        "user_code": "",
+                                        "market_price": 0,
+                                        "stock_type": 1,
+                                        "property2value": {
+                                          "尺寸": {
+                                            "id": 9,
+                                            "name": "S"
+                                          },
+                                          "颜色": {
+                                            "id": 10,
+                                            "name": "红色"
+                                          }
+                                        },
+                                        "property_values": [
+                                          {
+                                            "name": "S",
+                                            "propertyName": "尺寸",
+                                            "id": 9,
+                                            "type": "product_model_property_value",
+                                            "image": "",
+                                            "propertyId": 4
+                                          },
+                                          {
+                                            "name": "红色",
+                                            "propertyName": "颜色",
+                                            "id": 10,
+                                            "type": "product_model_property_value",
+                                            "image": "",
+                                            "propertyId": 5
+                                          }
+                                        ],
+                                        "stocks": 22,
+                                        "id": 19,
+                                        "product_id": 11
+                                      },
+                                      {
+                                        "original_price": 22,
+                                        "is_deleted": false,
+                                        "name": "4:7_5:11",
+                                        "weight": 2,
+                                        "price": 22,
+                                        "user_code": "",
+                                        "market_price": 0,
+                                        "stock_type": 1,
+                                        "property2value": {
+                                          "尺寸": {
+                                            "id": 7,
+                                            "name": "L"
+                                          },
+                                          "颜色": {
+                                            "id": 11,
+                                            "name": "黄色"
+                                          }
+                                        },
+                                        "property_values": [
+                                          {
+                                            "name": "L",
+                                            "propertyName": "尺寸",
+                                            "id": 7,
+                                            "type": "product_model_property_value",
+                                            "image": "",
+                                            "propertyId": 4
+                                          },
+                                          {
+                                            "name": "黄色",
+                                            "propertyName": "颜色",
+                                            "id": 11,
+                                            "type": "product_model_property_value",
+                                            "image": "",
+                                            "propertyId": 5
+                                          }
+                                        ],
+                                        "stocks": 2,
+                                        "id": 20,
+                                        "product_id": 11
+                                      },
+                                      {
+                                        "original_price": 33,
+                                        "is_deleted": false,
+                                        "name": "4:8_5:11",
+                                        "weight": 2,
+                                        "price": 33,
+                                        "user_code": "",
+                                        "market_price": 0,
+                                        "stock_type": 1,
+                                        "property2value": {
+                                          "尺寸": {
+                                            "id": 8,
+                                            "name": "M"
+                                          },
+                                          "颜色": {
+                                            "id": 11,
+                                            "name": "黄色"
+                                          }
+                                        },
+                                        "property_values": [
+                                          {
+                                            "name": "M",
+                                            "propertyName": "尺寸",
+                                            "id": 8,
+                                            "type": "product_model_property_value",
+                                            "image": "",
+                                            "propertyId": 4
+                                          },
+                                          {
+                                            "name": "黄色",
+                                            "propertyName": "颜色",
+                                            "id": 11,
+                                            "type": "product_model_property_value",
+                                            "image": "",
+                                            "propertyId": 5
+                                          }
+                                        ],
+                                        "stocks": 2,
+                                        "id": 21,
+                                        "product_id": 11
+                                      },
+                                      {
+                                        "original_price": 44,
+                                        "is_deleted": false,
+                                        "name": "4:9_5:11",
+                                        "weight": 2,
+                                        "price": 44,
+                                        "user_code": "",
+                                        "market_price": 0,
+                                        "stock_type": 1,
+                                        "property2value": {
+                                          "尺寸": {
+                                            "id": 9,
+                                            "name": "S"
+                                          },
+                                          "颜色": {
+                                            "id": 11,
+                                            "name": "黄色"
+                                          }
+                                        },
+                                        "property_values": [
+                                          {
+                                            "name": "S",
+                                            "propertyName": "尺寸",
+                                            "id": 9,
+                                            "type": "product_model_property_value",
+                                            "image": "",
+                                            "propertyId": 4
+                                          },
+                                          {
+                                            "name": "黄色",
+                                            "propertyName": "颜色",
+                                            "id": 11,
+                                            "type": "product_model_property_value",
+                                            "image": "",
+                                            "propertyId": 5
+                                          }
+                                        ],
+                                        "stocks": 12,
+                                        "id": 22,
+                                        "product_id": 11
+                                      }
+                                    ]
                                 }
+                            }
                         }
                     },
-                    "default": {
-                        "description": "请求存在错误的时候的返回",
+                    "531": {
+                        "description": "请求存在错误的时候的返回,具体字段格式参考下面的'ErrorModel'描述",
                         "schema": {
                           "$ref": "#/definitions/ErrorModel"
+                        },
+                        "examples": {
+                            "application/json": {
+                                "code": 531,
+                                "errMsg": "系统服务错误",
+                                "innerErrMsg": "",
+                                "data": {
+                                    "errcode": 41001,
+                                    "errmsg": "查询商品详情失败，请联系管理员"
+                                }
+                            }
                         }
                     }
                 }
@@ -529,10 +538,21 @@
                             }
                         }
                     },
-                    "default": {
-                        "description": "请求存在错误的时候的返回",
+                    "531": {
+                        "description": "请求存在错误的时候的返回,具体字段格式参考下面的'ErrorModel'描述",
                         "schema": {
                           "$ref": "#/definitions/ErrorModel"
+                        },
+                        "examples": {
+                            "application/json": {
+                                "code": 531,
+                                "errMsg": "系统服务错误",
+                                "innerErrMsg": "",
+                                "data": {
+                                    "errcode": 41002,
+                                    "errmsg": "查询商品列表失败，请联系管理员"
+                                }
+                            }
                         }
                     }
                 }
