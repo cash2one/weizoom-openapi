@@ -63,7 +63,7 @@ class AProduct(api_resource.ApiResource):
                 del product[key]
             if product_model_name and product_model_name != 'standard':
                 #多规格商品需要删除的key
-                del product["unified_postage_money"], product["owner_id"] 
+                del product["owner_id"] 
 
             if product['classification_id'] and product['classification_id'] != 0:
                 classification_info = {}

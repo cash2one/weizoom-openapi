@@ -109,7 +109,7 @@
                                 "errMsg": "",
                                 "innerErrMsg": "",
                                 "data": {
-                                    "supplier_postage_config": {},
+                                    "unified_postage_money": 0,
                                     "postage_type": "unified_postage_type",
                                     "total_stocks": 63,
                                     "detail": "<html><body><p>商品描述信息</p></body></html>",
@@ -558,7 +558,7 @@
                 }
             }
         },
-        "/mall/product_catalogs/": {
+        "/mall/product_classifications/": {
             "get": {
                 "tags": [
                     "product"
@@ -584,7 +584,7 @@
                     "200": {
                         "description": "Successful response",
                         "schema": {
-                            "$ref": "#/definitions/ProductCatalogs"
+                            "$ref": "#/definitions/ProductClassifications"
                         },
                         "examples": {
                             "application/json": {
@@ -592,7 +592,7 @@
                                 "errMsg": "",
                                 "innerErrMsg": "",
                                 "data": {
-                                    "catalogs": [
+                                    "classifications": [
                                         {
                                             "first_level_name": "电脑",
                                             "first_level_id": 6,
@@ -1638,9 +1638,9 @@
                                   }
                                }
                           },
-                          "supplier_postage_config": {
+                          "unified_postage_money": {
                               "type": "string",
-                              "description": "供货商邮费配置"
+                              "description": "邮费金额"
                            },
                           "postage_type": {
                               "type": "string",
@@ -1855,7 +1855,7 @@
                 }
             }
         },
-        "ProductCatalogs":{
+        "ProductClassifications":{
             "type": "object",
             "properties": {
                 "code": {
@@ -1871,7 +1871,7 @@
                 "data": {
                     "type": "object",
                     "properties": {
-                        "catalogs": {
+                        "classifications": {
                             "type": "object",
                             "description": "商品全部分类信息", 
                             "properties": {
