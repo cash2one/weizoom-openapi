@@ -64,7 +64,7 @@ class AProduct(api_resource.ApiResource):
                 #多规格商品需要删除的key
                 del product["unified_postage_money"], product["owner_id"] 
 
-            if product['classification_id'] != 0:
+            if product['classification_id'] and product['classification_id'] != 0:
                 classification_info = {}
                 data = {}
                 param_data = {'access_token':args['apiserver_access_token']}
@@ -96,8 +96,12 @@ class AProduct(api_resource.ApiResource):
                             classification_info['first_level_name'] = classification['name']
                     product['product_classification'] = classification_info
                     del product['classification_id']
+            else:
+                product['product_classification'] = 0
+                del product['classification_id']
             return product
         except:
+            watchdog.error("===============================".format(unicode_full_stack()))
             data['errcode'] = FAIL_GET_PRODUCT_DETAIL_CODE
             data['errmsg'] = code2msg[FAIL_GET_PRODUCT_DETAIL_CODE]
             return data
