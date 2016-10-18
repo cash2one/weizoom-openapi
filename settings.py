@@ -16,19 +16,10 @@ DATABASES = {
         'NAME': 'poseidon',
         'USER': 'poseidon',                      
         'PASSWORD': 'weizoom',                  
-        'HOST': 'db.weapp.com',
+        'HOST': 'db.poseidon.com',
         'PORT': '',
         'CONN_MAX_AGE': 100
-    },
-    'watchdog': {
-        'ENGINE': 'mysql+retry',
-        'NAME': 'weapp',
-        'USER': 'weapp',                      
-        'PASSWORD': 'weizoom',                  
-        'HOST': 'db.operation.com',
-        'PORT': '',
-        'CONN_MAX_AGE': 100
-    },
+    }
     'apps_default': {
         'ENGINE': 'mongo',                 # used MongoDB
         'NAME': 'open',                # DATABASE NAME
