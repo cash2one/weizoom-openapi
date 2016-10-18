@@ -4,7 +4,7 @@
 
 @author bert
 """
-
+import logging
 import settings
 from eaglet.core.exceptionutil import unicode_full_stack
 from eaglet.core import watchdog
@@ -28,7 +28,7 @@ MESSAGE = """
 		"""
 
 
-@register("delivered")
+@register("ship_order")
 def send_order_delivered_notify_service(data, raw_msg=None):
 	"""
 	创建用户的service
@@ -47,6 +47,7 @@ def send_order_delivered_notify_service(data, raw_msg=None):
 	@param args dict格式的参数
 	"""
 	order_id = data.get("order_id", None)
+	logging.info(">>>>>>>>>>")
 	if order_id:
 		pay_log = PayLog.from_order_id({
 			"order_id": order_id
