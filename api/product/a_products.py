@@ -71,7 +71,7 @@ class AProducts(api_resource.ApiResource):
             data['items'] = products
             return data
         except:
-            watchdog.error("get product_list faled !!!=======>>>".format(unicode_full_stack()))
+            watchdog.error("get product_list faled !!!=======>>>{}".format(unicode_full_stack()))
             data['errmsg'] = code2msg[FAIL_GET_PRODUCT_LIST_CODE]
             data['errcode'] = FAIL_GET_PRODUCT_DETAIL_CODE
             return data

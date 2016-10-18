@@ -102,7 +102,7 @@ class AProduct(api_resource.ApiResource):
                 del product['classification_id']
             return product
         except:
-            watchdog.error("get product_detail faled !!!=======>>>".format(unicode_full_stack()))
+            watchdog.error("get product_detail faled !!!=======>>>{}".format(unicode_full_stack()))
             data['errcode'] = FAIL_GET_PRODUCT_DETAIL_CODE
             data['errmsg'] = code2msg[FAIL_GET_PRODUCT_DETAIL_CODE]
             return data
