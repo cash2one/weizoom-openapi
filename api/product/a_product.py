@@ -10,6 +10,7 @@ from eaglet.core import api_resource
 from eaglet.decorator import param_required
 from eaglet.core import watchdog
 from eaglet.utils.resource_client import Resource
+from eaglet.core.exceptionutil import unicode_full_stack
 
 from util.error_codes import *
 
@@ -53,7 +54,7 @@ class AProduct(api_resource.ApiResource):
             key_list = [
                 "product_promotion_title","supplier_user_id","integral_sale","is_in_group_buy","bar_code",
                 "hint","product_reviews","product_review","display_index", "shelve_type","type","purchase_price",
-                "activity_url","use_supplier_postage","detail_link","used_system_model_properties","weshop_sync",
+                "activity_url","detail_link","used_system_model_properties","weshop_sync",
                 "promotion_title","properties","categories", "buy_in_supplier","is_member_product", "supplier_name",
                 "shelve_end_time","shelve_start_time","promotion","is_deleted","webapp_owner_integral_setting",
                 ]
@@ -62,9 +63,9 @@ class AProduct(api_resource.ApiResource):
                 del product[key]
             if product_model_name and product_model_name != 'standard':
                 #多规格商品需要删除的key
-                del product["unified_postage_money"], product["owner_id"] 
+                del product["owner_id"] 
 
-            if product['classification_id'] != 0:
+            if product['classification_id'] and product['classification_id'] != 0:
                 classification_info = {}
                 data = {}
                 param_data = {'access_token':args['apiserver_access_token']}
@@ -96,8 +97,13 @@ class AProduct(api_resource.ApiResource):
                             classification_info['first_level_name'] = classification['name']
                     product['product_classification'] = classification_info
                     del product['classification_id']
+
+            else:
+                product['product_classification'] = 0
+                del product['classification_id']
             return product
         except:
+            watchdog.error("get product_detail faled !!!=======>>>{}".format(unicode_full_stack()))
             data['errcode'] = FAIL_GET_PRODUCT_DETAIL_CODE
             data['errmsg'] = code2msg[FAIL_GET_PRODUCT_DETAIL_CODE]
             return data
