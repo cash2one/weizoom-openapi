@@ -54,7 +54,7 @@ class AProduct(api_resource.ApiResource):
             key_list = [
                 "product_promotion_title","supplier_user_id","integral_sale","is_in_group_buy","bar_code",
                 "hint","product_reviews","product_review","display_index", "shelve_type","type","purchase_price",
-                "activity_url","use_supplier_postage","detail_link","used_system_model_properties","weshop_sync",
+                "activity_url","detail_link","used_system_model_properties","weshop_sync",
                 "promotion_title","properties","categories", "buy_in_supplier","is_member_product", "supplier_name",
                 "shelve_end_time","shelve_start_time","promotion","is_deleted","webapp_owner_integral_setting",
                 ]
