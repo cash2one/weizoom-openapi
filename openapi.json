@@ -109,8 +109,49 @@
                                 "errMsg": "",
                                 "innerErrMsg": "",
                                 "data": {
-                                    "unified_postage_money": 0,
+                                    "unified_postage_money": 20.0,
                                     "postage_type": "unified_postage_type",
+                                    "supplier_postage_config": {
+                                        "special_factor": {
+                                            "province_26": {
+                                                "firstWeight": 10.0,
+                                                "firstWeightPrice": 10.0,
+                                                "addedWeight": 1.0,
+                                                "addedWeightPrice": 30.0
+                                            },
+                                            "province_31": {
+                                                "firstWeight": 10.0,
+                                                "firstWeightPrice": 10.0,
+                                                "addedWeight": 1.0,
+                                                "addedWeightPrice": 30.0
+                                            }
+                                        },
+                                        "isEnableAddedWeight": true,
+                                        "addedWeight": 1.0,
+                                        "firstWeight": 10.0,
+                                        "addedWeightPrice": 20.0,
+                                        "firstWeightPrice": 5.0,
+                                        "free_factor": {
+                                            "province_33": [
+                                                {
+                                                    "condition_value": 100.0,
+                                                    "condition": "money"
+                                                }
+                                            ],
+                                            "province_32": [
+                                                {
+                                                    "condition_value": 100.0,
+                                                    "condition": "money"
+                                                }
+                                            ],
+                                            "province_34": [
+                                                {
+                                                    "condition_value": 100.0,
+                                                    "condition": "money"
+                                                }
+                                            ]
+                                        }
+                                    },
                                     "total_stocks": 63,
                                     "detail": "<html><body><p>商品描述信息</p></body></html>",
                                     "pic_url": "http://dev.weapp.com",
@@ -1639,12 +1680,86 @@
                                }
                           },
                           "unified_postage_money": {
-                              "type": "string",
-                              "description": "邮费金额"
+                              "type": "number",
+                              "description": "统一邮费金额"
                            },
                           "postage_type": {
                               "type": "string",
-                              "description": "运费类型,unified_postage_type统一运费 或者 custom_postage_type自定义运费"
+                              "description": "运费类型,unified_postage_type统一运费 或者 custom_postage_type自定义运费即使用的是供货商的运费模板（需要根据supplier_postage_config进行计算）"
+                          },
+                          "supplier_postage_config": {
+                              "type": "object",
+                              "description": "供货商运费模板配置信息，以此来计算当postage_type为custom_postage_type类型时的运费价格",
+                              "properties": {
+                                  "isEnableAddedWeight": {
+                                      "type": "string",
+                                      "description": "是否启用续重机制"
+                                  },
+                                  "addedWeight": {
+                                      "type": "number",
+                                      "description": "续重,单位为kg"
+                                  },
+                                  "firstWeight": {
+                                      "type": "number",
+                                      "description": "首重,单位为kg"
+                                  },
+                                  "addedWeightPrice": {
+                                      "type": "number",
+                                      "description": "续重价格，单位为元"
+                                  },
+                                  "firstWeightPrice": {
+                                      "type": "number",
+                                      "description": "首重价格，单位为元"
+                                  },
+                                  "free_factor": {
+                                      "type": "object",
+                                      "description": "免运费配置信息,数据结构为：{ key1:[], key2:[],.... }",
+                                      "properties": {
+                                          "province_33":{
+                                              "type": "object",
+                                              "description": "免运费配置的地区信息，格式：province_省编号，数据结构为：[{},{},...],具体参考",
+                                              "properties":{
+                                                    "condition_value":{
+                                                      "type": "number",
+                                                      "description": "包邮条件值(数字)，单位为件或者元"
+                                                    },
+                                                    "condition":{
+                                                      "type": "string",
+                                                      "description": "包邮条件，count或者money"
+                                                    }
+                                              }
+                                          }
+                                      }
+                                  },
+                                  "special_factor": {
+                                      "type": "object",
+                                      "description": "特殊运费配置,数据结构为：{{},{},...}",
+                                      "properties": {
+                                         "province_33":{
+                                            "type": "number",
+                                            "description": "特殊运费配置的地区信息，格式：province_省编号，数据结构为：{},具体参考",
+                                            "properties":{
+                                                "firstWeight":{
+                                                  "type": "number",
+                                                  "description": "首重，单位为kg"
+                                                },
+                                                "firstWeightPrice":{
+                                                  "type": "string",
+                                                  "description": "首重价格，单位为元"
+                                                },
+                                                "addedWeight":{
+                                                  "type": "number",
+                                                  "description": "续重价格，单位为kg"
+                                                },
+                                                "addedWeightPrice":{
+                                                  "type": "number",
+                                                  "description": "续重价格，单位为元"
+                                                }
+                                            }
+                                          }
+                                      }
+                                  }
+                               }
                           },
                           "total_stocks": {
                               "type": "string",
