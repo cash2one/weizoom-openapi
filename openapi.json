@@ -1759,7 +1759,7 @@
                           },
                           "unified_postage_money": {
                               "type": "number",
-                              "description": "统一邮费金额"
+                              "description": "统一邮费金额，postage_type是unified_postage_type时的金额"
                            },
                           "postage_type": {
                               "type": "string",
@@ -1767,7 +1767,7 @@
                           },
                           "supplier_postage_config": {
                               "type": "object",
-                              "description": "供货商运费模板配置信息，以此来计算当postage_type为custom_postage_type类型时的运费价格",
+                              "description": "供货商运费模板配置信息，以此来计算当postage_type为custom_postage_type类型时的运费价格，当postage_type是unified_postage_type时，该字段为空{}",
                               "properties": {
                                   "isEnableAddedWeight": {
                                       "type": "string",
@@ -1791,7 +1791,7 @@
                                   },
                                   "free_factor": {
                                       "type": "object",
-                                      "description": "免运费配置信息,数据结构为：{ key1:[], key2:[],.... }",
+                                      "description": "免运费配置信息,数据结构为：{ key1:[], key2:[],.... }，当没有包邮配置时为空{}",
                                       "properties": {
                                           "province_33":{
                                               "type": "object",
@@ -1811,7 +1811,7 @@
                                   },
                                   "special_factor": {
                                       "type": "object",
-                                      "description": "特殊运费配置,数据结构为：{{},{},...}",
+                                      "description": "特殊运费配置,数据结构为：{{},{},...}，当没有特殊地区运费配置时为空{}",
                                       "properties": {
                                          "province_33":{
                                             "type": "number",
