@@ -19,7 +19,7 @@ DATABASES = {
         'HOST': 'db.poseidon.com',
         'PORT': '',
         'CONN_MAX_AGE': 100
-    }
+    },
     'apps_default': {
         'ENGINE': 'mongo',                 # used MongoDB
         'NAME': 'open',                # DATABASE NAME
