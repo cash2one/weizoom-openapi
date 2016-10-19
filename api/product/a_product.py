@@ -56,8 +56,10 @@ class AProduct(api_resource.ApiResource):
                 "hint","product_reviews","product_review","display_index", "shelve_type","type","purchase_price",
                 "activity_url","detail_link","used_system_model_properties","weshop_sync",
                 "promotion_title","properties","categories", "buy_in_supplier","is_member_product", "supplier_name",
-                "shelve_end_time","shelve_start_time","promotion","is_deleted","webapp_owner_integral_setting",
+                "shelve_end_time","shelve_start_time","promotion","webapp_owner_integral_setting",
                 ]
+            #TODO
+            print '==========is_deleted=========',product['is_deleted'] 
             #多规格里面,要把price_info中的"display_market_price"去掉,还有"user_code", "market_price",purchase_price
             for key in key_list:
                 del product[key]
