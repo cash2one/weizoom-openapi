@@ -233,7 +233,6 @@
                                       },
                                       {
                                         "cities": [
->>>>>>> f_openapi_json
                                           {
                                             "cityId": 77,
                                             "cityName": "常州市"
@@ -635,83 +634,6 @@
                                 "innerErrMsg": "",
                                 "data": {
                                     "classifications": [
-                                        {
-                                            "first_level_name": "电脑",
-                                            "first_level_id": 6,
-                                            "second_level_info": [
-                                                {
-                                                    "second_level_id": 8,
-                                                    "second_level_name": "台式机"
-                                                },
-                                                {
-                                                    "second_level_id": 8,
-                                                    "second_level_name": "台式机"
-                                                }
-                                            ]
-                                        },
-                                        {
-                                            "first_level_name": "电脑",
-                                            "first_level_id": 6,
-                                            "second_level_info": [
-                                                {
-                                                    "second_level_id": 8,
-                                                    "second_level_name": "台式机"
-                                                },
-                                                {
-                                                    "second_level_id": 8,
-                                                    "second_level_name": "台式机"
-                                                }
-                                            ]
-                                        }
-                                    ]
-                                }
-                            }
-                        }
-                    },
-                    "default": {
-                        "description": "请求存在错误的时候的返回",
-                        "schema": {
-                          "$ref": "#/definitions/ErrorModel"
-                        }
-                    }
-                }
-            }
-        },
-        "/mall/product_catalogs/": {
-            "get": {
-                "tags": [
-                    "product"
-                ],
-                "summary": "获取商品全部分类信息",
-                "description": "获取商品全部分类信息",
-                "consumes": [
-                    "application/x-www-form-urlencoded"
-                ],
-                "produces": [
-                    "application/json"
-                ],
-                "parameters": [
-                    {
-                        "in": "query",
-                        "name": "access_token",
-                        "type": "string",
-                        "description": "授权信息",
-                        "required": true
-                    }
-                ],
-                "responses": {
-                    "200": {
-                        "description": "Successful response",
-                        "schema": {
-                            "$ref": "#/definitions/ProductCatalogs"
-                        },
-                        "examples": {
-                            "application/json": {
-                                "code": 200,
-                                "errMsg": "",
-                                "innerErrMsg": "",
-                                "data": {
-                                    "catalogs": [
                                         {
                                             "first_level_name": "电脑",
                                             "first_level_id": 6,
