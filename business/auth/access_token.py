@@ -44,7 +44,7 @@ class AccessToken(business_model.Model):
 		db_model = account_models.AccessToken.create(
 			app=app.id, 
 			access_token=access_token,
-			expires_in='7200 '
+			expires_in='7200'
 			)
 		cache_util.set_cache_wrapper(hashlib.md5(access_token).hexdigest(),json.dumps(app.to_dict()) ,7200)
 		return AccessToken.from_model({
