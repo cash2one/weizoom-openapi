@@ -52,6 +52,7 @@ class AOrder(api_resource.ApiResource):
 				order_detail['order_status'] = order['status']
 				order_detail['final_price'] = order['final_price']
 				order_detail['ship_address'] = order['ship_address']
+				order_detail['ship_area'] = order['ship_area']
 				order_detail['ship_name'] = order['ship_name']
 				order_detail['ship_tel'] = order['ship_tel']
 				order_detail['postage'] = order['postage']
@@ -104,7 +105,7 @@ class AOrder(api_resource.ApiResource):
 			return {'errcode':errcode, 'errmsg':code2msg[errcode]}
 		
 
-	@param_required(['ship_name', 'ship_tel', 'ship_address', 'products', 'woid'])
+	@param_required(['ship_name', 'ship_tel', 'ship_address', 'products', 'woid', 'area'])
 	def put(args):
 		'''
 		下单接口
@@ -112,6 +113,7 @@ class AOrder(api_resource.ApiResource):
 		woid = args['woid']
 		ship_name = args['ship_name']
 		ship_address = args['ship_address']
+		area = args['area']
 		ship_tel = args['ship_tel']
 		products = args['products']
 		products_json = json.loads(products)
@@ -133,7 +135,7 @@ class AOrder(api_resource.ApiResource):
 		data = {u'xa-choseInterfaces': u'2',
 			u'product_counts': product_counts, u'ship_address': ship_address, 'woid': woid, 'lock':False,
 			u'timestamp': timestamp, u'integral': u'undefined', u'coupon_id': u'0', u'product_model_names': product_model_names,  
-			u'ship_tel': ship_tel, u'message': '{}', u'order_type': u'undefined', u'area': u' ', 
+			u'ship_tel': ship_tel, u'message': '{}', u'order_type': u'undefined', u'area': area, 
 			u'is_order_from_shopping_cart': u'false', u'ship_name': ship_name, 
 			 u'product_ids': product_ids, u'access_token':access_token}
 
