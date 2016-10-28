@@ -25,8 +25,6 @@ class ADelivery(api_resource.ApiResource):
 
 	@param_required(['order_id', 'express_company_name', 'express_number'],)
 	def put(args):
-
-
 		order_id = args['order_id']
 		express_company_name = args['express_company_name']
 		express_number = args['express_number']
