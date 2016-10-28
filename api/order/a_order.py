@@ -159,8 +159,11 @@ class AOrder(api_resource.ApiResource):
 				reason = resp['data']
 				if reason['detail']:
 					msg = reason['detail'][0]['msg']
+					short_msg = reason['detail'][0]['short_msg']
 					if u'库存不足' in msg:
 						errcode = PUT_ORDER_LOW_STOCKS
+					if u'超出范围' in short_msg:
+						errcode = PUT_ORDER_OUT_LIMIT_ZONE
 				else:
 					errcode = PUT_ORDER_PARAMETER_ERROR
 
