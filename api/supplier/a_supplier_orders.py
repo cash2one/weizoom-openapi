@@ -64,6 +64,7 @@ class ASupplierOrderList(api_resource.ApiResource):
 						'buyer_name': order['buyer_name'],
 						'ship_name': order['ship_name'],
 						'ship_address': order['ship_address'],
+						'ship_area': order['ship_area'],
 						'ship_tel': order['ship_tel'],
 						'express_company_name': order['express_company_name'],
 						'express_number': order['express_number'],
