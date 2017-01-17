@@ -68,6 +68,8 @@ class AProducts(api_resource.ApiResource):
                 del product['is_member_product']
                 del product['promotion_js']
                 del product['categories']
+                # 要求价格增加10%展示给客户
+                product['after_add_price'] = float(product['display_price'] if product['display_price'] else 0)*1.1
             data['items'] = products
             return data
         except:
