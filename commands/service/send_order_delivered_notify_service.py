@@ -60,25 +60,23 @@ def send_order_delivered_notify_service(data, raw_msg=None):
 			msg_id = "%s%s" %(int(time.time()), order_id)
 			express_company_name = data["express_company_name"]
 			express_number = data["express_number"]
-			express_company_name = data["express_company_name"]
 			message = MESSAGE.format(order_id, express_company_name, express_number, notify_models.TYPE_DELIVERED, msg_id)
 			xml_data = dict()
 			xml_data['message'] = message
 			if 'apiv.kangou.cn' in interface_url:
 				# 看购平台的发货通知的回调
 				# http://testapi.kangou.cn/weizoon/XMlmessage/kangweb?data=123&sign=a96db7b8a2483fca057610072fd16ce6
-				# sign=md5($key.md5('param1=value1&param2=value2&param3=value3'.$key)) ;
+				# sign=md5($key+md5('param1=value1&param2=value2&param3=value3'+$key)) ;
 				# $key = "5ec252518c0796f83cb412e9c5d36d57"
 				if 'ExpressCompanyName' in interface_url:
 					interface_url += "/XMlmessage/kangweb"
 					key = '5ec252518c0796f83cb412e9c5d36d57'
-					mw_one = hashlib.md5("message={}".format(message)+'.'+key)
-					mw_two =hashlib.md5(key+'.'+ mw_one.hexdigest())
+					mw_one = hashlib.md5("message={}".format(message)+key)
+					mw_two =hashlib.md5(key+ mw_one.hexdigest())
 					sign = mw_two.hexdigest()
 					xml_data['sign'] = sign
-					
-			headers = {'Content-Type': 'application/xml'}
-			resp = requests.post(interface_url, data=xml_data, timeout="30", headers=headers)
+
+			resp = requests.post(interface_url, data=xml_data, timeout=30)
 
 			status = 0
 			if resp.status_code == 200:
