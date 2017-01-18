@@ -46,7 +46,13 @@ class AProducts(api_resource.ApiResource):
                 data['errcode'] = FAIL_GET_PRODUCT_DETAIL_CODE
                 return data
             #获取商品列表
-            products = resp['data']['products']
+            resp_data = resp['data']
+            if resp_data.get('products',''):
+                products = resp_data['products']
+            else:
+                data['errmsg'] = code2msg[EMPTY_GET_PRODUCT_LIST_CODE]
+                data['errcode'] = EMPTY_GET_PRODUCT_LIST_CODE
+                return data
             """[
                 {
                     "name": "w",
