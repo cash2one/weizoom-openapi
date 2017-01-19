@@ -11,8 +11,11 @@ from eaglet.decorator import param_required
 from eaglet.utils.resource_client import Resource
 from eaglet.core import watchdog
 from eaglet.core.exceptionutil import unicode_full_stack
+from openapi_mns_conf import TOPIC
+from business.pay.pay import PayLog
 import json
 import time
+from bdem import msgutil
 
 from util.error_codes import *
 
@@ -28,6 +31,7 @@ class ADelivery(api_resource.ApiResource):
 		order_id = args['order_id']
 		express_company_name = args['express_company_name']
 		express_number = args['express_number']
+		data_mns = []
 
 		data = {
 				'order_id': order_id,
@@ -39,11 +43,29 @@ class ADelivery(api_resource.ApiResource):
 			'data': data
 			})
 		errcode = SYSTEM_ERROR_CODE
+
+		# 获取app_id传送到mns进行消息处理
+		pay_log = PayLog.from_order_id({
+			"order_id": order_id
+			})
+		if pay_log:
+			app_id = pay_log.appid
+		else:
+			watchdog.info("order paylog is not exits, delivery mns message send  failed!!  order_id:{}, msg:{}".format(order_id, unicode_full_stack()),log_type='OPENAPI_ORDER')
+			errcode = DELIVERY_ORDER_HAS_NO_PAYLOG
+			return {'errcode':errcode, 'errmsg':code2msg[errcode]}
+		topic_name = TOPIC['delivery_service']
+		data_mns['order_id'] = order_id
+		data_mns['app_id'] = app_id or ''
+		data_mns['express_company_name'] = express_company_name
+		data_mns['express_number'] = express_number
 		if resp:
 			if resp['code'] == 200:
 				if resp['data']['result'] == 'SUCCESS':
 					errcode = SUCCESS_CODE
-					return {'errcode': errcode}
+					data = {'errcode': errcode}
+					msgutil.send_message(topic_name, 'send_order_delivered_notify_service', data)
+					return data
 				else:
 					if resp['data']['msg'] == u'不能对当前订单发货':
 						errcode = DELIVERY_ORDER_HAS_MULTIPLE_CHILD_ORDERS
