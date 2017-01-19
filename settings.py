@@ -129,14 +129,14 @@ DEV_SERVER_MULTITHREADING = False
 if 'deploy' == MODE :
     MNS_ACCESS_KEY_ID = 'eJ8LylRwQERRqOot'
     MNS_ACCESS_KEY_SECRET = 'xxPrfGcUlnsL7IPweJRqVekHTCu6Ad'
-    MNS_ENDPOINT = 'http://1615750970594173.mns.cn-hangzhou.aliyuncs.com/'
+    MNS_ENDPOINT = 'http://1615750970594173.mns.cn-beijing.aliyuncs.com/'
 
     MNS_SECURITY_TOKEN = ''
     SUBSCRIBE_QUEUE_NAME = 'shiped-order'
 else:
     MNS_ACCESS_KEY_ID = 'eJ8LylRwQERRqOot'
     MNS_ACCESS_KEY_SECRET = 'xxPrfGcUlnsL7IPweJRqVekHTCu6Ad'
-    MNS_ENDPOINT = 'http://1615750970594173.mns.cn-hangzhou.aliyuncs.com/'
+    MNS_ENDPOINT = 'http://1615750970594173.mns.cn-beijing.aliyuncs.com/'
     #MNS_ENDPOINT = 'http://1615750970594173.mns.cn-shanghai.aliyuncs.com/'
     MNS_SECURITY_TOKEN = ''
     SUBSCRIBE_QUEUE_NAME = 'test-shiped-order'
