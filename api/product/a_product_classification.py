@@ -87,7 +87,6 @@ class AProductClassification(api_resource.ApiResource):
                             level2.append(level2_1)
                     level1['second_level_info'] = level2
                     classifications.append(level1)
-                    level2 = []
                 data['classifications'] = classifications
             else:
                 data['errcode'] = PRODUCT_CLASSIFICATIONS_IS_NULL_CODE
