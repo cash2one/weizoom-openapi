@@ -74,18 +74,19 @@ class AProductClassification(api_resource.ApiResource):
                 """
                 data = {}
                 classifications = []
-                level2 = []
+               
                 for classification1 in classification_level_1:
                     level1 = {}
                     level1['first_level_id'] = classification1['id']
                     level1['first_level_name'] = classification1['name']
+                    second_level_info = []
                     for classification2 in classification_level_2:
                         level2_1 = {}
                         if classification2['father_id'] == classification1['id']:
                             level2_1['second_level_id'] = classification2['id']
                             level2_1['second_level_name'] = classification2['name']
-                            level2.append(level2_1)
-                    level1['second_level_info'] = level2
+                            second_level_info.append(level2_1)
+                    level1['second_level_info'] = second_level_info
                     classifications.append(level1)
                 data['classifications'] = classifications
             else:
