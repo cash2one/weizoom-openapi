@@ -139,4 +139,4 @@ else:
     MNS_ENDPOINT = 'http://1615750970594173.mns.cn-beijing.aliyuncs.com/'
     #MNS_ENDPOINT = 'http://1615750970594173.mns.cn-shanghai.aliyuncs.com/'
     MNS_SECURITY_TOKEN = ''
-    SUBSCRIBE_QUEUE_NAME = 'test-shiped-order'
+    SUBSCRIBE_QUEUE_NAME = 'openapi-notify'
