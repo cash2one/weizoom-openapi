@@ -62,13 +62,12 @@ class AProduct(api_resource.ApiResource):
             #多规格里面,要把price_info中的"display_market_price"去掉,还有"user_code", "market_price",purchase_price
             for key in key_list:
                 del product[key]
-            for pro in product:
-                product_models = pro['models']
-                if len(product_models) == 1:
-                    pro['after_add_price'] = float('{:.2f}'.format(Decimal(str((float(pro['price'] if pro['price'] else 0)/0.9)))))
-                else:
-                    for model in product_models:
-                        model['after_add_price'] = float('{:.2f}'.format(Decimal(str((float(model['price'] if model['price'] else 0)/0.9)))))
+            product_models = pro['models']
+            if len(product_models) == 1:
+                pro['after_add_price'] = float('{:.2f}'.format(Decimal(str((float(pro['price'] if pro['price'] else 0)/0.9)))))
+            else:
+                for model in product_models:
+                    model['after_add_price'] = float('{:.2f}'.format(Decimal(str((float(model['price'] if model['price'] else 0)/0.9)))))
             if product_model_name and product_model_name != 'standard':
                 #多规格商品需要删除的key
                 del product["owner_id"] 
