@@ -64,7 +64,7 @@ class ADelivery(api_resource.ApiResource):
 				if resp['data']['result'] == 'SUCCESS':
 					errcode = SUCCESS_CODE
 					data = {'errcode': errcode}
-					msgutil.send_message(topic_name, 'send_order_delivered_notify_service', data)
+					msgutil.send_message(topic_name, 'send_order_delivered_notify_service', data_mns)
 					return data
 				else:
 					if resp['data']['msg'] == u'不能对当前订单发货':

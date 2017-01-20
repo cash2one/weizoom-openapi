@@ -1,6 +1,6 @@
 # -*- coding: utf-8 -*-
 """
-发送钉钉消息
+处理订单发货的消息
 
 @author bert
 """
@@ -13,6 +13,7 @@ from handler_register import register
 
 from db.notify import models as notify_models
 from db.customer import models as customer_models
+from business.pay.pay import PayLog
 
 import time
 import requests
@@ -49,6 +50,16 @@ def process(data, raw_msg=None):
 	"""
 	order_id = data.get("order_id", None)
 	app_id = data.get("app_id", None)
+	if not app_id:
+		pay_log = PayLog.from_order_id({
+			"order_id": order_id
+			})
+		if pay_log:
+			app_id = pay_log.appid
+		else:
+			watchdog.info("mns--order paylog is not exits, order delivered notify  failed!!  order_id:{}, msg:{}".format(order_id, unicode_full_stack()),log_type='OPENAPI_ORDER')
+			errcode = DELIVERY_ORDER_HAS_NO_PAYLOG
+			return {'errcode':errcode, 'errmsg':code2msg[errcode]}
 	if order_id and app_id:
 		customer_message = customer_models.CustomerMessage.select().dj_where(app_id=app_id)
 		interface_url = customer_message.interface_url
@@ -83,4 +94,4 @@ def process(data, raw_msg=None):
 				"type": notify_models.TYPE_DELIVERED,
 				"message": message,
 				"status": status
-			})
+		})

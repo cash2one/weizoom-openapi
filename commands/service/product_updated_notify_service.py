@@ -27,8 +27,7 @@ def process(data, raw_msg=None):
 	woids_list_str = data.get('woids', '[]')
 	woids_list = json.loads(woids_list)
 	# 从panda获取product_ids可能会有多个
-	product_ids_list_str = data.get("product_ids", '[]')
-	product_ids_list = json.loads(woids_list)
+	product_id = data.get("product_id", None)
 	account_infos = account_models.App.select().dj_where(woid_in=woids_list)
 	
 	# apiserver_access_token = account_info.apiserver_access_token
