@@ -4,17 +4,17 @@
 
 启动之后，不断轮询队列
 
-@author bert
+@author Victor
 """
 
 from eaglet.utils.command import BaseCommand
-
+from eaglet.core import watchdog
+#from eaglet.core.cache import utils as cache_util
 import json
 
 import settings
 
 from eaglet.core.exceptionutil import unicode_full_stack
-from eaglet.core import watchdog
 import logging
 
 from mns.account import Account
@@ -23,17 +23,15 @@ from mns.topic import *
 from mns.subscription import *
 
 import time
-import service  # load all services
-import service_register
-
-
+import service  #load all message handlers
+from service import handler_register
 
 
 WAIT_SECONDS = 10
 SLEEP_SECONDS = 10
 
 class Command(BaseCommand):
-	help = "python manage.py customer_create_service"
+	help = "python manage.py service_runner"
 	args = ''
 
 	# topic-queue模型中的queue
@@ -47,52 +45,73 @@ class Command(BaseCommand):
 			settings.MNS_ACCESS_KEY_ID, \
 			settings.MNS_ACCESS_KEY_SECRET, \
 			settings.MNS_SECURITY_TOKEN)
-		queue = self.mns_account.get_queue(settings.SUBSCRIBE_QUEUE_NAME)
-		watchdog.info(queue.get_attributes().queue_name)
-		watchdog.info('queue: {}'.format(queue.get_attributes().queue_name),server_name=settings.SERVICE_NAME)
+
+		if hasattr(settings, 'MESSAGE_DEBUG_MODE') and settings.MESSAGE_DEBUG_MODE:
+			import redis_queue
+			queue = redis_queue.get_queue(settings.SUBSCRIBE_QUEUE_NAME)
+			logging.info("queue mode:{}".format('redis'))
+		else:
+			queue = self.mns_account.get_queue(settings.SUBSCRIBE_QUEUE_NAME)
+			logging.info("queue mode:{}".format('mns'))
+		logging.info('queue: {}'.format(queue.get_attributes().queue_name))
+
 		# TODO: 改成LongPoll更好
 		while True:
+			handler_func = None
+			handle_success = False
 			#读取消息
 			try:
 				recv_msg = queue.receive_message(WAIT_SECONDS)
-				watchdog.info("Receive Message Succeed! ReceiptHandle:%s MessageBody:%s MessageID:%s" % (recv_msg.receipt_handle, recv_msg.message_body, recv_msg.message_id),server_name=settings.SERVICE_NAME)
+				logging.info("Receive Message Succeed! ReceiptHandle:%s MessageBody:%s MessageID:%s" % (recv_msg.receipt_handle, recv_msg.message_body, recv_msg.message_id))
 
 				# 处理消息(consume)
 				data = json.loads(recv_msg.message_body)
-
-				if data.get("function",None):
-					data['name'] = data["function"]
-					data['data'] = data["args"]
-
-				function_name = data['name']
-				func = service_register.SERVICE_LIST.get(function_name)
-				if func:
+				message_name = data['name']
+				handler_func = handler_register.find_message_handler(message_name)
+				if handler_func:
 					try:
-						response = func(data['data'], recv_msg)
-						watchdog.info("service response: {}".format(response),server_name=settings.SERVICE_NAME)
+						response = handler_func(data['data'], recv_msg)
+						logging.info("service response: {}".format(response))
+						handle_success = True
+
+						#只有正常才能删除消息，否则消息仍然在队列中
+						try:
+							queue.delete_message(recv_msg.receipt_handle)
+							logging.debug("Delete Message Succeed!  ReceiptHandle:%s" % recv_msg.receipt_handle)
+						except MNSExceptionBase,e:
+							logging.debug("Delete Message Fail! Exception:%s\n" % e)
 					except:
-						watchdog.error(u"Service Exception: {}".format(unicode_full_stack()), server_name=settings.SERVICE_NAME)
+						logging.info(u"Service Exception: {}".format(unicode_full_stack()))
 				else:
-					watchdog.info(u"Error: no such service found : {}".format(function_name), server_name=settings.SERVICE_NAME)
+					#TODO: 这里是否需要删除消息？
+					try:
+						queue.delete_message(recv_msg.receipt_handle)
+						logging.debug("Delete Message Succeed!  ReceiptHandle:%s" % recv_msg.receipt_handle)
+					except MNSExceptionBase, e:
+						logging.debug("Delete Message Fail! Exception:%s\n" % e)
+					logging.info(u"Error: no such service found : {}".format(message_name))
 
 			except MNSExceptionBase as e:
 				if e.type == "QueueNotExist":
-					watchdog.debug("Queue not exist, please create queue before receive message.",server_name=settings.SERVICE_NAME)
+					logging.debug("Queue not exist, please create queue before receive message.")
 					break
 				elif e.type == "MessageNotExist":
-					watchdog.debug("Queue is empty! Waiting...", server_name=settings.SERVICE_NAME)
+					logging.debug("Queue is empty! Waiting...")
 				else:
-					pass
-					watchdog.debug("Receive Message Fail! Exception:%s\n" % e,server_name=settings.SERVICE_NAME)
+					logging.debug("Receive Message Fail! Exception:%s\n" % e)
 				time.sleep(SLEEP_SECONDS)
 				continue
 			except Exception as e:
-				watchdog.error(u"Exception: {}".format(unicode_full_stack()), server_name=settings.SERVICE_NAME)
-
-			#删除消息
-			try:
-				queue.delete_message(recv_msg.receipt_handle)
-				watchdog.info("Delete Message Succeed!  ReceiptHandle:%s" % recv_msg.receipt_handle)
-			except MNSException,e:
-				watchdog.info("Delete Message Fail! Exception:%s\n" % e)
+				print u"Exception: {}".format(unicode_full_stack())
+			finally:
+				if handler_func:
+					message = {
+						'message_id': recv_msg.message_id,
+						'message_body_md5': '',
+						'data': args,
+						'topic_name': '',
+						'msg_name': message_name,
+						'handel_success': handle_success
+					}
+					watchdog.info(message, log_type='MNS_RECEIVE_LOG')
 		return
