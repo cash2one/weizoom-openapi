@@ -17,6 +17,7 @@ from business.pay.pay import PayLog
 from util.error_codes import *
 
 import time
+import datetime
 import requests
 import hashlib
 
@@ -94,15 +95,16 @@ def process(data, raw_msg=None):
 			status = 0
 			if resp.status_code == 200:
 				status = 1
+				print '===================success======================='
 			else:
 				print '===================failed======================='
 			
-			notify_model = notify_models.NotifyMessage(
+			notify_model = notify_models.NotifyMessage.create(
 				msg_id=msg_id,
 				type=notify_models.TYPE_DELIVERED,
 				message='test',
-				status=status
+				status=status,
+				created_at = datetime.datetime.now().strftime('%Y-%m-%d %H:%M:%S')
 			)
-			notify_model.save()
 	except Exception as e:
 		logging.info(u"Service Exception:--send_order_delivered_notify_service {}".format(unicode_full_stack()))
