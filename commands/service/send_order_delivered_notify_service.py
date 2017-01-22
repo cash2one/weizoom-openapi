@@ -100,7 +100,7 @@ def process(data, raw_msg=None):
 			notify_model = notify_models.NotifyMessage(
 				msg_id=msg_id,
 				type=notify_models.TYPE_DELIVERED,
-				message=message,
+				message='test',
 				status=status
 			)
 			notify_model.save()
