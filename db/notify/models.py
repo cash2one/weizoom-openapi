@@ -23,7 +23,7 @@ class NotifyMessage(models.Model):
 	retry_time = models.IntField() #重试次数
 	created_at = models.DateTimeField(default=datetime.datetime.now()) #创建时间
 	
-	meta = {
-		'collection': 'notify_message',
-		'db_alias': 'open'
-	}
+	class Meta:
+		db_table = 'notify_message'
+		verbose_name = 'notify_message'
+		verbose_name_plural = 'notify_message'
