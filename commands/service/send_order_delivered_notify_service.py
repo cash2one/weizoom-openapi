@@ -67,7 +67,7 @@ def process(data, raw_msg=None):
 		if order_id and app_id:
 			logging.info("================================order_id:{}".format(app_id))
 			logging.info("================================app_id:{}".format(app_id))
-			customer_message = customer_models.CustomerMessage.select().dj_where(app_id=app_id)
+			customer_message = customer_models.CustomerMessage.select().dj_where(app_id=app_id).first()
 			interface_url = customer_message.interface_url
 			msg_id = "%s%s" %(int(time.time()), order_id)
 			express_company_name = data["express_company_name"]
