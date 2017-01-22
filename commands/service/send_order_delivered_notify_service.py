@@ -73,7 +73,7 @@ def process(data, raw_msg=None):
 			# msg_id = "%s%s" %(int(time.time()), order_id)
 			express_company_name = data["express_company_name"]
 			express_number = data["express_number"]
-			message = MESSAGE.format(order_id, express_company_name, express_number, notify_models.TYPE_DELIVERED, msg_id)
+			message = MESSAGE.format(order_id, express_company_name, express_number, notify_models.TYPE_DELIVERED, order_id)
 			xml_data = dict()
 			xml_data['message'] = message
 			# 单独处理看购平台的发货通知
