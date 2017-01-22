@@ -65,7 +65,7 @@ def process(data, raw_msg=None):
 				errcode = DELIVERY_ORDER_HAS_NO_PAYLOG
 				return {'errcode':errcode, 'errmsg':code2msg[errcode]}
 		if order_id and app_id:
-			customer_message = customer_models.CustomerMessage.select().dj_where(app_id=app_id)
+			customer_message = customer_models.CustomerMessage.objects.get(app_id=app_id)
 			interface_url = customer_message.interface_url
 			msg_id = "%s%s" %(int(time.time()), order_id)
 			express_company_name = data["express_company_name"]
