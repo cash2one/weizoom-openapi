@@ -22,10 +22,10 @@ class Command(BaseCommand):
 
         # 示例数据
         data = {
-            "order_id": "111",
+            "order_id": "58104",
             "app_id": "wz52e96a6821306686",
-            "express_company_name": "哈哈哈",
-            "express_number": "111"
+            "express_company_name": "申通快递",
+            "express_number": "333333"
         }
 
         msg_name = "send_order_delivered_notify_service"
