@@ -63,9 +63,7 @@ class Command(BaseCommand):
 			try:
 				recv_msg = queue.receive_message(WAIT_SECONDS)
 				logging.info("Receive Message Succeed! ReceiptHandle:%s MessageBody:%s MessageID:%s" % (recv_msg.receipt_handle, recv_msg.message_body, recv_msg.message_id))
-
-				queue.delete_message(recv_msg.receipt_handle)
-				print '======================================'
+				
 				# 处理消息(consume)
 				data = json.loads(recv_msg.message_body)
 				message_name = data['name']
