@@ -96,10 +96,8 @@ def process(data, raw_msg=None):
 			if resp.status_code == 200:
 				status = 1
 				logging.info('===================success======================={}'.format(status))
-				print 
 			else:
 				logging.info('===================failed======================={}'.format(status))
-				print 
 			
 			notify_model = notify_models.NotifyMessage(
 				msg_id=order_id,
