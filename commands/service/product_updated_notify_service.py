@@ -8,7 +8,7 @@ import logging
 import settings
 from eaglet.core.exceptionutil import unicode_full_stack
 from eaglet.core import watchdog
-from handler_register import register
+from commands.handler_register import register
 from eaglet.utils.resource_client import Resource
 from db.customer import models as customer_models
 from db.account import models as account_models

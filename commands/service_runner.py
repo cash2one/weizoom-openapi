@@ -24,7 +24,7 @@ from mns.subscription import *
 
 import time
 import service  #load all message handlers
-from service import handler_register
+from commands import handler_register
 
 
 WAIT_SECONDS = 10
