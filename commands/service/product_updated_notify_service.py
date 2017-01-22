@@ -30,7 +30,7 @@ def process(data, raw_msg=None):
 		woids_list = json.loads(woids_list)
 		# 从panda获取product_ids可能会有多个
 		product_id = data.get("product_id", None)
-		account_infos = account_models.App.objects.filter(woid_in=woids_list)
+		account_infos = account_models.App.select().dj_where(woid_in=woids_list)
 		
 		# apiserver_access_token = account_info.apiserver_access_token
 		# product_list = []
@@ -58,7 +58,7 @@ def process(data, raw_msg=None):
 		for account_info in account_infos:
 			app_id = account_info.app_id
 			if app_id:
-				customer_message = customer_models.CustomerMessage.objects.get(app_id=appid)
+				customer_message = customer_models.CustomerMessage.select().dj_where(app_id=appid)
 				interface_url = customer_message.interface_url
 				# 单独处理看购平台的发货通知
 				if 'apiv.kangou.cn' in interface_url:

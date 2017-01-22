@@ -1,1 +1,2 @@
+import product_updated_notify_service
 import send_order_delivered_notify_service
