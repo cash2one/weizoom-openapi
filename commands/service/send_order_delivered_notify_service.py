@@ -89,7 +89,8 @@ def process(data, raw_msg=None):
 		status = 0
 		if resp.status_code == 200:
 			status = 1
-
+		else:
+			print '===================failed======================='
 		notify_models.NotifyMessage.save({
 				"msg_id": msg_id,
 				"type": notify_models.TYPE_DELIVERED,
