@@ -67,11 +67,13 @@ class Command(BaseCommand):
 				# 处理消息(consume)
 				data = json.loads(recv_msg.message_body)
 				message_name = data['name']
+				print '==========================================',message_name
 				handler_func = handler_register.find_message_handler(message_name)
 				if handler_func:
 					try:
 						response = handler_func(data['data'], recv_msg)
 						logging.info("service response: {}".format(response))
+						print '==========================================',"service response: {}".format(response)
 						handle_success = True
 
 						#只有正常才能删除消息，否则消息仍然在队列中
