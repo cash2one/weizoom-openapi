@@ -70,7 +70,7 @@ def process(data, raw_msg=None):
 			logging.info("================================app_id:{}".format(app_id))
 			customer_message = customer_models.CustomerMessage.select().dj_where(app_id=app_id).first()
 			interface_url = customer_message.interface_url
-			msg_id = "%s%s" %(int(time.time()), order_id)
+			# msg_id = "%s%s" %(int(time.time()), order_id)
 			express_company_name = data["express_company_name"]
 			express_number = data["express_number"]
 			message = MESSAGE.format(order_id, express_company_name, express_number, notify_models.TYPE_DELIVERED, msg_id)
@@ -99,12 +99,13 @@ def process(data, raw_msg=None):
 			else:
 				print '===================failed======================='
 			
-			notify_model = notify_models.NotifyMessage.create(
-				msg_id=msg_id,
+			notify_model = notify_models.NotifyMessage(
+				msg_id=order_id,
 				type=notify_models.TYPE_DELIVERED,
 				message='test',
 				status=status,
 				created_at = datetime.datetime.now().strftime('%Y-%m-%d %H:%M:%S')
 			)
+			notify_model.save()
 	except Exception as e:
 		logging.info(u"Service Exception:--send_order_delivered_notify_service {}".format(unicode_full_stack()))

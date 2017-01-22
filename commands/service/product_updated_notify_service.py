@@ -12,9 +12,11 @@ from commands.handler_register import register
 from eaglet.utils.resource_client import Resource
 from db.customer import models as customer_models
 from db.account import models as account_models
+from db.notify import models as notify_models
 from util.error_codes import *
 
 import time
+import datetime
 import requests
 import hashlib
 # from error_codes.py import *
@@ -79,11 +81,13 @@ def process(data, raw_msg=None):
 				if resp.status_code == 200:
 					status = 1
 
-				notify_models.NotifyMessage.save({
-						"msg_id": msg_id,
-						"type": notify_models.TYPE_DELIVERED,
-						"message": message,
-						"status": status
-					})
+				notify_model = notify_models.NotifyMessage(
+					msg_id=product_id,
+					type=notify_models.TYPE_DELIVERED,
+					message='test',
+					status=status,
+					created_at = datetime.datetime.now().strftime('%Y-%m-%d %H:%M:%S')
+				)
+				notify_model.save()
 	except Exception as e:
 		logging.info(u"Service Exception:--product_updated_notify_service {}".format(unicode_full_stack()))
