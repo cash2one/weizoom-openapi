@@ -54,8 +54,6 @@ def process(data, raw_msg=None):
 		app_id = data.get("app_id", None)
 		if order_id:
 			order_id = order_id.split('^')[0]
-		else:
-
 		if not app_id:
 			pay_log = PayLog.from_order_id({
 				"order_id": order_id
