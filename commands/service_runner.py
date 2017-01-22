@@ -64,16 +64,16 @@ class Command(BaseCommand):
 				recv_msg = queue.receive_message(WAIT_SECONDS)
 				logging.info("Receive Message Succeed! ReceiptHandle:%s MessageBody:%s MessageID:%s" % (recv_msg.receipt_handle, recv_msg.message_body, recv_msg.message_id))
 
+				queue.delete_message(recv_msg.receipt_handle)
+				print '======================================'
 				# 处理消息(consume)
 				data = json.loads(recv_msg.message_body)
 				message_name = data['name']
-				print '==========================================',message_name
 				handler_func = handler_register.find_message_handler(message_name)
 				if handler_func:
 					try:
 						response = handler_func(data['data'], recv_msg)
 						logging.info("service response: {}".format(response))
-						print '==========================================',"service response: {}".format(response)
 						handle_success = True
 
 						#只有正常才能删除消息，否则消息仍然在队列中

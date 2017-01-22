@@ -51,6 +51,7 @@ def process(data, raw_msg=None):
 	"""
 	order_id = data.get("order_id", None)
 	app_id = data.get("app_id", None)
+	print '=============================',order_id
 	if not app_id:
 		pay_log = PayLog.from_order_id({
 			"order_id": order_id
