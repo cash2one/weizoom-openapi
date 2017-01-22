@@ -61,12 +61,12 @@ def process(data, raw_msg=None):
 			if pay_log:
 				app_id = pay_log.appid
 			else:
-				logging.info("mns--order paylog is not exits!!!!!!!!! order_id:{}, msg:{}".format(order_id, unicode_full_stack()),log_type='OPENAPI_ORDER')
+				logging.info("mns--order paylog is not exits!!!!!!!!! order_id:{}, msg:{}".format(order_id, unicode_full_stack()))
 				errcode = DELIVERY_ORDER_HAS_NO_PAYLOG
 				return {'errcode':errcode, 'errmsg':code2msg[errcode]}
 		if order_id and app_id:
-			logging.info("================================order_id:{}".format(app_id),log_type='OPENAPI_ORDER')
-			logging.info("================================app_id:{}".format(app_id),log_type='OPENAPI_ORDER')
+			logging.info("================================order_id:{}".format(app_id))
+			logging.info("================================app_id:{}".format(app_id))
 			customer_message = customer_models.CustomerMessage.select().dj_where(app_id=app_id)
 			interface_url = customer_message.interface_url
 			msg_id = "%s%s" %(int(time.time()), order_id)
