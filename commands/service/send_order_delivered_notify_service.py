@@ -96,11 +96,10 @@ def process(data, raw_msg=None):
 				status = 1
 			else:
 				print '===================failed======================='
-			notify_models.NotifyMessage.save({
-					"msg_id": msg_id,
-					"type": notify_models.TYPE_DELIVERED,
-					"message": message,
-					"status": status
-			})
+			notify_models.NotifyMessage.msg_id = msg_id
+			notify_models.NotifyMessage.type = notify_models.TYPE_DELIVERED
+			notify_models.NotifyMessage.message = message
+			notify_models.NotifyMessage.status = status
+			notify_models.NotifyMessage.save()
 	except Exception as e:
 		logging.info(u"Service Exception:--send_order_delivered_notify_service {}".format(unicode_full_stack()))
