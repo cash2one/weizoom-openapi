@@ -11,7 +11,7 @@ import datetime
 
 TYPE_DELIVERED = "delivered"
 
-class NotifyMessage(models.Document):
+class NotifyMessage(models.Model):
 	"""
 	notify 通知记录
 	"""
