@@ -21,7 +21,7 @@ import requests
 import hashlib
 # from error_codes.py import *
 
-@register("product_updated_notify_service")
+@register("product_updated")
 def process(data, raw_msg=None):
 	"""
 	商品更新后需通知客户
@@ -29,7 +29,7 @@ def process(data, raw_msg=None):
 	woids:自营平台的账户ID
 	product_id: 商品的ID
 	注意：该消息来源于两部分：
-	1、zeus的商品更新按钮和w批量同步按钮，都走的module_api的ship_order函数
+	1、zeus的商品更新按钮和批量同步按钮，都走的module_api的ship_order函数
 	2、zeus部分：mall/order_state.py里面的ship()函数
 	"""
 	try:
@@ -69,6 +69,7 @@ def process(data, raw_msg=None):
 			if app_id:
 				customer_message = customer_models.CustomerMessage.select().dj_where(app_id=appid).first()
 				interface_url = customer_message.interface_url
+				msg_id = "%s%s" %(time.time(), product_id)
 				# 单独处理看购平台的发货通知
 				if 'testapi.kangou.cn' in interface_url:
 					# 看购平台的发货通知的回调
@@ -90,9 +91,12 @@ def process(data, raw_msg=None):
 				status = 0
 				if resp.status_code == 200:
 					status = 1
+					logging.info('===================success======================={}{}'.format(repr(resp.url),repr(resp.text)))
+				else:
+					logging.info('===================failed======================={}{}'.format(repr(resp.url),repr(resp.text)))
 
 				notify_model = notify_models.NotifyMessage(
-					msg_id=product_id,
+					msg_id=msg_id,
 					type=notify_models.TYPE_DELIVERED,
 					message='test',
 					status=status,

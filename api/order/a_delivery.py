@@ -54,7 +54,7 @@ class ADelivery(api_resource.ApiResource):
 			watchdog.info("order paylog is not exits, delivery mns message send  failed!!  order_id:{}, msg:{}".format(order_id, unicode_full_stack()),log_type='OPENAPI_ORDER')
 			errcode = DELIVERY_ORDER_HAS_NO_PAYLOG
 			return {'errcode':errcode, 'errmsg':code2msg[errcode]}
-		topic_name = TOPIC['delivery_service']
+		topic_name = TOPIC['order']
 		data_mns['order_id'] = order_id
 		data_mns['app_id'] = app_id or ''
 		data_mns['express_company_name'] = express_company_name
@@ -64,7 +64,7 @@ class ADelivery(api_resource.ApiResource):
 				if resp['data']['result'] == 'SUCCESS':
 					errcode = SUCCESS_CODE
 					data = {'errcode': errcode}
-					msgutil.send_message(topic_name, 'send_order_delivered_notify_service', data_mns)
+					msgutil.send_message(topic_name, 'delivery_item_shipped', data_mns)
 					return data
 				else:
 					if resp['data']['msg'] == u'不能对当前订单发货':

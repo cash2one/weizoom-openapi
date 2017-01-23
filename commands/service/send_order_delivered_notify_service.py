@@ -26,7 +26,7 @@ MESSAGE = """
 		"""
 
 
-@register("send_order_delivered_notify_service")
+@register("delivery_item_shipped")
 def process(data, raw_msg=None):
 	"""
 	订单发货通知的消息处理

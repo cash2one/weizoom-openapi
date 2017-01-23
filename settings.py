@@ -132,7 +132,7 @@ if 'deploy' == MODE :
     MNS_ENDPOINT = 'http://1615750970594173.mns.cn-beijing.aliyuncs.com/'
 
     MNS_SECURITY_TOKEN = ''
-    SUBSCRIBE_QUEUE_NAME = 'shiped-order'
+    SUBSCRIBE_QUEUE_NAME = 'openapi-notify'
 else:
     MNS_ACCESS_KEY_ID = 'eJ8LylRwQERRqOot'
     MNS_ACCESS_KEY_SECRET = 'xxPrfGcUlnsL7IPweJRqVekHTCu6Ad'

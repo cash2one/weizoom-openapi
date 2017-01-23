@@ -26,9 +26,7 @@ class Command(BaseCommand):
 
         # func_name = "customer.update_or_add"
 
-        for i in range(10):
-            logging.info(">>>>>current time: {}".format(datetime.datetime.now()))
-            data['data'] = i
-            msgutil.send_message(topic_name, msg_name, data)
+        logging.info(">>>>>current time: {}".format(datetime.datetime.now()))
+        msgutil.send_message(topic_name, msg_name, data)
 
         return
