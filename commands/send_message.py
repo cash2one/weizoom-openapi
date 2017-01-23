@@ -22,7 +22,7 @@ class Command(BaseCommand):
 
         # 示例数据
         data = {"order_id": "20170122165456346^8s", "express_number": "22222", "express_company_name": "ems"}
-        msg_name = "send_order_delivered_notify_service"
+        msg_name = "delivery_item_shipped"
 
         # func_name = "customer.update_or_add"
 

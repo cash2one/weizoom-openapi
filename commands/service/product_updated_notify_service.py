@@ -71,7 +71,7 @@ def process(data, raw_msg=None):
 				interface_url = customer_message.interface_url
 				msg_id = "%s%s" %(time.time(), product_id)
 				# 单独处理看购平台的发货通知
-				if 'testapi.kangou.cn' in interface_url:
+				if 'apiv.kangou.cn' in interface_url:
 					# 看购平台的发货通知的回调
 					# http://testapi.kangou.cn/weizoon/XMlmessage/kangweb?data=123&sign=a96db7b8a2483fca057610072fd16ce6
 					# sign=md5($key+md5('param1=value1&param2=value2&param3=value3'+$key)) ;
