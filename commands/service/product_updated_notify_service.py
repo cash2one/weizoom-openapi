@@ -71,6 +71,7 @@ def process(data, raw_msg=None):
 				customer_message = customer_models.CustomerMessage.select().dj_where(app_id=appid).first()
 				interface_url = customer_message.interface_url
 				msg_id = "%s%s" %(time.time(), product_id)
+				message = "update product--product_id: %s, woids:%s"%(product_id,woids_list_str)
 				# 单独处理看购平台的发货通知
 				if 'apiv.kangou.cn' in interface_url:
 					# 看购平台的发货通知的回调
@@ -98,8 +99,8 @@ def process(data, raw_msg=None):
 
 				notify_model = notify_models.NotifyMessage(
 					msg_id=msg_id,
-					type=notify_models.TYPE_DELIVERED,
-					message='test',
+					type=notify_models.TYPE_UPDATED,
+					message=message,
 					status=status,
 					created_at = datetime.datetime.now().strftime('%Y-%m-%d %H:%M:%S')
 				)
