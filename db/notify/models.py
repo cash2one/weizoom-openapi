@@ -15,7 +15,7 @@ class NotifyMessage(models.Document):
 	"""
 	notify 通知记录
 	"""
-	msg_id = models.LongField()
+	msg_id = models.StringField(default='', max_length=1000)
 	type = models.StringField(default='', max_length=50) #消息类型（发货 取消）
 	message = models.StringField(default='', max_length=1000)  #记录消息信息
 	reason = models.StringField(default='', max_length=1000) #记录请求信息

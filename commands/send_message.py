@@ -21,13 +21,7 @@ class Command(BaseCommand):
         logging.info("topic name: {}".format(topic_name))
 
         # 示例数据
-        data = {
-            "order_id": "58104",
-            "app_id": "wz52e96a6821306686",
-            "express_company_name": "申通快递",
-            "express_number": "333333"
-        }
-
+        data = {"order_id": "20170122165456346^8s", "express_number": "22222", "express_company_name": "ems"}
         msg_name = "send_order_delivered_notify_service"
 
         # func_name = "customer.update_or_add"
