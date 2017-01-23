@@ -29,17 +29,14 @@ MESSAGE = """
 @register("send_order_delivered_notify_service")
 def process(data, raw_msg=None):
 	"""
-	创建用户的service
-
-	args格式
-	```
-	{
-	"function":"delivered",
-	"args":{
-	"content":"wtf?",
-	"uuid": "80035247"
-	}
-	}
+	订单发货通知的消息处理
+	请求args:
+	order_id:订单ID
+	app_id: openapi的app_id
+	注意：该消息来源于三部分：
+	1、weapp的子订单发货按钮和weapp的批量发货(循环的每个子订单)部分，都走的module_api的ship_order函数
+	2、zeus部分：mall/order_state.py里面的ship()函数
+	3、就是openapi的发货接口，收到商家的发货接口后也会发消息到这里，只有这个消息会存在app_id,其他两部分需要查询mongo的Paylog记录
 	```
 
 	@param args dict格式的参数

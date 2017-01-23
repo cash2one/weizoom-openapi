@@ -25,13 +25,21 @@ import hashlib
 def process(data, raw_msg=None):
 	"""
 	商品更新后需通知客户
+	请求args:
+	woids:自营平台的账户ID
+	product_id: 商品的ID
+	注意：该消息来源于两部分：
+	1、zeus的商品更新按钮和w批量同步按钮，都走的module_api的ship_order函数
+	2、zeus部分：mall/order_state.py里面的ship()函数
 	"""
 	try:
 		# 从panda获取woids可能会有多个
 		woids_list_str = data.get('woids', '[]')
+		logging.info("================================woids_list_str:{}".format(woids_list_str))
 		woids_list = json.loads(woids_list)
 		# 从panda获取product_ids可能会有多个
 		product_id = data.get("product_id", None)
+		logging.info("================================product_id:{}".format(product_id))
 		account_infos = account_models.App.select().dj_where(woid_in=woids_list)
 		
 		# apiserver_access_token = account_info.apiserver_access_token
@@ -55,25 +63,27 @@ def process(data, raw_msg=None):
 		#			product_list.append(product)
 
 	    # 准备发送回调的数据
-		# data = {'product_list':product_list}
-		data = {'product_ids':'|'.join(product_ids)}
+		data = {'product_id': product_id)}
 		for account_info in account_infos:
 			app_id = account_info.app_id
 			if app_id:
-				customer_message = customer_models.CustomerMessage.select().dj_where(app_id=appid)
+				customer_message = customer_models.CustomerMessage.select().dj_where(app_id=appid).first()
 				interface_url = customer_message.interface_url
 				# 单独处理看购平台的发货通知
-				if 'apiv.kangou.cn' in interface_url:
+				if 'testapi.kangou.cn' in interface_url:
 					# 看购平台的发货通知的回调
 					# http://testapi.kangou.cn/weizoon/XMlmessage/kangweb?data=123&sign=a96db7b8a2483fca057610072fd16ce6
 					# sign=md5($key+md5('param1=value1&param2=value2&param3=value3'+$key)) ;
 					# $key = "5ec252518c0796f83cb412e9c5d36d57"
 					interface_url += "callback/kangweb"
+					logging.info('===================interface_url======================={}'.format(interface_url))
 					key = '5ec252518c0796f83cb412e9c5d36d57'
-					mw_one = hashlib.md5("product_ids={}".format(product_ids)+key)
+					mw_one = hashlib.md5("product_id={}".format(product_id)+key)
 					mw_two =hashlib.md5(key+ mw_one.hexdigest())
 					sign = mw_two.hexdigest()
 					data['sign'] = sign
+					logging.info("================================message:{}".format(message))
+					logging.info("================================sign:{}".format(sign))
 
 				resp = requests.post(interface_url, data=data, timeout=30)
 

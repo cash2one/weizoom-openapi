@@ -76,6 +76,7 @@ class Command(BaseCommand):
 
 						#只有正常才能删除消息，否则消息仍然在队列中
 						try:
+							time.sleep(3)
 							queue.delete_message(recv_msg.receipt_handle)
 							logging.debug("Delete Message Succeed!  ReceiptHandle:%s" % recv_msg.receipt_handle)
 						except MNSExceptionBase,e:
