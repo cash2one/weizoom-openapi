@@ -90,6 +90,8 @@ def process(data, raw_msg=None):
 					mw_two =hashlib.md5(key+ mw_one.hexdigest())
 					sign = mw_two.hexdigest()
 					xml_data['sign'] = sign
+					logging.info("================================message:{}".format(message))
+					logging.info("================================sign:{}".format(sign))
 
 			resp = requests.post(interface_url, data=xml_data, timeout=30)
 
