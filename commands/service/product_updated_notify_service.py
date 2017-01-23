@@ -80,7 +80,9 @@ def process(data, raw_msg=None):
 					# http://testapi.kangou.cn/weizoon/XMlmessage/kangweb?data=123&sign=a96db7b8a2483fca057610072fd16ce6
 					# sign=md5($key+md5('param1=value1&param2=value2&param3=value3'+$key)) ;
 					# $key = "5ec252518c0796f83cb412e9c5d36d57"
-					interface_url += "callback/kangweb"
+					
+					# 看购的回调地址规则：http://apiv.kangou.cn/方法组名/调用方法名/调用帐号
+					interface_url += "callback/weizoom"
 					data['operation'] = 'edit'
 					logging.info('===================interface_url======================={}'.format(interface_url))
 					key = '1308a31764dae4d7e50d68f4de6c11c7'

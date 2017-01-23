@@ -74,7 +74,8 @@ def process(data, raw_msg=None):
 				# sign=md5($key+md5('param1=value1&param2=value2&param3=value3'+$key)) ;
 				# $key = "5ec252518c0796f83cb412e9c5d36d57"
 				if 'ExpressCompanyName' in message:
-					interface_url += "/XMlmessage/kangweb"
+					# 看购的回调地址规则：http://apiv.kangou.cn/方法组名/调用方法名/调用帐号
+					interface_url += "/XMlmessage/weizoom"
 					logging.info('===================interface_url======================={}'.format(interface_url))
 					key = '1308a31764dae4d7e50d68f4de6c11c7'
 					mw_one = hashlib.md5("message={}".format(message)+key)
