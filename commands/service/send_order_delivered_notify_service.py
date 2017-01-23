@@ -97,7 +97,7 @@ def process(data, raw_msg=None):
 				status = 1
 				logging.info('===================success======================={}'.format(repr(resp['data'])))
 			else:
-				logging.info('===================failed======================={}'.format(repr(resp['data']))
+				logging.info('===================failed======================={}'.format(repr(resp['data'])))
 			
 			notify_model = notify_models.NotifyMessage(
 				msg_id=msg_id,
