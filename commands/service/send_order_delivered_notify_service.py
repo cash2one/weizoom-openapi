@@ -53,7 +53,7 @@ def process(data, raw_msg=None):
 			if pay_log:
 				app_id = pay_log.appid
 			else:
-				logging.info("mns--order paylog is not exits!!!!!!!!! order_id:{}, msg:{}".format(order_id, unicode_full_stack()))
+				logging.info("mns--order paylog is not exits!!!!!!!!! order_id:{}".format(order_id))
 				errcode = DELIVERY_ORDER_HAS_NO_PAYLOG
 				return {'errcode':errcode, 'errmsg':code2msg[errcode]}
 		if order_id and app_id:
