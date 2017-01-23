@@ -70,10 +70,10 @@ def process(data, raw_msg=None):
 			logging.info("================================app_id:{}".format(app_id))
 			customer_message = customer_models.CustomerMessage.select().dj_where(app_id=app_id).first()
 			interface_url = customer_message.interface_url
-			# msg_id = "%s%s" %(int(time.time()), order_id)
+			msg_id = "%s%s" %(time.time(), order_id)
 			express_company_name = data["express_company_name"]
 			express_number = data["express_number"]
-			message = MESSAGE.format(order_id, express_company_name, express_number, notify_models.TYPE_DELIVERED, order_id)
+			message = MESSAGE.format(order_id, express_company_name, express_number, notify_models.TYPE_DELIVERED, msg_id)
 			xml_data = dict()
 			xml_data['message'] = message
 			# 单独处理看购平台的发货通知
@@ -100,9 +100,9 @@ def process(data, raw_msg=None):
 				logging.info('===================failed======================={}'.format(status))
 			
 			notify_model = notify_models.NotifyMessage(
-				msg_id=order_id,
+				msg_id=msg_id,
 				type=notify_models.TYPE_DELIVERED,
-				message='test',
+				message=message,
 				status=status,
 				created_at = datetime.datetime.now().strftime('%Y-%m-%d %H:%M:%S')
 			)

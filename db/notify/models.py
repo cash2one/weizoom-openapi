@@ -17,8 +17,8 @@ class NotifyMessage(models.Document):
 	"""
 	msg_id = models.LongField()
 	type = models.StringField(default='', max_length=50) #消息类型（发货 取消）
-	message = models.StringField(default='', max_length=50)  #记录消息信息
-	reason = models.StringField() #记录请求信息
+	message = models.StringField(default='', max_length=1000)  #记录消息信息
+	reason = models.StringField(default='', max_length=1000) #记录请求信息
 	status = models.IntField() #发送状态，成功或者失败 0支付失败 1支付成功
 	retry_time = models.IntField() #重试次数
 	created_at = models.DateTimeField(default=datetime.datetime.now()) #创建时间
