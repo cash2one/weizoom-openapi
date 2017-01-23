@@ -79,6 +79,7 @@ def process(data, raw_msg=None):
 					# sign=md5($key+md5('param1=value1&param2=value2&param3=value3'+$key)) ;
 					# $key = "5ec252518c0796f83cb412e9c5d36d57"
 					interface_url += "callback/kangweb"
+					data['operation'] = 'edit'
 					logging.info('===================interface_url======================={}'.format(interface_url))
 					key = '5ec252518c0796f83cb412e9c5d36d57'
 					mw_one = hashlib.md5("product_id={}".format(product_id)+key)
