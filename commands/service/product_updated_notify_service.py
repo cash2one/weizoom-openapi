@@ -37,7 +37,7 @@ def process(data, raw_msg=None):
 		# 从panda获取woids可能会有多个
 		woids_list_str = data.get('woids', '[]')
 		logging.info("================================woids_list_str:{}".format(woids_list_str))
-		woids_list = json.loads(woids_list)
+		woids_list = json.loads(woids_list_str)
 		# 从panda获取product_ids可能会有多个
 		product_id = data.get("product_id", None)
 		logging.info("================================product_id:{}".format(product_id))
