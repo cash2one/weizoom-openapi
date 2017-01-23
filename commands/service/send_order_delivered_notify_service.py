@@ -95,9 +95,9 @@ def process(data, raw_msg=None):
 			status = 0
 			if resp.status_code == 200:
 				status = 1
-				logging.info('===================success======================={}'.format(repr(resp['data'])))
+				logging.info('===================success======================={}{}'.format(repr(resp.url),repr(resp.text)))
 			else:
-				logging.info('===================failed======================={}'.format(repr(resp['data'])))
+				logging.info('===================failed======================={}{}'.format(repr(resp.url),repr(resp.text)))
 			
 			notify_model = notify_models.NotifyMessage(
 				msg_id=msg_id,
