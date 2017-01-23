@@ -84,6 +84,7 @@ def process(data, raw_msg=None):
 				# $key = "5ec252518c0796f83cb412e9c5d36d57"
 				if 'ExpressCompanyName' in message:
 					interface_url += "/XMlmessage/kangweb"
+					logging.info('===================interface_url======================={}'.format(interface_url))
 					key = '5ec252518c0796f83cb412e9c5d36d57'
 					mw_one = hashlib.md5("message={}".format(message)+key)
 					mw_two =hashlib.md5(key+ mw_one.hexdigest())
