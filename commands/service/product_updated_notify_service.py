@@ -63,7 +63,7 @@ def process(data, raw_msg=None):
 		#			product_list.append(product)
 
 	    # 准备发送回调的数据
-		data = {'product_id': product_id)}
+		data = {'product_id': product_id}
 		for account_info in account_infos:
 			app_id = account_info.app_id
 			if app_id:
