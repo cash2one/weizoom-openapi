@@ -22,13 +22,7 @@ import requests
 import hashlib
 
 MESSAGE = """
-		<xml>
-		<OrderId><![CDATA[{}]]></OrderId>
-		<ExpressCompanyName><![CDATA[{}]]></ExpressCompanyName> 
-		<ExpressNumber><![CDATA[{}]]></ExpressNumber>
-		<Type><![CDATA[{}]]></Type>
-		<MsgId>{}</MsgId>
-		</xml>
+		<xml><OrderId><![CDATA[{}]]></OrderId><ExpressCompanyName><![CDATA[{}]]></ExpressCompanyName><ExpressNumber><![CDATA[{}]]></ExpressNumber><Type><![CDATA[{}]]></Type><MsgId>{}</MsgId></xml>
 		"""
 
 
