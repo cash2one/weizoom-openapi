@@ -62,7 +62,9 @@ def process(data, raw_msg=None):
 		#		else:
 		#			product = resp['data']
 		#			product_list.append(product)
-
+		if not woids_list:
+			logging.info("==========product_updated=======woid is not openapi's woid====pass===========")
+			return
 	    # 准备发送回调的数据
 		data = {'product_id': product_id}
 		for account_info in account_infos:
