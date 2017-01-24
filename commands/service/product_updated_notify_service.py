@@ -86,7 +86,7 @@ def process(data, raw_msg=None):
 					data['operation'] = 'edit'
 					logging.info('===================interface_url======================={}'.format(interface_url))
 					key = '1308a31764dae4d7e50d68f4de6c11c7'
-					mw_one = hashlib.md5("product_id={}".format(product_id)+key)
+					mw_one = hashlib.md5("product_id={}&operation={}".format(product_id,data['operation'])+key)
 					mw_two =hashlib.md5(key+ mw_one.hexdigest())
 					sign = mw_two.hexdigest()
 					data['sign'] = sign
