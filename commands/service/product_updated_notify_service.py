@@ -66,6 +66,7 @@ def process(data, raw_msg=None):
 		#			product_list.append(product)
 	    # 准备发送回调的数据
 		data = {'product_id': product_id}
+		request_session = requests.Session()
 		for account_info in account_infos:
 			app_id = account_info.appid
 			logging.info('===================app_id======================={}'.format(app_id))
@@ -96,7 +97,7 @@ def process(data, raw_msg=None):
 					logging.info("================================data:{}".format(repr(data)))
 					logging.info("================================sign:{}".format(sign))
 
-				resp = requests.post(interface_url, data=data, timeout=30)
+				resp = request_session.post(interface_url, data=data, timeout=30)
 
 				status = 0
 				if resp.status_code == 200:
