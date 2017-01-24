@@ -44,7 +44,7 @@ def process(data, raw_msg=None):
 		# 从panda获取product_ids可能会有多个
 		product_id = data.get("product_id", None)
 		logging.info("================================product_id:{}".format(product_id))
-		account_infos = account_models.App.select().dj_where(woid_in=woids_list)
+		account_infos = account_models.App.select().dj_where(woid__in=woids_list)
 		
 		# apiserver_access_token = account_info.apiserver_access_token
 		# product_list = []
@@ -80,7 +80,7 @@ def process(data, raw_msg=None):
 					# http://testapi.kangou.cn/weizoon/XMlmessage/kangweb?data=123&sign=a96db7b8a2483fca057610072fd16ce6
 					# sign=md5($key+md5('param1=value1&param2=value2&param3=value3'+$key)) ;
 					# $key = "5ec252518c0796f83cb412e9c5d36d57"
-					
+
 					# 看购的回调地址规则：http://apiv.kangou.cn/方法组名/调用方法名/调用帐号
 					interface_url += "productupdate/weizoom"
 					data['operation'] = 'edit'
