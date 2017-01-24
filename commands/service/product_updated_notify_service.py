@@ -45,7 +45,6 @@ def process(data, raw_msg=None):
 		product_id = data.get("product_id", None)
 		logging.info("================================product_id:{}".format(product_id))
 		account_infos = account_models.App.select().dj_where(woid__in=woids_list)
-		
 		# apiserver_access_token = account_info.apiserver_access_token
 		# product_list = []
 		# if apiserver_access_token and product_id:
@@ -68,9 +67,9 @@ def process(data, raw_msg=None):
 	    # 准备发送回调的数据
 		data = {'product_id': product_id}
 		for account_info in account_infos:
-			app_id = account_info.app_id
+			app_id = account_info.appid
 			if app_id:
-				customer_message = customer_models.CustomerMessage.select().dj_where(app_id=appid).first()
+				customer_message = customer_models.CustomerMessage.select().dj_where(app_id=app_id).first()
 				interface_url = customer_message.interface_url
 				msg_id = "%s%s" %(time.time(), product_id)
 				message = "update product--product_id: %s, woids:%s"%(product_id,woids_list_str)
