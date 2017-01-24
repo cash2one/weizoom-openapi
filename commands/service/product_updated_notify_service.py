@@ -68,6 +68,7 @@ def process(data, raw_msg=None):
 		data = {'product_id': product_id}
 		for account_info in account_infos:
 			app_id = account_info.appid
+			logging.info('===================app_id======================={}'.format(app_id))
 			if app_id:
 				customer_message = customer_models.CustomerMessage.select().dj_where(app_id=app_id).first()
 				interface_url = customer_message.interface_url
@@ -89,7 +90,7 @@ def process(data, raw_msg=None):
 					mw_two =hashlib.md5(key+ mw_one.hexdigest())
 					sign = mw_two.hexdigest()
 					data['sign'] = sign
-					logging.info("================================message:{}".format(message))
+					logging.info("================================data:{}".format(repr(data)))
 					logging.info("================================sign:{}".format(sign))
 
 				resp = requests.post(interface_url, data=data, timeout=30)
