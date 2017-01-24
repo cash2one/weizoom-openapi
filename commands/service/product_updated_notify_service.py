@@ -44,7 +44,7 @@ def process(data, raw_msg=None):
 		# 从panda获取product_ids可能会有多个
 		product_id = data.get("product_id", None)
 		logging.info("================================product_id:{}".format(product_id))
-		account_infos = account_models.App.select().dj_where(woid__in=woids_list)
+		account_infos = account_models.App.select().dj_where(woid__in=woids_list,is_active=True)
 		# apiserver_access_token = account_info.apiserver_access_token
 		# product_list = []
 		# if apiserver_access_token and product_id:
@@ -70,7 +70,10 @@ def process(data, raw_msg=None):
 			app_id = account_info.appid
 			logging.info('===================app_id======================={}'.format(app_id))
 			if app_id:
-				customer_message = customer_models.CustomerMessage.select().dj_where(app_id=app_id).first()
+				customer_message = customer_models.CustomerMessage.select().dj_where(app_id=app_id,is_deleted=False).first()
+				if not customer_message.interface_url:
+					logging.info("==========product_updated=======interface_url is null====pass======woid:{}=====".format(account_info.woid))
+					return
 				interface_url = customer_message.interface_url
 				msg_id = "%s%s" %(time.time(), product_id)
 				message = "update product--product_id: %s, woids:%s"%(product_id,woids_list_str)
