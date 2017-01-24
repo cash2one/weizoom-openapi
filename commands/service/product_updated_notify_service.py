@@ -71,9 +71,9 @@ def process(data, raw_msg=None):
 			logging.info('===================app_id======================={}'.format(app_id))
 			if app_id:
 				customer_message = customer_models.CustomerMessage.select().dj_where(app_id=app_id,is_deleted=False).first()
-				if not customer_message.interface_url:
+				if not customer_message:
 					logging.info("==========product_updated=======interface_url is null====pass======woid:{}=====".format(account_info.woid))
-					return
+					continue
 				interface_url = customer_message.interface_url
 				msg_id = "%s%s" %(time.time(), product_id)
 				message = "update product--product_id: %s, woids:%s"%(product_id,woids_list_str)
