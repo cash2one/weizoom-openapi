@@ -65,10 +65,6 @@ def process(data, raw_msg=None):
 			express_company_name = data["express_company_name"]
 			express_number = data["express_number"]
 			action = data["action"]
-			if action == u'修改发货信息':
-				action = 'update_ship'
-			if action == u'订单发货':
-				action = 'ship_order'
 			message = MESSAGE.format(order_id, express_company_name, express_number, notify_models.TYPE_DELIVERED, msg_id)
 			xml_data = dict()
 			xml_data['message'] = message
