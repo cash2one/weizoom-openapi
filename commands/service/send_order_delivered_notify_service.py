@@ -64,6 +64,10 @@ def process(data, raw_msg=None):
 			msg_id = "%s%s" %(time.time(), order_id)
 			express_company_name = data["express_company_name"]
 			express_number = data["express_number"]
+			action = data["action"]
+			if action == 'update_ship':
+				logging.info("===============update-order don't  send notify=======!!!!!! :{}".format(order_id))
+				return
 			message = MESSAGE.format(order_id, express_company_name, express_number, notify_models.TYPE_DELIVERED, msg_id)
 			xml_data = dict()
 			xml_data['message'] = message
@@ -78,7 +82,7 @@ def process(data, raw_msg=None):
 					interface_url += "/XMlmessage/weizoom"
 					logging.info('===================interface_url======================={}'.format(interface_url))
 					key = '1308a31764dae4d7e50d68f4de6c11c7'
-					mw_one = hashlib.md5("message={}".format(message)+key)
+					mw_one = hashlib.md5("message={}".format(message,action)+key)
 					mw_two =hashlib.md5(key+ mw_one.hexdigest())
 					sign = mw_two.hexdigest()
 					xml_data['sign'] = sign
