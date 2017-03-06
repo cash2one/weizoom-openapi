@@ -22,7 +22,7 @@ class APay(api_resource.ApiResource):
 		
 		access_token = args['apiserver_access_token']
 		timestamp = str(long(time.time() * 1000))
-		data = { 'order_id':order_id, 'timestamp':timestamp, 'woid': woid, u'access_token':access_token, 'pay_interface_type':'2'}
+		data = { 'order_id':order_id, 'timestamp':timestamp, 'woid': woid, u'access_token':access_token, 'pay_interface_type':'12'}
 		pay_log = PayLog.from_order_id({
 			'order_id': args['order_id'],
 			})
