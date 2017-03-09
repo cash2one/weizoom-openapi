@@ -56,7 +56,7 @@ class AOrder(api_resource.ApiResource):
 				order_detail['ship_name'] = order['ship_name']
 				order_detail['ship_tel'] = order['ship_tel']
 				order_detail['postage'] = order['postage']
-
+				order_detail['message'] = order['customer_message']
 				order_detail['created_at'] = order['created_at']
 				order_detail['products'] = []
 				for product in order['products']:
@@ -116,6 +116,7 @@ class AOrder(api_resource.ApiResource):
 		area = args['area']
 		ship_tel = args['ship_tel']
 		products = args['products']
+		message = args.get('message', '{}')
 		products_json = json.loads(products)
 		product_ids = []
 		product_counts = []
@@ -132,10 +133,11 @@ class AOrder(api_resource.ApiResource):
 		
 		access_token = args['apiserver_access_token']
 		timestamp = str(long(time.time() * 1000))
+		# 要是增加客户留言的话需要添加“message字段”
 		data = {u'xa-choseInterfaces': u'12',
 			u'product_counts': product_counts, u'ship_address': ship_address, 'woid': woid, 'lock':False,
 			u'timestamp': timestamp, u'integral': u'undefined', u'coupon_id': u'0', u'product_model_names': product_model_names,  
-			u'ship_tel': ship_tel, u'message': '{}', u'order_type': u'undefined', u'area': area, 
+			u'ship_tel': ship_tel, u'message': message, u'order_type': u'undefined', u'area': area, 
 			u'is_order_from_shopping_cart': u'false', u'ship_name': ship_name, 
 			 u'product_ids': product_ids, u'access_token':access_token}
 
