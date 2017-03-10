@@ -40,6 +40,7 @@ class AProducts(api_resource.ApiResource):
         reaponse_data = {}
         try:
             # param_data = {'access_token':args['apiserver_access_token'], 'woid':args['woid'],'category_id':0, 'cur_page':args['cur_page']}
+            # 如果请求的页数大于最大页数，那么gaia只返回最后一页的数据
             gaia_data = {
                 'corp_id': args['woid'],
                 'cur_page': args.get('page', 1),
