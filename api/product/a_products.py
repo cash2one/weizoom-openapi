@@ -43,7 +43,7 @@ class AProducts(api_resource.ApiResource):
             # 如果请求的页数大于最大页数，那么gaia只返回最后一页的数据
             gaia_data = {
                 'corp_id': args['woid'],
-                'cur_page': args.get('page', 1),
+                'cur_page': args.get('cur_page', 1),
                 'count_per_page': args.get('count_per_page', COUNT_PER_PAGE)
             }
             gaia_data['count_per_page'] = 200 if int(gaia_data['count_per_page'])>200 else gaia_data['count_per_page']
