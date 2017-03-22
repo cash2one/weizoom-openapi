@@ -69,6 +69,8 @@ class AProduct(api_resource.ApiResource):
                 else:
                     for model in product_models:
                         model['after_add_price'] = float('{:.2f}'.format(Decimal(str((float(model['price'] if model['price'] else 0)/0.9)))))
+            product['price_info']['new_max_price'] = float('{:.2f}'.format(Decimal(str((float(product['price_info']['max_price'] if product['price_info']['max_price'] else 0)/0.9)))))
+            product['price_info']['new_min_price'] = float('{:.2f}'.format(Decimal(str((float(product['price_info']['min_price'] if product['price_info']['min_price'] else 0)/0.9)))))
             if product_model_name and product_model_name != 'standard':
                 #多规格商品需要删除的key
                 del product["owner_id"] 
